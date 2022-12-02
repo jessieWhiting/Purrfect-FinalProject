@@ -10,7 +10,11 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AppRoutingModule } from './app-routing.module';
+
+import { CommonModule } from '@angular/common';
+
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +25,7 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
     FetchDataComponent,
   ],
   imports: [
+    BrowserModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
@@ -30,7 +35,11 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
       { path: 'fetch-data', component: FetchDataComponent },
     ]),
     AppRoutingModule,
+
+    CommonModule,
+
     SocialLoginModule
+
   ],
   providers: [{
   	provide: 'SocialAuthServiceConfig',
