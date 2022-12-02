@@ -1,0 +1,11 @@
+<div *ngIf="loggedIn">
+	<img src="{{ user.photoUrl }}">
+	<div>
+	<h4>{{ user.name }}</h4>
+	<p>{{ user.email }}</p>
+	</div>
+</div>
+
+<div *ngIf="!loggedIn">   
+	<p>Log in to see user info</p>
+</div>
