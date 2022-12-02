@@ -11,6 +11,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { CutelistComponent } from './cutelist/cutelist.component';
 
 
 
@@ -21,6 +22,7 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
+    CutelistComponent,
 
   ],
   imports: [
