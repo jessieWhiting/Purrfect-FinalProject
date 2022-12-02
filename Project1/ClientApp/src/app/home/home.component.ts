@@ -1,3 +1,4 @@
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { FDADrugService } from '../fdadrug.service';
 import { PetfinderService } from '../petfinder.service';
@@ -10,10 +11,11 @@ import { Animal } from '../PFAnimals';
 export class HomeComponent {
 
   petsToShow:Animal[] = [];
+  user: SocialUser = {} as SocialUser;
+  loggedIn: boolean = false;
+  
+  constructor(private fdadrug:FDADrugService, private PFservice:PetfinderService, private authService: SocialAuthService){
 
-  constructor(private fdadrug:FDADrugService,
-              private PFService:PetfinderService,){
-    
     fdadrug.testing();
 
     this.petsToShow = PFService.getPets(2).animals;
@@ -22,5 +24,13 @@ export class HomeComponent {
 
   }
 
+
+
+  ngOnInit(): void{
+    this.authService.authState.subscribe((user)=>{
+      this.user = user;
+      this.loggedIn = (user != null);
+    });
+  }
 
 }
