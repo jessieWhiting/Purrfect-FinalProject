@@ -139,4 +139,7 @@ export interface Pagination {
 export interface PaginationLinks {
     previous: Next;
     next:     Next;
+
 }
+
+

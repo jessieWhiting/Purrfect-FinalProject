@@ -1,8 +1,8 @@
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { FDADrugService } from '../fdadrug.service';
-import { PetfinderService } from '../petfinder.service';
 import { Animal } from '../PFAnimals';
+
 
 @Component({
   selector: 'app-home',
