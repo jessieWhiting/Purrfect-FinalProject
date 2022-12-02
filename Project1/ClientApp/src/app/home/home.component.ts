@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FDADrugService } from '../fdadrug.service';
 import { PetfinderService } from '../petfinder.service';
 import { Animal } from '../PFAnimals';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
