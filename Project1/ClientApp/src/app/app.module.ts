@@ -10,10 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AppRoutingModule } from './app-routing.module';
-
 import { CommonModule } from '@angular/common';
-
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+
 
 
 @NgModule({
@@ -23,6 +22,7 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -33,6 +33,7 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+     
     ]),
     AppRoutingModule,
 
