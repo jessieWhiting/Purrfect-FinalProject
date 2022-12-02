@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { PFToken } from './PFToken';
 import { Secret } from './secret';
 
@@ -8,14 +7,22 @@ import { Secret } from './secret';
 @Injectable({
   providedIn: 'root'
 })
-export class PetfinderService {
+export class PetFinderService {
 
   constructor(private http: HttpClient) { }
-  url:string = `https://api.petfinder.com/v2`;
-
-  getToken():Observable<PFToken>{
-    let keyString:string = `grant_type=client_credentials&client_id=${Secret.PFPublicKey}&client_secret=${Secret.PFSecretKey}`;
-    return this.http.post<PFToken>(`${this.url}+/oauth2/token`, keyString);
+  url:string = `https://api.petfinder.com/v2/`;
+  getToken(){
+    const getTokenHeaders = new HttpHeaders();
+  //  let keyString:string = `grant_type=client_credentials&client_id=JdFhi7bzFoX2pqnV8S04ZYzpaKjfrtkmJW6wGBOTBQU8jmltBZ&client_secret=VZgZ7jwW7UH3VHmD7dq4COx8FeBgqWZz8H2iRPdE`;
+    getTokenHeaders.append('access-control-allow-origin', '*');
+    getTokenHeaders.append('content-type', 'application/x-www-form-urlencoded');
+    getTokenHeaders.append('grant_type', 'client_credentials');
+    getTokenHeaders.append('Accept', 'application/json');
+    getTokenHeaders.append("grant_type", "client_credentials");
+    getTokenHeaders.append("client_id", "JdFhi7bzFoX2pqnV8S04ZYzpaKjfrtkmJW6wGBOTBQU8jmltBZ");
+    getTokenHeaders.append("client_secret","VZgZ7jwW7UH3VHmD7dq4COx8FeBgqWZz8H2iRPdE");
+    //console.log(keyString);
+    return this.http.post<any>(`https://api.petfinder.com/v2/oauth2/token`, {headers: getTokenHeaders});
   }
 
   diff_hours(dt2:Date, dt1:Date):number {
@@ -40,7 +47,7 @@ export class PetfinderService {
       let currentDate = new Date()
 
       if(this.diff_hours(currentDate, tokenObj.date_created) > 0){
-        console.log("our token is old !");
+        console.log("our token is expired!");
         localStorage.clear();
         return true;
       }
