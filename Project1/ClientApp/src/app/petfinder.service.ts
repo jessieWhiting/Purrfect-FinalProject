@@ -18,15 +18,18 @@ export class PetFinderService {
 
   getToken():Observable<PFToken>{
     const getTokenHeaders = new HttpHeaders();
-    let keyString:string = `grant_type=client_credentials`;
+
+    const keyString:FormData = new FormData();
+    keyString.append("grant_type", "client_credentials");
+    keyString.append("client_id", `${Secret.PFPublicKey}`);
+    keyString.append("client_secret", `${Secret.PFSecretKey}`);
+
     getTokenHeaders.set('Access-Control-Allow-Origin', '*');
     getTokenHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
     getTokenHeaders.append('Accept', '*/*');
     getTokenHeaders.append('Accept-Encoding', 'gzip, deflate, br');
     getTokenHeaders.append('Connection', 'keep-alive');
     getTokenHeaders.append('Access-Control-Allow-Credentials', 'true');
-    console.log(getTokenHeaders.get.name);
-    console.log(keyString);
     return this.http.post<PFToken>(`${this.url}/oauth2/token`, keyString, {headers: getTokenHeaders});
 
   }
@@ -74,19 +77,27 @@ export class PetFinderService {
     if(this.isTokenExpired()){
     
     this.getToken().subscribe((results:PFToken)=>{
-      let tokenParams:string = `${results.token_type}, ${results.expires_in}, ${results.access_token}, ${results.date_created}`;
+      let tokenParams:string = `${results.token_type}, ${results.expires_in}, ${results.access_token}, ${Date.now()}`;
       localStorage.setItem("PetFinderToken", tokenParams);
       // write new token to local storage
       //take this log out laterrrr
-      console.log(results.access_token);
+      console.log("we got a new token!");
       const tokenHeader = new HttpHeaders();
       tokenHeader.append('Authorization', `Bearer ${results.access_token}`);
-      //this.http.get(`${this.url}/animals?type=cat&page=${page}`, tokenHeader).subscribe((results:)=>{
-      // output = results;
-      //})
+      this.http.get(`${this.url}/animals?type=cat&page=${page}`, {headers: tokenHeader}).subscribe((results:any)=>{
+        output = results;
+      })
     });
     } else{
-     // we have a token and we need to use it 
+      console.log("we are using our token!")
+      const tokenHeader = new HttpHeaders();
+      tokenHeader.append('Access-Control-Allow-Origin', '*');
+      let token:string = localStorage.getItem("PetFinderToken")!;
+      tokenHeader.append('Authorization', `Bearer ${token}`);
+      
+      this.http.get(`${this.url}/animals?type=cat&page=${page}`, {headers: tokenHeader}).subscribe((results:any)=>{
+        output = results;
+      })
     }
     return output;
   }

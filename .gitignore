@@ -366,4 +366,4 @@ secret.ts
 secret.cs
 
 # angular !
-** .angular/cache/
+.angular/cache
