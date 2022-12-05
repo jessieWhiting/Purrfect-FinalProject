@@ -84,15 +84,16 @@ export class PetFinderService {
       //take this log out laterrrr
       console.log("we got a new token!");
       const tokenHeader = new HttpHeaders();
+      tokenHeader.set('Access-Control-Allow-Origin', 'http://localhost:4200/');
       tokenHeader.append('Authorization', `Bearer ${results.access_token}`);
       this.http.get(`${this.url}/animals?type=cat&page=${page}`, {headers: tokenHeader}).subscribe((results:any)=>{
         output = results;
-      })
+      });
     });
-  }
-    else{
-      
-      console.log("we are using our token!");
+
+    } else{
+      console.log("we are using our token!")
+
       const tokenHeader2 = new HttpHeaders();
       tokenHeader2.set('Access-Control-Allow-Headers','Content-Type');
       tokenHeader2.append('Access-Control-Allow-Methods','GET, POST, OPTIONS');
@@ -106,7 +107,7 @@ export class PetFinderService {
                               date_created: new Date(tokenArray[3])
                               };
 
-      tokenHeader2.append('Authorization',`Bearer ${tokenObj.access_token}`);
+      tokenHeader2.append('Authorization', `Bearer ${tokenObj.access_token}`);
       
       this.http.get(`${this.url}/animals?type=cat&page=${page}`, {headers: tokenHeader2}).subscribe((results:any)=>{
         output = results;
@@ -126,8 +127,8 @@ export class PetFinderService {
       localStorage.setItem("PetFinderToken", tokenParams);
       //take this log out laterrrr
       console.log(results.access_token);
-      const tokenHeader = new HttpHeaders();
-      tokenHeader.append('Authorization', `Bearer ${results.access_token}`);
+      //const tokenHeader = new HttpHeaders();
+      //tokenHeader.append('Authorization', `Bearer ${results.access_token}`);
       //this.http.get(`${this.url}/animals/${id}`, tokenHeader).subscribe((results:)=>{
 
       //})

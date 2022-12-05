@@ -12,6 +12,9 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
 import { FavoritesComponent } from './favorites/favorites.component';
 import { Secret } from './secret';
 
+import { CutelistComponent } from './cutelist/cutelist.component';
+
+
 
 
 @NgModule({
@@ -20,6 +23,10 @@ import { Secret } from './secret';
     NavMenuComponent,
     HomeComponent,
     FavoritesComponent
+    CounterComponent,
+    FetchDataComponent,
+    CutelistComponent,
+
 
   ],
   imports: [
