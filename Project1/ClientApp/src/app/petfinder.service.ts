@@ -72,20 +72,10 @@ export class PetFinderService {
     return true;
   }
   OnLoad():void {
-    
-    if(!this.isTokenExpired()){
-      let token:string = localStorage.getItem("PetFinderToken")!;
-
-      let tokenArray:string[] = token.split(", ");
-      let tokenObj:PFToken = {token_type: tokenArray[0],
-                              expires_in: parseInt(tokenArray[1]),
-                              access_token: tokenArray[2],
-                              date_created: new Date(tokenArray[3])
-                              };
-      console.log("resetting token")
-      this.http.get(`${this.url}pf/newToken/onLoad/${tokenObj.access_token}`).subscribe(()=>{});
-
-    }
+    this.getToken().subscribe((results:PFToken)=>{
+      console.log("setting internal token")
+      this.http.get(`${this.url}pf/newToken/onLoad/${results.access_token}`).subscribe(()=>{});
+    });
   }
 
   getPets(page:number):Observable<PFAPI>{

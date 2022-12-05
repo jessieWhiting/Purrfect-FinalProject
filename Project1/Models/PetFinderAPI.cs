@@ -39,6 +39,7 @@ namespace Project1.Models
 		{
 			MyHttp.DefaultRequestHeaders.Remove("Authorization");
 			MyHttp.DefaultRequestHeaders.Add("Authorization", "Bearer " + access_token);
+			Console.WriteLine("xStartup token: "+MyHttp.DefaultRequestHeaders.Authorization);
 		}
 		public static async Task<PFResults> GetPetsAddToken(string page, string access_token)
 		{

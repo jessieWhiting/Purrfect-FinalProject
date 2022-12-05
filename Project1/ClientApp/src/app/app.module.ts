@@ -14,6 +14,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { Secret } from './secret';
 import { PetFinderService } from './petfinder.service';
 import { interval } from 'rxjs';
+import { CatInfoComponent } from './cat-info/cat-info.component';
 
 
 export function initializeApp(PFServ:PetFinderService) {
@@ -29,6 +30,7 @@ export function initializeApp(PFServ:PetFinderService) {
     HomeComponent,
     FavoritesComponent,
     UserProfileComponent,
+    CatInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ export function initializeApp(PFServ:PetFinderService) {
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'user-profile', component: UserProfileComponent},
       { path: 'favorites', component: FavoritesComponent},
+      { path: 'cat-info/:shelter/:cat', component: CatInfoComponent},
     ]),
     AppRoutingModule,
     CommonModule,

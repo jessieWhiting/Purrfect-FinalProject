@@ -7,13 +7,13 @@ export interface Animal {
     id:                     number;
     organization_id:        string;
     url:                    string;
-    type:                   Species;
-    species:                Species;
+    type:                   string;
+    species:                string;
     breeds:                 Breeds;
     colors:                 Colors;
-    age:                    Age;
-    gender:                 Gender;
-    size:                   Size;
+    age:                    string;
+    gender:                 string;
+    size:                   string;
     coat:                   null | string;
     attributes:             Attributes;
     environment:            Environment;
@@ -24,7 +24,7 @@ export interface Animal {
     photos:                 PrimaryPhotoCropped[];
     primary_photo_cropped:  PrimaryPhotoCropped;
     videos:                 any[];
-    status:                 Status;
+    status:                 string;
     status_changed_at:      string;
     published_at:           string;
     distance:               null;
@@ -58,8 +58,8 @@ export interface Attributes {
 }
 
 export interface Breeds {
-    primary:   Ary;
-    secondary: Ary | null;
+    primary:   string;
+    secondary: string | null;
     mixed:     boolean;
     unknown:   boolean;
 }
@@ -72,8 +72,8 @@ export enum Ary {
 
 export interface Colors {
     primary:   null | string;
-    secondary: null;
-    tertiary:  null;
+    secondary: null | string;
+    tertiary:  null | string;
 }
 
 export interface Contact {
@@ -88,14 +88,10 @@ export interface Address {
     city:     string;
     state:    string;
     postcode: string;
-    country:  Country;
+    country:  string;
 }
 
-export enum Country {
-    CA = "CA",
-    MX = "MX",
-    Us = "US",
-}
+
 
 export interface Environment {
     children: boolean | null;
@@ -103,10 +99,6 @@ export interface Environment {
     cats:     boolean | null;
 }
 
-export enum Gender {
-    Female = "Female",
-    Male = "Male",
-}
 
 export interface PrimaryPhotoCropped {
     small:  string;
@@ -115,18 +107,6 @@ export interface PrimaryPhotoCropped {
     full:   string;
 }
 
-export enum Size {
-    Medium = "Medium",
-    Small = "Small",
-}
-
-export enum Species {
-    Cat = "Cat",
-}
-
-export enum Status {
-    Adoptable = "adoptable",
-}
 
 export interface Pagination {
     count_per_page: number;
