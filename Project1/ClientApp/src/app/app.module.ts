@@ -1,3 +1,4 @@
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -13,6 +14,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { Secret } from './secret';
 
 import { CutelistComponent } from './cutelist/cutelist.component';
+import { Secret } from './secret';
 
 
 
@@ -26,6 +28,7 @@ import { CutelistComponent } from './cutelist/cutelist.component';
     CounterComponent,
     FetchDataComponent,
     CutelistComponent,
+    UserProfileComponent
 
 
   ],
@@ -36,8 +39,8 @@ import { CutelistComponent } from './cutelist/cutelist.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'user-profile', component: UserProfileComponent}
       { path: 'favorites', component: FavoritesComponent}
-     
     ]),
     AppRoutingModule,
 
@@ -54,9 +57,7 @@ import { CutelistComponent } from './cutelist/cutelist.component';
       	{
         	id: GoogleLoginProvider.PROVIDER_ID,
         	provider: new GoogleLoginProvider(
-          Secret.GoogleKey
-
-          
+          	Secret.GoogleKey
         	)
       	}
     	]
