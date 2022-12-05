@@ -7,13 +7,15 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { Secret } from './secret';
+
 import { CutelistComponent } from './cutelist/cutelist.component';
 import { Secret } from './secret';
+
 
 
 
@@ -22,10 +24,12 @@ import { Secret } from './secret';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
+    FavoritesComponent
     CounterComponent,
     FetchDataComponent,
     CutelistComponent,
     UserProfileComponent
+
 
   ],
   imports: [
@@ -35,13 +39,14 @@ import { Secret } from './secret';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
       { path: 'user-profile', component: UserProfileComponent}
+      { path: 'favorites', component: FavoritesComponent}
     ]),
     AppRoutingModule,
+
     CommonModule,
-    SocialLoginModule,
+
+    SocialLoginModule
 
   ],
   providers: [{
