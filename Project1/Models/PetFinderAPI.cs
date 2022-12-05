@@ -35,7 +35,11 @@ namespace Project1.Models
 			//	lastSet= DateTime.Now;
 			}
 		}
-
+		public static void OnLoad(string access_token)
+		{
+			MyHttp.DefaultRequestHeaders.Remove("Authorization");
+			MyHttp.DefaultRequestHeaders.Add("Authorization", "Bearer " + access_token);
+		}
 		public static async Task<PFResults> GetPetsAddToken(string page, string access_token)
 		{
 			MyHttp.DefaultRequestHeaders.Remove("Authorization");
