@@ -1,4 +1,4 @@
-import { SocialUser } from '@abacritt/angularx-social-login';
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { FDADrugService } from '../fdadrug.service';
 import { PetFinderService } from '../petfinder.service';
@@ -18,8 +18,9 @@ export class HomeComponent {
   
   constructor(private fdadrug:FDADrugService, 
               private PFservice:PetFinderService,
-              private RGservice:RescueGroupsService,){
-
+              private RGservice:RescueGroupsService,
+              private authService:SocialAuthService){
+    
     fdadrug.testing();
 
     PFservice.getPets(3).subscribe((results:PFAPI)=>{
