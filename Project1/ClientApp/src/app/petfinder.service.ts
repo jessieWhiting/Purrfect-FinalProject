@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { outputAst } from '@angular/compiler';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PFAPI } from './PFAnimals';
 import { PFToken } from './PFToken';
@@ -11,10 +11,12 @@ import { Secret } from './secret';
   providedIn: 'root'
 })
 export class PetFinderService {
+  url:string;
+  constructor(private http: HttpClient, @Inject("BASE_URL") private base:string) {
+    this.url = base;
+  }
 
-  constructor(private http: HttpClient) { }
-
-  url:string = `https://api.petfinder.com/v2`;
+  // url:string = `https://api.petfinder.com/v2`;
 
   getToken():Observable<PFToken>{
     const getTokenHeaders = new HttpHeaders();
@@ -30,7 +32,7 @@ export class PetFinderService {
     getTokenHeaders.append('Accept-Encoding', 'gzip, deflate, br');
     getTokenHeaders.append('Connection', 'keep-alive');
     getTokenHeaders.append('Access-Control-Allow-Credentials', 'true');
-    return this.http.post<PFToken>(`${this.url}/oauth2/token`, keyString, {headers: getTokenHeaders});
+    return this.http.post<PFToken>(`https://api.petfinder.com/v2/oauth2/token`, keyString, {headers: getTokenHeaders});
 
   }
 
@@ -70,7 +72,7 @@ export class PetFinderService {
   }
 
 
-  getPets(page:number):PFAPI{
+  getPets(page:number):Observable<PFAPI>{
     let output:PFAPI = {} as PFAPI;
 
     // if a token exists in local storage and is valid,
@@ -80,21 +82,12 @@ export class PetFinderService {
       let tokenParams:string = `${results.token_type}, ${results.expires_in}, ${results.access_token}, ${Date.now()}`;
       localStorage.setItem("PetFinderToken", tokenParams);
       // write new token to local storage
-      //take this log out laterrrr
       console.log("we got a new token!");
-      const tokenHeader = new HttpHeaders();
-      tokenHeader.set('Access-Control-Allow-Origin', 'http://localhost:4200/');
-      tokenHeader.append('Authorization', `Bearer ${results.access_token}`);
-      this.http.get(`${this.url}/animals?type=cat&page=${page}`, {headers: tokenHeader}).subscribe((results:any)=>{
-        output = results;
-      });
+      return this.http.get<PFAPI>(`${this.url}pf/newToken/list/${page}/${results.access_token}`,);
     });
     } else{
       console.log("we are using our token!")
-      const tokenHeader2 = new HttpHeaders();
-      tokenHeader2.set('Access-Control-Allow-Headers','Content-Type');
-      tokenHeader2.append('Access-Control-Allow-Methods','GET, POST, OPTIONS');
-      tokenHeader2.append('Access-Control-Allow-Origin', '*');
+
       let token:string = localStorage.getItem("PetFinderToken")!;
 
       let tokenArray:string[] = token.split(", ");
@@ -104,13 +97,10 @@ export class PetFinderService {
                               date_created: new Date(tokenArray[3])
                               };
 
-      tokenHeader2.append('Authorization', `Bearer ${tokenObj.access_token}`);
-      
-      this.http.get(`${this.url}/animals?type=cat&page=${page}`, {headers: tokenHeader2}).subscribe((results:any)=>{
-        output = results;
-      })
+      return this.http.get<PFAPI>(`${this.url}pf/list/${page}`);
     }
-    return output;
+    // last catch ?
+    return this.http.get<PFAPI>(`${this.url}pf/list/${page}`);
   }
 
   // get a pet with an id
