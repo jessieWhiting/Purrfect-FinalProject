@@ -1,9 +1,10 @@
-import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { SocialUser } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { FDADrugService } from '../fdadrug.service';
 import { PetFinderService } from '../petfinder.service';
 import { Animal, PFAPI } from '../PFAnimals';
 import { RescueGroupsService } from '../rescue-groups.service';
+
 
 @Component({
   selector: 'app-home',
@@ -11,14 +12,12 @@ import { RescueGroupsService } from '../rescue-groups.service';
 })
 export class HomeComponent {
 
-
   petsToShow:Animal[] = [];
   user: SocialUser = {} as SocialUser;
   loggedIn: boolean = false;
   
   constructor(private fdadrug:FDADrugService, 
-              private PFservice:PetFinderService, 
-              private authService: SocialAuthService,
+              private PFservice:PetFinderService,
               private RGservice:RescueGroupsService,){
 
     fdadrug.testing();
@@ -28,11 +27,7 @@ export class HomeComponent {
     })
 
     RGservice.getPets();
-
-
   }
-
-
 
   ngOnInit(): void{
     this.authService.authState.subscribe((user)=>{
@@ -42,6 +37,4 @@ export class HomeComponent {
 
     console.log(`second in line ${this.petsToShow[1]}`);
   }
-
-
 }

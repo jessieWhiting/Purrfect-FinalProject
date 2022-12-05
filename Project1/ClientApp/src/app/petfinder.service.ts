@@ -15,8 +15,8 @@ export class PetFinderService {
   constructor(private http: HttpClient, @Inject("BASE_URL") private base:string) {
     this.url = base;
   }
-
   // url:string = `https://api.petfinder.com/v2`;
+
 
   getToken():Observable<PFToken>{
     const getTokenHeaders = new HttpHeaders();
@@ -100,6 +100,7 @@ export class PetFinderService {
       console.log("we got a new token!");
       return this.http.get<PFAPI>(`${this.url}pf/newToken/list/${page}/${results.access_token}`,);
     });
+
     } else{
       console.log("we are using our token!")
       return this.http.get<PFAPI>(`${this.url}pf/list/${page}`);
