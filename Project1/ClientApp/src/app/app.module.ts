@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { Secret } from './secret';
 
 
 
@@ -46,7 +47,9 @@ import { FavoritesComponent } from './favorites/favorites.component';
       	{
         	id: GoogleLoginProvider.PROVIDER_ID,
         	provider: new GoogleLoginProvider(
-          	'clientId'
+          Secret.GoogleKey
+
+          
         	)
       	}
     	]

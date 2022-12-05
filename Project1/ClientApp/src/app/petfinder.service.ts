@@ -15,6 +15,7 @@ export class PetFinderService {
   constructor(private http: HttpClient) { }
 
   url:string = `https://api.petfinder.com/v2`;
+  // page:string = "";
 
   getToken():Observable<PFToken>{
     const getTokenHeaders = new HttpHeaders();
@@ -88,16 +89,29 @@ export class PetFinderService {
         output = results;
       })
     });
-    } else{
-      console.log("we are using our token!")
-      const tokenHeader = new HttpHeaders();
-      tokenHeader.append('Access-Control-Allow-Origin', '*');
-      let token:string = localStorage.getItem("PetFinderToken")!;
-      tokenHeader.append('Authorization', `Bearer ${token}`);
+  }
+    else{
       
-      this.http.get(`${this.url}/animals?type=cat&page=${page}`, {headers: tokenHeader}).subscribe((results:any)=>{
+      console.log("we are using our token!");
+      const tokenHeader2 = new HttpHeaders();
+      tokenHeader2.set('Access-Control-Allow-Headers','Content-Type');
+      tokenHeader2.append('Access-Control-Allow-Methods','GET, POST, OPTIONS');
+      tokenHeader2.append('Access-Control-Allow-Origin', '*');
+      let token:string = localStorage.getItem("PetFinderToken")!;
+
+      let tokenArray:string[] = token.split(", ");
+      let tokenObj:PFToken = {token_type: tokenArray[0],
+                              expires_in: parseInt(tokenArray[1]),
+                              access_token: tokenArray[2],
+                              date_created: new Date(tokenArray[3])
+                              };
+
+      tokenHeader2.append('Authorization',`Bearer ${tokenObj.access_token}`);
+      
+      this.http.get(`${this.url}/animals?type=cat&page=${page}`, {headers: tokenHeader2}).subscribe((results:any)=>{
         output = results;
-      })
+   
+      });
     }
     return output;
   }
