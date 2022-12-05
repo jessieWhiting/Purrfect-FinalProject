@@ -15,6 +15,7 @@ export class PetFinderService {
   constructor(private http: HttpClient) { }
 
   url:string = `https://api.petfinder.com/v2`;
+  // page:string = "";
 
   getToken():Observable<PFToken>{
     const getTokenHeaders = new HttpHeaders();
@@ -89,8 +90,10 @@ export class PetFinderService {
         output = results;
       });
     });
+
     } else{
       console.log("we are using our token!")
+
       const tokenHeader2 = new HttpHeaders();
       tokenHeader2.set('Access-Control-Allow-Headers','Content-Type');
       tokenHeader2.append('Access-Control-Allow-Methods','GET, POST, OPTIONS');
@@ -108,7 +111,8 @@ export class PetFinderService {
       
       this.http.get(`${this.url}/animals?type=cat&page=${page}`, {headers: tokenHeader2}).subscribe((results:any)=>{
         output = results;
-      })
+   
+      });
     }
     return output;
   }

@@ -6,12 +6,14 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { Secret } from './secret';
+
 import { CutelistComponent } from './cutelist/cutelist.component';
+
 
 
 
@@ -20,9 +22,11 @@ import { CutelistComponent } from './cutelist/cutelist.component';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
+    FavoritesComponent
     CounterComponent,
     FetchDataComponent,
     CutelistComponent,
+
 
   ],
   imports: [
@@ -32,13 +36,14 @@ import { CutelistComponent } from './cutelist/cutelist.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'favorites', component: FavoritesComponent}
      
     ]),
     AppRoutingModule,
+
     CommonModule,
-    SocialLoginModule,
+
+    SocialLoginModule
 
   ],
   providers: [{
@@ -49,7 +54,9 @@ import { CutelistComponent } from './cutelist/cutelist.component';
       	{
         	id: GoogleLoginProvider.PROVIDER_ID,
         	provider: new GoogleLoginProvider(
-          	'clientId'
+          Secret.GoogleKey
+
+          
         	)
       	}
     	]

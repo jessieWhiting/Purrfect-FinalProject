@@ -1,0 +1,36 @@
+--create table Cat
+--(
+--Id int primary key identity (1,1),
+--OrganizationId nvarchar(100),
+--[Name] nvarchar(30),
+--Gender nvarchar(10),
+--[Description] nvarchar(500),
+--Breed nvarchar(30),
+--Age int,
+--[Weight] int,
+--Spayed_Neutered bit,
+--House_Trained bit,
+--Declawed bit,
+--Special_Needs bit,
+--Shots_Current bit,
+--Good_With_Kids bit,
+--Good_With_Dogs bit,
+--Good_With_cats bit,
+--Photos nvarchar(50),
+--[Status] nvarchar(10),
+--[Email] nvarchar(30),
+--[Phone] nvarchar (10));
+
+--create table Users
+--(
+--UserId int primary key identity (1,1),
+--Admin bit,
+--UserName nvarchar(30),
+--ZipCode nvarchar (5));
+
+
+--create table Favorites
+--(
+--FavoriteId int primary key identity (1,1),
+--UserId int foreign key references Users(UserId),
+--CatId int foreign key references Cat(Id));
