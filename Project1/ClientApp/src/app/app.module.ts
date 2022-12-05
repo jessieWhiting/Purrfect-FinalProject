@@ -1,3 +1,4 @@
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { CutelistComponent } from './cutelist/cutelist.component';
+import { Secret } from './secret';
 
 
 
@@ -23,6 +25,7 @@ import { CutelistComponent } from './cutelist/cutelist.component';
     CounterComponent,
     FetchDataComponent,
     CutelistComponent,
+    UserProfileComponent
 
   ],
   imports: [
@@ -34,7 +37,7 @@ import { CutelistComponent } from './cutelist/cutelist.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-     
+      { path: 'user-profile', component: UserProfileComponent}
     ]),
     AppRoutingModule,
     CommonModule,
@@ -49,7 +52,7 @@ import { CutelistComponent } from './cutelist/cutelist.component';
       	{
         	id: GoogleLoginProvider.PROVIDER_ID,
         	provider: new GoogleLoginProvider(
-          	'clientId'
+          	Secret.GoogleKey
         	)
       	}
     	]
