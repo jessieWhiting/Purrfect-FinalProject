@@ -367,3 +367,4 @@ secret.cs
 
 # angular !
 .angular/cache
+.angular
