@@ -17,6 +17,5 @@
 
 <div *ngFor="let p of petsToShow">
   <p><a [routerLink]="['cat-info', '17', p.id]">{{p.name}}</a> is {{p.age}} :)</p>
-  <!-- <img src="{{p.photos[0].medium}}" width="200"> -->
-
+  <!-- <img src="{{p.photos[0].medium}}" width="200" (error)="setDefaultPic($event)"> -->
 </div>

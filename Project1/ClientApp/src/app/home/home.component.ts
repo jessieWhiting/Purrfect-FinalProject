@@ -38,4 +38,9 @@ export class HomeComponent {
 
     console.log(`second in line ${this.petsToShow[1]}`);
   }
+
+  setDefaultPic(event: any) {
+    event.target.src = "https://www.catsplay.com/image/cache/prod/data/img/touchstone/outdoor-cedar-wood-cat-house-shelter-1200x1200.jpg";
+  }
+
 }
