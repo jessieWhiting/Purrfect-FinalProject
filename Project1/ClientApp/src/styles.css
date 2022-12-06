@@ -14,3 +14,12 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+.homeDiv1{
+  border: 3px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  
+}
