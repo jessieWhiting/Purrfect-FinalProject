@@ -1,4 +1,4 @@
-
+<div>
 <h2>all the cutest cats !!</h2>
 
 <div *ngIf="loggedIn">
@@ -22,3 +22,8 @@
 	  *ngIf=" null !== p.primary_photo_cropped" alt=""><img *ngIf=" p.primary_photo_cropped === null" src="assets/noImage.jpg" alt=""></a>
 	<!-- <img src="{{p.photos[0].medium}}" width="200" (error)="setDefaultPic($event)"> -->
   </div>
+</div>
+
+  
+	<footer  *ngFor="let pa of pageToShow; index as i"> Current Page: {{pa.current_page}} Total Pages: {{pa.total_pages}} Previous: {{pa._links.previous}} Next: {{pa._links.next}}</footer>
+

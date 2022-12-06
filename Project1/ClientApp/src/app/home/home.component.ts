@@ -2,8 +2,9 @@ import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { FDADrugService } from '../fdadrug.service';
 import { PetFinderService } from '../petfinder.service';
-import { Animal, PFAPI } from '../PFAnimals';
+import { Animal, PFAPI,Pagination } from '../PFAnimals';
 import { RescueGroupsService } from '../rescue-groups.service';
+
 
 
 
@@ -13,6 +14,7 @@ import { RescueGroupsService } from '../rescue-groups.service';
 })
 export class HomeComponent {
 
+  pageToShow: Pagination[] = [];
   petsToShow:Animal[] = [];
   user: SocialUser = {} as SocialUser;
   loggedIn: boolean = false;
@@ -26,6 +28,8 @@ export class HomeComponent {
 
     PFservice.getPets(3).subscribe((results:PFAPI)=>{
       this.petsToShow = results.animals;
+      //set up routing for page 3 to have access to pages.
+      //if there is no page, DEFAULT to 1 (:
     })
 
     RGservice.getPets();
