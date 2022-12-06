@@ -1,22 +1,31 @@
-
-<h2>all the cutest cats !!</h2>
-
-<div *ngIf="loggedIn">
-	<img src="{{ user.photoUrl }}">
-	<div>
-	<h4>{{ user.name }}</h4>
-	<p>{{ user.email }}</p>
+<div>	
+	<div *ngIf="loggedIn">
+		<img src="{{ user.photoUrl }}">
+		<div>
+			<h4>{{ user.name }}</h4>
+			<p>{{ user.email }}</p>
+		</div>
 	</div>
+	
+	<div *ngIf="!loggedIn">   
+		<p>(Log in to see user info)</p>
+		
+	</div>
+	
+<h2>Welcome to the Purrfect Pals Adoption Center: </h2>
+<h3>Here You will find a list of available Cats for Adoption!</h3>
+<p>Click on a Pal's name to see more information about them!</p>
+
+
+<div class="homeDiv1" *ngFor="let p of petsToShow; index as i">
+	<p><a [routerLink]="['cat-info', '17', p.id]">{{p.name}}</a> is {{p.age}} :)</p>
+	<p>Description: <br>{{p.description}}</p>
+    <a href="https://api.petfinder.com/v2/" ><img src="{{p.primary_photo_cropped.medium}}" 
+	  *ngIf=" null !== p.primary_photo_cropped" alt=""><img *ngIf=" p.primary_photo_cropped === null" src="assets/noImage.jpg" alt=""></a>
+	<!-- <img src="{{p.photos[0].medium}}" width="200" (error)="setDefaultPic($event)"> -->
+  </div>
 </div>
 
-<div *ngIf="!loggedIn">   
-	<p>Log in to see user info</p>
+  
+	<footer  *ngFor="let pa of pageToShow; index as i"> Current Page: {{pa.current_page}} Total Pages: {{pa.total_pages}} Previous: {{pa._links.previous}} Next: {{pa._links.next}}</footer>
 
-</div>
-
-
-<div *ngFor="let p of petsToShow; index as i">
-  <p><a [routerLink]="['cat-info', '17', p.id]">{{p.name}}</a> is {{p.age}} :)</p>
- <a href="https://api.petfinder.com/v2/" ><img src="{{p.primary_photo_cropped.medium}}" alt=""></a>
-  <!-- <img src="{{p.photos[0].medium}}" width="200" (error)="setDefaultPic($event)"> -->
-</div>

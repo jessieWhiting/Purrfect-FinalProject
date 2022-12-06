@@ -27,16 +27,13 @@
           >
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/favorites']">Favorites</a>
+          </li>
           <li class="nav-item">
             <button class="btn btn-outline-dark" *ngIf="loggedIn"  (click)="signOut()">Sign Out</button>
 
             <asl-google-signin-button *ngIf="!loggedIn" type='icon' size='medium'></asl-google-signin-button>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/favorites']">Favorites</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/cat-info/:shelter/:cat']">About CATS</a>
           </li>
         </ul>
       </div>
