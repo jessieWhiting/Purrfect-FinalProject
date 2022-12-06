@@ -1,0 +1,11 @@
+{
+    "/api": {
+      "target": "https://api.petfinder.com",
+      "secure": false,
+      "pathRewrite": {
+        "^/api": ""
+      },
+      "changeOrigin": true
+    }
+  }
+  

@@ -1,3 +1,4 @@
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +13,10 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
 import { FavoritesComponent } from './favorites/favorites.component';
 import { Secret } from './secret';
 
+import { CutelistComponent } from './cutelist/cutelist.component';
+import { Secret } from './secret';
+
+
 
 
 @NgModule({
@@ -20,6 +25,11 @@ import { Secret } from './secret';
     NavMenuComponent,
     HomeComponent,
     FavoritesComponent
+    CounterComponent,
+    FetchDataComponent,
+    CutelistComponent,
+    UserProfileComponent
+
 
   ],
   imports: [
@@ -29,8 +39,8 @@ import { Secret } from './secret';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'user-profile', component: UserProfileComponent}
       { path: 'favorites', component: FavoritesComponent}
-     
     ]),
     AppRoutingModule,
 
@@ -47,9 +57,7 @@ import { Secret } from './secret';
       	{
         	id: GoogleLoginProvider.PROVIDER_ID,
         	provider: new GoogleLoginProvider(
-          Secret.GoogleKey
-
-          
+          	Secret.GoogleKey
         	)
       	}
     	]
