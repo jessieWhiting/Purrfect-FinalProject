@@ -1,10 +1,30 @@
 <h2>{{catData.name}}</h2>
-<p>{{catData.age}} // {{catData.size}}</p>
-<h4>Extra info about {{catData.name}}</h4>
+<p> Age: {{catData.age}} // Size: {{catData.size}}</p>
+ <a href="https://api.petfinder.com/v2/" ><img src="{{catData.primary_photo_cropped.medium}}" 
+	*ngIf=" null !== catData.primary_photo_cropped" alt=""><img *ngIf=" catData.primary_photo_cropped === null" src="assets/noImage.jpg" alt=""></a>
+<p> Colors: {{catData.colors.primary}}{{catData.colors.secondary}}{{catData.colors.tertiary}}</p>
+<h4>More info about {{catData.name}}</h4>
 <ul>
     <li>Fixed: {{catData.attributes.spayed_neutered}}</li>
     <li>House Trained: {{catData.attributes.house_trained}}</li>
-    <li>Declawed :( {{catData.attributes.declawed}}</li>
+    <li>Declawed : {{catData.attributes.declawed}}</li>
     <li>Additional Needs: {{catData.attributes.special_needs}}</li>
     <li>Shots UTD: {{catData.attributes.shots_current}}</li>
+</ul>
+<h5>Good With:</h5>
+<ul>
+    <li>Children: {{catData.environment.children}}</li>
+    <li>Dogs: {{catData.environment.dogs}}</li>
+    <li>Other Cats: {{catData.environment.cats}} </li>
+</ul>
+<h5>Location: </h5>
+<ul>
+    <li>State: {{catData.contact.address.state}}</li>
+    <li>City: {{catData.contact.address.city}}</li>
+    <li>Zip Code: {{catData.contact.address.postcode}} </li>
+</ul>
+<h5>Inquire about {{catData.name}}!</h5>
+<ul>
+    <li>Email: {{catData.contact.email}}</li>
+    <li>Phone: {{catData.contact.phone}}</li>
 </ul>

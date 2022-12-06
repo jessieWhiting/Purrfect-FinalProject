@@ -1,31 +1,18 @@
 --create table Cat
 --(
---Id int primary key identity (1,1),
---OrganizationId nvarchar(100),
---[Name] nvarchar(30),
---Gender nvarchar(10),
---[Description] nvarchar(500),
---Breed nvarchar(30),
---Age int,
---[Weight] int,
---Spayed_Neutered bit,
---House_Trained bit,
---Declawed bit,
---Special_Needs bit,
---Shots_Current bit,
---Good_With_Kids bit,
---Good_With_Dogs bit,
---Good_With_cats bit,
---Photos nvarchar(50),
---[Status] nvarchar(10),
---[Email] nvarchar(30),
---[Phone] nvarchar (10));
+--PetId int primary key,
+--ShelterId int);
+--8 numbers for petfinder ID
 
 --create table Users
 --(
 --UserId int primary key identity (1,1),
+--[Email] nvarchar(50),
+--FirstName nvarchar(50),
+--LastName nvarchar(50),
+--Password nvarchar (50),
 --Admin bit,
---UserName nvarchar(30),
+--PhoneNumber nvarchar(10),
 --ZipCode nvarchar (5));
 
 
@@ -33,4 +20,4 @@
 --(
 --FavoriteId int primary key identity (1,1),
 --UserId int foreign key references Users(UserId),
---CatId int foreign key references Cat(Id));
+--CatId int foreign key references Cat(PetId));
