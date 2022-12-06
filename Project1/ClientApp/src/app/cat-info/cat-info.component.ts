@@ -35,7 +35,7 @@ export class CatInfoComponent implements OnInit {
     if(this.shelterID === "17"){
       this.PFservice.getSpecificPet(this.catID).subscribe((results:PFSingle)=>{
         this.catData = results.animal
-      })
+      });
     }
     else if(this.shelterID === "-1"){
       // test
