@@ -21,4 +21,8 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  // getUsers(): void{
+  //   this.userService.getUsers().subscribe((results: User))
+  // }
+
 }
