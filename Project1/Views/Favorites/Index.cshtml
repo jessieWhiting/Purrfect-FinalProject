@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Project1.Models.Favorite>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cat.PetId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FavoriteId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FavoriteId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FavoriteId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
