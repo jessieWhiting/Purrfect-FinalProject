@@ -1,6 +1,6 @@
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -12,25 +12,25 @@ import { CommonModule } from '@angular/common';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { Secret } from './secret';
+import { PetFinderService } from './petfinder.service';
+import { interval } from 'rxjs';
+import { CatInfoComponent } from './cat-info/cat-info.component';
 
-import { CutelistComponent } from './cutelist/cutelist.component';
-import { Secret } from './secret';
 
-
-
+export function initializeApp(PFServ:PetFinderService) {
+  return () => {
+    PFServ.OnLoad()
+  }
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    FavoritesComponent
-    CounterComponent,
-    FetchDataComponent,
-    CutelistComponent,
-    UserProfileComponent
-
-
+    FavoritesComponent,
+    UserProfileComponent,
+    CatInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,15 +39,13 @@ import { Secret } from './secret';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'user-profile', component: UserProfileComponent}
-      { path: 'favorites', component: FavoritesComponent}
+      { path: 'user-profile', component: UserProfileComponent},
+      { path: 'favorites', component: FavoritesComponent},
+      { path: 'cat-info/:shelter/:cat', component: CatInfoComponent},
     ]),
     AppRoutingModule,
-
     CommonModule,
-
-    SocialLoginModule
-
+    SocialLoginModule,
   ],
   providers: [{
   	provide: 'SocialAuthServiceConfig',
@@ -62,7 +60,13 @@ import { Secret } from './secret';
       	}
     	]
   	} as SocialAuthServiceConfig,
-	}
+	},
+  {
+    provide: APP_INITIALIZER,
+    multi: true,
+    deps: [PetFinderService],
+    useFactory: initializeApp,
+  }
 ],
   bootstrap: [AppComponent]
 })

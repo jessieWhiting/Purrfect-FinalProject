@@ -3,6 +3,7 @@ import { outputAst } from '@angular/compiler';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PFAPI } from './PFAnimals';
+import { PFSingle } from './PFSingle';
 import { PFToken } from './PFToken';
 import { Secret } from './secret';
 
@@ -71,20 +72,10 @@ export class PetFinderService {
     return true;
   }
   OnLoad():void {
-    
-    if(!this.isTokenExpired()){
-      let token:string = localStorage.getItem("PetFinderToken")!;
-
-      let tokenArray:string[] = token.split(", ");
-      let tokenObj:PFToken = {token_type: tokenArray[0],
-                              expires_in: parseInt(tokenArray[1]),
-                              access_token: tokenArray[2],
-                              date_created: new Date(tokenArray[3])
-                              };
-      
-      this.http.get(`${this.url}pf/newToken/onLoad/${tokenObj.access_token}`).subscribe(()=>{});
-
-    }
+    this.getToken().subscribe((results:PFToken)=>{
+      console.log("setting internal token")
+      this.http.get(`${this.url}pf/newToken/onLoad/${results.access_token}`).subscribe(()=>{});
+    });
   }
 
   getPets(page:number):Observable<PFAPI>{
@@ -110,26 +101,21 @@ export class PetFinderService {
   }
 
   // get a pet with an id
-  getSpecificPet(id:string){
+  getSpecificPet(id:string):Observable<PFSingle>{
     // if a token exists in local storage and is valid, 
     
     if(this.isTokenExpired()){
     this.getToken().subscribe((results:PFToken)=>{
       let tokenParams:string = `${results.token_type}, ${results.expires_in}, ${results.access_token}, ${results.date_created}`;
       localStorage.setItem("PetFinderToken", tokenParams);
-      //take this log out laterrrr
-      console.log(results.access_token);
-      //const tokenHeader = new HttpHeaders();
-      //tokenHeader.append('Authorization', `Bearer ${results.access_token}`);
-      //this.http.get(`${this.url}/animals/${id}`, tokenHeader).subscribe((results:)=>{
-
-      //})
-      
-      // write to local storage
+      console.log("we got a new token!");
+      return this.http.get<PFSingle>(`${this.url}pf/newToken/byId/${id}/${results.access_token}`);
     });
     } else{
-     // we have a token and we need to use it 
+      return this.http.get<PFSingle>(`${this.url}pf/byId/${id}`);
     }
+    // last catch again ig
+    return this.http.get<PFSingle>(`${this.url}pf/byId/${id}`);
   }
 
 }

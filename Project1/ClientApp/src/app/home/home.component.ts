@@ -1,4 +1,4 @@
-import { SocialUser } from '@abacritt/angularx-social-login';
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { FDADrugService } from '../fdadrug.service';
 import { PetFinderService } from '../petfinder.service';
@@ -18,8 +18,9 @@ export class HomeComponent {
   
   constructor(private fdadrug:FDADrugService, 
               private PFservice:PetFinderService,
-              private RGservice:RescueGroupsService,){
-
+              private RGservice:RescueGroupsService,
+              private authService:SocialAuthService){
+    
     fdadrug.testing();
 
     PFservice.getPets(3).subscribe((results:PFAPI)=>{
@@ -37,4 +38,9 @@ export class HomeComponent {
 
     console.log(`second in line ${this.petsToShow[1]}`);
   }
+
+  setDefaultPic(event: any) {
+    event.target.src = "https://www.catsplay.com/image/cache/prod/data/img/touchstone/outdoor-cedar-wood-cat-house-shelter-1200x1200.jpg";
+  }
+
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CutelistComponent } from './cutelist.component';
+import { CatInfoComponent } from './cat-info.component';
 
-describe('CutelistComponent', () => {
-  let component: CutelistComponent;
-  let fixture: ComponentFixture<CutelistComponent>;
+describe('CatInfoComponent', () => {
+  let component: CatInfoComponent;
+  let fixture: ComponentFixture<CatInfoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CutelistComponent ]
+      declarations: [ CatInfoComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CutelistComponent);
+    fixture = TestBed.createComponent(CatInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
