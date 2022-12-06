@@ -6,6 +6,7 @@ import { Animal, PFAPI } from '../PFAnimals';
 import { RescueGroupsService } from '../rescue-groups.service';
 
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,8 +20,8 @@ export class HomeComponent {
   constructor(private fdadrug:FDADrugService, 
               private PFservice:PetFinderService,
               private RGservice:RescueGroupsService,
-              private authService:SocialAuthService){
-    
+              private authService:SocialAuthService,){
+
     fdadrug.testing();
 
     PFservice.getPets(3).subscribe((results:PFAPI)=>{
@@ -38,9 +39,4 @@ export class HomeComponent {
 
     console.log(`second in line ${this.petsToShow[1]}`);
   }
-
-  setDefaultPic(event: any) {
-    event.target.src = "https://www.catsplay.com/image/cache/prod/data/img/touchstone/outdoor-cedar-wood-cat-house-shelter-1200x1200.jpg";
-  }
-
 }
