@@ -15,7 +15,8 @@
 </div>
 
 
-<div *ngFor="let p of petsToShow">
+<div *ngFor="let p of petsToShow; index as i">
   <p><a [routerLink]="['cat-info', '17', p.id]">{{p.name}}</a> is {{p.age}} :)</p>
+ <a href="https://api.petfinder.com/v2/" ><img src="{{p.primary_photo_cropped.medium}}" alt=""></a>
   <!-- <img src="{{p.photos[0].medium}}" width="200" (error)="setDefaultPic($event)"> -->
 </div>
