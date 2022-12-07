@@ -11,7 +11,7 @@ using Project1.Models;
 
 namespace Project1.Controllers
 {
-    [Route("NeedsRoute/[controller]")]
+    [Route("/api/[Favorites]")]
     [ApiController]
     public class FavoritesController : Controller
     {
@@ -22,14 +22,14 @@ namespace Project1.Controllers
             _context = context;
         }
 
-        // GET: NeedsRoute/Favorites
+        // GET: /api/Favorites
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Favorite>>> GetFavorites()
         {
             return await _context.Favorites.ToListAsync();
         }
 
-        // GET: NeedsRoute/Favorites/5
+        // GET: /api/Favorites/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Favorite>> GetFavorite(int id)
         {
@@ -43,7 +43,7 @@ namespace Project1.Controllers
             return favorite;
         }
 
-        // PUT: NeedsRoute/Favorites/5
+        // PUT: /api/Favorites/5
       
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFavorite(int id, Favorite favorite)
@@ -74,7 +74,7 @@ namespace Project1.Controllers
             return NoContent();
         }
 
-        // POST: NeedsRoute/Favorites
+        // POST: /api/Favorites
     
         [HttpPost]
         public async Task<ActionResult<Favorite>> PostFavorite(Favorite favorite)
@@ -85,7 +85,7 @@ namespace Project1.Controllers
             return CreatedAtAction("GetFavorite", new { id = favorite.CatId }, favorite);
         }
 
-        // DELETE: NeedsRoute/Favorites/5
+        // DELETE: /api/Favorites/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFavorite(int id)
         {
