@@ -180,7 +180,7 @@ namespace Project1.Models
 		}
 		public static async Task<PFResults> GetPets(string page)
 		{
-			var connection = await MyHttp.GetAsync($"https://api.petfinder.com/v2/animals?type=cat&page={page}");
+			var connection = await MyHttp.GetAsync($"animals?type=cat&page={page}");
 			PFResults breeds = await connection.Content.ReadAsAsync<PFResults>();
 
 			return breeds;
