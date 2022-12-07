@@ -20,7 +20,7 @@ namespace Project1.Models
 		[HttpGet("newToken/list/{page}/{access_token}")]
 		public PFResults GetPetsAddToken(string page, string access_token)
 		{
-			Console.WriteLine("xPFt: getting pet list");
+			Console.WriteLine("xPFt: getting pet list @" +page);
 			PFResults list = PetFinderAPI.GetPetsAddToken(page, access_token).Result;
 			return list;
 		}
@@ -37,7 +37,7 @@ namespace Project1.Models
 		[HttpGet("list/{page}")]
 		public PFResults GetPets(string page)
 		{
-			Console.WriteLine("xPF: getting pet list");
+			Console.WriteLine("xPF: getting pet list @"+page);
 			PFResults list = new PFResults();
 			try
 			{

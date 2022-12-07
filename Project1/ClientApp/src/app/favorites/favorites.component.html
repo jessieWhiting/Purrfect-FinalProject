@@ -8,3 +8,19 @@
 
  <!-- <button (click)="GetUserId()">💕</button> -->
 
+<div>
+<!-- for each this *ngFor="let f of favPet" -->
+    <div *ngFor="let f of favPets; index as i">
+        <div class="petInList">
+            <a [routerLink]="['../../cat-info', '17', f.id]">
+                <!-- if image is null, use our backup-->
+                <img *ngIf="null !== f.primary_photo_cropped" src="{{f.primary_photo_cropped.medium}}" class="catListImg" alt="">
+                <img *ngIf="f.primary_photo_cropped === null" class="catListImg" src="assets/noImage.jpg" alt="">
+            </a>
+            <span><a [routerLink]="['../../cat-info', '17', f.id]">{{f.name}}</a>> <button class="favButton">💙</button></span>
+            <p>{{f.description}}</p>
+            <p>cost - {{favPetsCost[i]}}</p>
+            <input type="text" value="">
+        </div>
+    </div>
+</div>
