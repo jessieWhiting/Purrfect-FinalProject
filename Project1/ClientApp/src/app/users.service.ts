@@ -13,11 +13,11 @@ export class UsersService {
 
   constructor(@Inject("BASE_URL") private baseUrl: string, private http: HttpClient) { }
 
-  getUsers(): Observable<User>{
-    return this.http.get<User>(`${this.baseUrl}${this.endPoint}`);
+  getUsers(): Observable<User[]>{
+    return this.http.get<User[]>(`${this.baseUrl}${this.endPoint}`);
   }
 
-  getUserById(userId: number): Observable<User>{
-    return this.http.get<User>(`${this.baseUrl}${this.endPoint}${userId}`);
+  getUserById(googleId: string): Observable<User>{
+    return this.http.get<User>(`${this.baseUrl}${this.endPoint}${googleId}`);
   }
 }

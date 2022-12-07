@@ -21,5 +21,7 @@ public partial class User
 
     public string? ZipCode { get; set; }
 
+    public string? GoogleId { get; set; }
+
     public virtual ICollection<Favorite> Favorites { get; } = new List<Favorite>();
 }

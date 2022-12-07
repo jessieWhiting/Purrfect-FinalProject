@@ -1,11 +1,12 @@
 <div *ngIf="loggedIn">
 	<img src="{{ user.photoUrl }}">
 	<div>
-	<h4>Welcome {{ user.name }}!</h4>
+	<h4>Welcome {{ user.firstName }}{{ user.lastName }}!</h4>
 	<p>{{ user.email }}</p>
 	</div>
 	<div>
 		<h5>Contact Info:</h5>
+		<p>{{ user.id }}</p>
 	</div>
 	<app-favorites></app-favorites>
 </div>

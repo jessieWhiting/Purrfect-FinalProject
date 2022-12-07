@@ -29,10 +29,12 @@ namespace Project1.Controllers
         }
 
         // GET: api/Users/5
-        [HttpGet("GetUserById/{id}")]
-        public async Task<ActionResult<User>> GetUserById(int id)
+        [HttpGet("{googleId}")]
+        public async Task<ActionResult<User>> GetUserById(string googleId)
         {
-            var user = await _context.Users.FindAsync(id);
+            List<User> users = await _context.Users.ToListAsync();
+
+            var user = users.FirstOrDefault(u => u.GoogleId == googleId);
 
             if (user == null)
             {
@@ -44,7 +46,7 @@ namespace Project1.Controllers
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("UpdateUser/{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
             if (id != user.UserId)

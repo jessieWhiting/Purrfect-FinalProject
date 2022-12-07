@@ -7,4 +7,5 @@ export interface User{
     admin: boolean;
     phoneNumber: string;
     zipCode: string;
+    googleId: string;
 }

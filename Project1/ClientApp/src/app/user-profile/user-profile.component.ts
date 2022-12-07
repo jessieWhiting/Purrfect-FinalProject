@@ -1,6 +1,7 @@
 import { UsersService } from './../users.service';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
+import { User } from '../user';
 
 @Component({
   selector: 'app-user-profile',
@@ -21,8 +22,10 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // getUsers(): void{
-  //   this.userService.getUsers().subscribe((results: User))
-  // }
+  getUserById(googleId: string): void{
+    this.userService.getUserById(googleId).subscribe((results: User) => {
+      console.log(results);
+    })
+  }
 
 }
