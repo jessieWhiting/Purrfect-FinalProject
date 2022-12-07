@@ -16,6 +16,7 @@ export class HomeComponent {
   petsToShow:Animal[] = [];
   user: SocialUser = {} as SocialUser;
   loggedIn: boolean = false;
+  pets: Animal [] =[];
   
   constructor(private fdadrug:FDADrugService, 
               private PFservice:PetFinderService,
@@ -28,10 +29,12 @@ export class HomeComponent {
       this.petsToShow = results.animals;
       //set up routing for page 3 to have access to pages.
       //if there is no page, DEFAULT to 1 (:
+     
     })
 
     RGservice.getPets();
   }
+
 
   ngOnInit(): void{
     this.authService.authState.subscribe((user)=>{

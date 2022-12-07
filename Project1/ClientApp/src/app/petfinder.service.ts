@@ -12,6 +12,9 @@ import { Secret } from './secret';
   providedIn: 'root'
 })
 export class PetFinderService {
+  GetAllPets() {
+    throw new Error('Method not implemented.');
+  }
   url:string;
   constructor(private http: HttpClient, @Inject("BASE_URL") private base:string) {
     this.url = base;
