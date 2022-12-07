@@ -26,7 +26,7 @@ export function initializeApp(PFServ:PetFinderService) {
       // || (xFPt) > (xFPt-60)
       // console.log(`current: ${Date.now} old: ${xFPt}`);
       // localStorage.setItem("xFPt", `${Date.now}`);
-      PFServ.OnLoad();
+      // PFServ.OnLoad();
     }
   }
 }
