@@ -6,8 +6,6 @@ import { Animal, PFAPI,Pagination } from '../PFAnimals';
 import { RescueGroupsService } from '../rescue-groups.service';
 
 
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
