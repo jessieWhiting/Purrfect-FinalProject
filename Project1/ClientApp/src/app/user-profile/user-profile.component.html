@@ -1,5 +1,5 @@
 <div *ngIf="loggedIn">
-	<img src="{{ user.photoUrl }}">
+	<!-- <img src="{{ user.photoUrl }}">
 	<div>
 	<h4>Welcome {{ user.firstName }}{{ user.lastName }}!</h4>
 	<p>{{ user.email }}</p>
@@ -7,10 +7,24 @@
 	<div>
 		<h5>Contact Info:</h5>
 		<p>{{ user.id }}</p>
-	</div>
+	</div> -->
+	<p>Register Here:</p>
+	<p>Email:</p>
+	<input type="text" [(ngModel)]="email">
+	<p>First Name:</p>
+	<input type="text" [(ngModel)]="firstName">
+	<p>Last Name:</p>
+	<input type="text" [(ngModel)]="lastName">
+	<p>Phone Number:</p>
+	<input type="text" [(ngModel)]="phoneNumber">
+	<p>Zipcode:</p>
+	<input type="text" [(ngModel)]="zipCode">
+	<br>
+	<br>
+	<button (click)="registerNewUser(email, firstName, lastName, phoneNumber, zipCode)">Register</button>
 	<app-favorites></app-favorites>
 </div>
 
 <div *ngIf="!loggedIn">   
-	<p>Log in to see user info</p>
+	<p>Login to view account information</p>
 </div>
