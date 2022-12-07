@@ -22,7 +22,6 @@ export class FavoritesComponent implements OnInit {
   favorites: Favorite[] = [];
   favPetsCost: number[] = [];
   favPets: Animal[] = [];
-  constructor(private pfAPI: PetFinderService, private favoriteAPI: FavoritesService) { }
   pets: Animal[] =[];
 
   constructor(private pfAPI: PetFinderService, private favoriteAPI: FavoritesService, private _ActivatedRoute: ActivatedRoute, private userAPI: UsersService) { 
