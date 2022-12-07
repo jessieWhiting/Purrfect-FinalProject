@@ -21,9 +21,10 @@ export class HomeComponent {
   currentPage: string = "-1";
   previousLink:number = -1;
   nextLink:number = -1;
-
+  pets: Animal [] =[];
+  
   private routeSub: Subscription;
-
+  
   constructor(private fdadrug:FDADrugService, 
               private PFservice:PetFinderService,
               private RGservice:RescueGroupsService,
@@ -40,7 +41,6 @@ export class HomeComponent {
       PFservice.getPets(1).subscribe((results:PFAPI)=>{
         this.petsToShow = results.animals;
         this.pageToShow.push(results.pagination);
-
       });
       this.nextLink = 2;
     } else {
@@ -58,6 +58,7 @@ export class HomeComponent {
     
     RGservice.getPets();
   }
+
 
   ngOnInit(): void{
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
