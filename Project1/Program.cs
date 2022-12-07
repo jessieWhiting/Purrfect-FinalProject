@@ -28,4 +28,6 @@ app.MapControllerRoute(
 
 app.MapFallbackToFile("index.html"); ;
 
+// PetFinderAPI.FirstLoad();
+
 app.Run();
