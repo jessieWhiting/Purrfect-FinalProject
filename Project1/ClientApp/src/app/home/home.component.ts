@@ -2,7 +2,7 @@ import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { FDADrugService } from '../fdadrug.service';
 import { PetFinderService } from '../petfinder.service';
-import { Animal, PFAPI } from '../PFAnimals';
+import { Animal, PFAPI,Pagination } from '../PFAnimals';
 import { RescueGroupsService } from '../rescue-groups.service';
 
 
@@ -12,6 +12,7 @@ import { RescueGroupsService } from '../rescue-groups.service';
 })
 export class HomeComponent {
 
+  pageToShow: Pagination[] = [];
   petsToShow:Animal[] = [];
   user: SocialUser = {} as SocialUser;
   loggedIn: boolean = false;
@@ -19,12 +20,14 @@ export class HomeComponent {
   constructor(private fdadrug:FDADrugService, 
               private PFservice:PetFinderService,
               private RGservice:RescueGroupsService,
-              private authService:SocialAuthService){
-    
+              private authService:SocialAuthService,){
+
     fdadrug.testing();
 
     PFservice.getPets(3).subscribe((results:PFAPI)=>{
       this.petsToShow = results.animals;
+      //set up routing for page 3 to have access to pages.
+      //if there is no page, DEFAULT to 1 (:
     })
 
     RGservice.getPets();
@@ -38,9 +41,4 @@ export class HomeComponent {
 
     console.log(`second in line ${this.petsToShow[1]}`);
   }
-
-  setDefaultPic(event: any) {
-    event.target.src = "https://www.catsplay.com/image/cache/prod/data/img/touchstone/outdoor-cedar-wood-cat-house-shelter-1200x1200.jpg";
-  }
-
 }
