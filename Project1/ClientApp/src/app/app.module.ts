@@ -13,13 +13,21 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
 import { FavoritesComponent } from './favorites/favorites.component';
 import { Secret } from './secret';
 import { PetFinderService } from './petfinder.service';
-import { interval } from 'rxjs';
+import { delay, interval } from 'rxjs';
 import { CatInfoComponent } from './cat-info/cat-info.component';
 
 
 export function initializeApp(PFServ:PetFinderService) {
+  
   return () => {
-    PFServ.OnLoad()
+    localStorage.clear();
+    // let xFPt:number = localStorage.getItem("xFPt") === null? 0:parseInt(localStorage.getItem(`PetFinderToken`)!);
+    if((localStorage.getItem("xFPt") === null)){
+      // || (xFPt) > (xFPt-60)
+      // console.log(`current: ${Date.now} old: ${xFPt}`);
+      // localStorage.setItem("xFPt", `${Date.now}`);
+      PFServ.OnLoad();
+    }
   }
 }
 

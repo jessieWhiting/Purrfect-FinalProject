@@ -71,7 +71,7 @@ export class PetFinderService {
     // token doesnt exist, we need one
     return true;
   }
-  OnLoad():void {
+  OnLoad() {
     this.getToken().subscribe((results:PFToken)=>{
       console.log("setting internal token")
       this.http.get(`${this.url}pf/newToken/onLoad/${results.access_token}`).subscribe(()=>{});
