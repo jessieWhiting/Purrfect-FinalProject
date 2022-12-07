@@ -7,6 +7,7 @@ import { PetFinderService } from '../petfinder.service';
 import { Animal, PFAPI } from '../PFAnimals';
 import { UsersService } from '../users.service';
 
+
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
@@ -19,6 +20,9 @@ export class FavoritesComponent implements OnInit {
   favPetToDisplay: Animal = {} as Animal;
   // allFavoritesDisplayed: boolean = false;
   favorites: Favorite[] = [];
+  favPetsCost: number[] = [];
+  favPets: Animal[] = [];
+  constructor(private pfAPI: PetFinderService, private favoriteAPI: FavoritesService) { }
   pets: Animal[] =[];
 
   constructor(private pfAPI: PetFinderService, private favoriteAPI: FavoritesService, private _ActivatedRoute: ActivatedRoute, private userAPI: UsersService) { 
@@ -28,12 +32,38 @@ export class FavoritesComponent implements OnInit {
   {
     this.favPet = results;   
     console.log(results);
-
   });
- 
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+
+
+
+    // favPetsCost """algorithm"""
+    let petCostLoopI:number = 0;
+    this.favPets.forEach(f => {
+      // getting cost
+      let count:number = 1;
+      if(f.attributes.shots_current){
+        count += .5;
+      }
+      if(f.attributes.spayed_neutered){
+        count += 1;
+      }
+      if(f.attributes.special_needs){
+        count += .5;
+      }
+      if(f.species === "idk yet lol"){
+
+      }
+      if(f.size === "Large"){
+        count += .5;
+      }
+
+      // would like to do something with breed costs here and hopefully insurance !!
+
+      this.favPetsCost[petCostLoopI] = count;
+      petCostLoopI++;
+    });
   }
 
   // GetUserId():void
