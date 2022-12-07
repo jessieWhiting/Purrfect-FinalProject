@@ -94,70 +94,70 @@ namespace Project1.Models
 		//	MyHttp.DefaultRequestHeaders.Add("Authorization", "Bearer " + newToken.access_token);
 		//	Console.WriteLine("xStartup token#: " + MyHttp.DefaultRequestHeaders.Authorization);
 		//}
-		public async static void FirstLoad()
-		{
-			Sauce secrets = new Sauce();
+		//public async static void FirstLoad()
+		//{
+		//	Sauce secrets = new Sauce();
 
-			string url = $"https://api.petfinder.com/v2/oauth/token";
-			var client = new RestClient(url)
-			{
-				Authenticator = new HttpBasicAuthenticator(secrets.PFPublicKey, secrets.PFSecretKey),
-			};
-			var request = new RestRequest();
+		//	string url = $"https://api.petfinder.com/v2/oauth/token";
+		//	var client = new RestClient(url)
+		//	{
+		//		Authenticator = new HttpBasicAuthenticator(secrets.PFPublicKey, secrets.PFSecretKey),
+		//	};
+		//	var request = new RestRequest();
 
-			request.AddHeader("Access-Control-Allow-Origin", "*");
-			request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-			request.AddHeader("Accept", "*/*");
-			request.AddHeader("Accept-Encoding", "gzip, deflate, br");
-			request.AddHeader("Connection", "keep-alive");
-			request.AddHeader("Access-Control-Allow-Credentials", "true");
+		//	request.AddHeader("Access-Control-Allow-Origin", "*");
+		//	request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+		//	request.AddHeader("Accept", "*/*");
+		//	request.AddHeader("Accept-Encoding", "gzip, deflate, br");
+		//	request.AddHeader("Connection", "keep-alive");
+		//	request.AddHeader("Access-Control-Allow-Credentials", "true");
 
-			// cant have it as headers
-			request.AddParameter("grant_type", "client_credentials");
+		//	// cant have it as headers
+		//	request.AddParameter("grant_type", "client_credentials");
 			// request.AddParameter("client_id", $"{secrets.PFPublicKey}");
 			// request.AddParameter("client_secret", $"{secrets.PFSecretKey}");
 
 			// cant have it as string
-			string postData = $"grant_type=client_credentials&client_id={secrets.PFPublicKey}&client_secret={secrets.PFSecretKey}";
+		//	string postData = $"grant_type=client_credentials&client_id={secrets.PFPublicKey}&client_secret={secrets.PFSecretKey}";
 			
-			// this dont work 
-			var sendFor = new Dictionary<string, string>{
-					{ "grant_type", "client_credentials" },
-					{ "client_id", $"{secrets.PFPublicKey}" },
-					{ "client_secret", $"{secrets.PFSecretKey}" },
-			};
+		//	// this dont work 
+		//	var sendFor = new Dictionary<string, string>{
+		//			{ "grant_type", "client_credentials" },
+		//			{ "client_id", $"{secrets.PFPublicKey}" },
+		//			{ "client_secret", $"{secrets.PFSecretKey}" },
+		//	};
 
 
-			var content = new FormUrlEncodedContent(
-				new KeyValuePair<string, string>[] {
-					new KeyValuePair<string, string>("grant_type", "client_credentials"),
-					new KeyValuePair<string, string>("client_id", $"{secrets.PFPublicKey}"),
-					new KeyValuePair<string, string>("client_secret", $"{secrets.PFSecretKey}")
-			   }
-			);
+		//	var content = new FormUrlEncodedContent(
+		//		new KeyValuePair<string, string>[] {
+		//			new KeyValuePair<string, string>("grant_type", "client_credentials"),
+		//			new KeyValuePair<string, string>("client_id", $"{secrets.PFPublicKey}"),
+		//			new KeyValuePair<string, string>("client_secret", $"{secrets.PFSecretKey}")
+		//	   }
+		//	);
 
-			// this is what i found on the restsharp site but it also dont work
-			var body = new
-			{
-				grant_type = "client_credentials",
-				client_id = secrets.PFPublicKey,
-				client_secret = secrets.PFSecretKey
-			};
+		//	// this is what i found on the restsharp site but it also dont work
+		//	var body = new
+		//	{
+		//		grant_type = "client_credentials",
+		//		client_id = secrets.PFPublicKey,
+		//		client_secret = secrets.PFSecretKey
+		//	};
 
-			string encodedBody = string.Format("grant_type=client_credentials&client_id={0}&client_secret={1}", secrets.PFPublicKey, secrets.PFSecretKey);
-			// request.AddParameter("application/x-www-form-urlencoded", encodedBody, ParameterType.RequestBody);
+		//	string encodedBody = string.Format("grant_type=client_credentials&client_id={0}&client_secret={1}", secrets.PFPublicKey, secrets.PFSecretKey);
+		//	// request.AddParameter("application/x-www-form-urlencoded", encodedBody, ParameterType.RequestBody);
 
 
 
-			// request.AddBody(body);
-			// request.AddBody(new StringContent(string.Format($"grant_type=client_credentials&client_id={secrets.PFPublicKey}&client_secret={secrets.PFSecretKey}", Encoding.UTF8, "application/x-www-form-urlencoded")));
-			var response = client.PostAsync<PFToken>(request);
+		//	// request.AddBody(body);
+		//	// request.AddBody(new StringContent(string.Format($"grant_type=client_credentials&client_id={secrets.PFPublicKey}&client_secret={secrets.PFSecretKey}", Encoding.UTF8, "application/x-www-form-urlencoded")));
+		//	var response = client.PostAsync<PFToken>(request);
 
-			PFToken token = response.Result; 
+		//	PFToken token = response.Result; 
 
-			MyHttp.DefaultRequestHeaders.Add("Authorization", "Bearer " + token.access_token);
-			Console.WriteLine("xStartup token#: " + MyHttp.DefaultRequestHeaders.Authorization);
-		}
+		//	MyHttp.DefaultRequestHeaders.Add("Authorization", "Bearer " + token.access_token);
+		//	Console.WriteLine("xStartup token#: " + MyHttp.DefaultRequestHeaders.Authorization);
+		//}
 
 		public static async Task<PFResults> GetPetsAddToken(string page, string access_token)
 		{
@@ -180,7 +180,7 @@ namespace Project1.Models
 		}
 		public static async Task<PFResults> GetPets(string page)
 		{
-			var connection = await MyHttp.GetAsync($"animals?type=cat&page={page}");
+			var connection = await MyHttp.GetAsync($"https://api.petfinder.com/v2/animals?type=cat&page={page}");
 			PFResults breeds = await connection.Content.ReadAsAsync<PFResults>();
 
 			return breeds;
