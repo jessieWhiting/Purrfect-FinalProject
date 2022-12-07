@@ -11,7 +11,6 @@ const PROXY_CONFIG = [
       "/newToken",
       "/api/Users",
       "/api/Favorites",
-     
    ],
     target: target,
     secure: false,
