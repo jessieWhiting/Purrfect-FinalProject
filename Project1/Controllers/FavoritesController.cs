@@ -7,104 +7,104 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Project1.Models;
 
-//***THIS SHOULD BE A WORKING FAVORITES MODEL ONCE ID IS AVAILABLE***//
 
-//namespace Project1.Controllers
-//{
-//    [Route("NeedsRoute/[controller]")]
-//    [ApiController]
-//    public class FavoritesController : Controller
-//    {
-//        private readonly AdoptionCenterContext _context;
 
-//        public FavoritesController(AdoptionCenterContext context)
-//        {
-//            _context = context;
-//        }
+namespace Project1.Controllers
+{
+    [Route("/api/[Favorites]")]
+    [ApiController]
+    public class FavoritesController : Controller
+    {
+        private readonly AdoptionCenterContext _context;
 
-//        // GET: NeedsRoute/Favorites
-//        [HttpGet]
-//        public async Task<ActionResult<IEnumerable<Favorite>>> GetFavorites()
-//        {
-//            return await _context.Favorites.ToListAsync();
-//        }
+        public FavoritesController(AdoptionCenterContext context)
+        {
+            _context = context;
+        }
 
-//        // GET: NeedsRoute/Favorites/5
-//        [HttpGet("{id}")]
-//        public async Task<ActionResult<Favorite>> GetFavorite(int id)
-//        {
-//            var favorite = await _context.Favorites.FindAsync(id);
+        // GET: /api/Favorites
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Favorite>>> GetFavorites()
+        {
+            return await _context.Favorites.ToListAsync();
+        }
 
-//            if (favorite == null)
-//            {
-//                return NotFound();
-//            }
+        // GET: /api/Favorites/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Favorite>> GetFavorite(int id)
+        {
+            var favorite = await _context.Favorites.FindAsync(id);
 
-//            return favorite;
-//        }
+            if (favorite == null)
+            {
+                return NotFound();
+            }
 
-//        // PUT: NeedsRoute/Favorites/5
-//        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-//        [HttpPut("{id}")]
-//        public async Task<IActionResult> PutFavorite(int id, Favorite favorite)
-//        {
-//            if (id != favorite.Id)
-//            {
-//                return BadRequest();
-//            }
+            return favorite;
+        }
 
-//            _context.Entry(favorite).State = EntityState.Modified;
+        // PUT: /api/Favorites/5
+      
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutFavorite(int id, Favorite favorite)
+        {
+            if (id != favorite.CatId)
+            {
+                return BadRequest();
+            }
 
-//            try
-//            {
-//                await _context.SaveChangesAsync();
-//            }
-//            catch (DbUpdateConcurrencyException)
-//            {
-//                if (!FavoriteExists(id))
-//                {
-//                    return NotFound();
-//                }
-//                else
-//                {
-//                    throw;
-//                }
-//            }
+            _context.Entry(favorite).State = EntityState.Modified;
 
-//            return NoContent();
-//        }
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!FavoriteExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-//        // POST: NeedsRoute/Favorites
-//        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-//        [HttpPost]
-//        public async Task<ActionResult<Favorite>> PostFavorite(Favorite favorite)
-//        {
-//            _context.Favorites.Add(favorite);
-//            await _context.SaveChangesAsync();
+            return NoContent();
+        }
 
-//            return CreatedAtAction("GetFavorite", new { id = favorite.Id }, favorite);
-//        }
+        // POST: /api/Favorites
+    
+        [HttpPost]
+        public async Task<ActionResult<Favorite>> PostFavorite(Favorite favorite)
+        {
+            _context.Favorites.Add(favorite);
+            await _context.SaveChangesAsync();
 
-//        // DELETE: NeedsRoute/Favorites/5
-//        [HttpDelete("{id}")]
-//        public async Task<IActionResult> DeleteFavorite(int id)
-//        {
-//            var favorite = await _context.Favorites.FindAsync(id);
-//            if (favorite == null)
-//            {
-//                return NotFound();
-//            }
+            return CreatedAtAction("GetFavorite", new { id = favorite.CatId }, favorite);
+        }
 
-//            _context.Favorites.Remove(favorite);
-//            await _context.SaveChangesAsync();
+        // DELETE: /api/Favorites/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteFavorite(int id)
+        {
+            var favorite = await _context.Favorites.FindAsync(id);
+            if (favorite == null)
+            {
+                return NotFound();
+            }
 
-//            return NoContent();
-//        }
+            _context.Favorites.Remove(favorite);
+            await _context.SaveChangesAsync();
 
-//        private bool FavoriteExists(int id)
-//        {
-//            return _context.Favorites.Any(e => e.Id == id);
-//        }
-//    }
-//}
+            return NoContent();
+        }
+
+        private bool FavoriteExists(int id)
+        {
+            return _context.Favorites.Any(e => e.CatId == id);
+        }
+    }
+}
 

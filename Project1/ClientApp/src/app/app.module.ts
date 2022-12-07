@@ -26,7 +26,7 @@ export function initializeApp(PFServ:PetFinderService) {
       // || (xFPt) > (xFPt-60)
       // console.log(`current: ${Date.now} old: ${xFPt}`);
       // localStorage.setItem("xFPt", `${Date.now}`);
-      PFServ.OnLoad();
+       PFServ.OnLoad();
     }
   }
 }
@@ -47,6 +47,7 @@ export function initializeApp(PFServ:PetFinderService) {
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'home/:page', component: HomeComponent, pathMatch: 'prefix' },
       { path: 'user-profile', component: UserProfileComponent},
       { path: 'favorites', component: FavoritesComponent},
       { path: 'cat-info/:shelter/:cat', component: CatInfoComponent},

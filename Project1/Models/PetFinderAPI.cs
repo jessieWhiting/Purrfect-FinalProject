@@ -96,7 +96,7 @@ namespace Project1.Models
 		//}
 		//public async static void FirstLoad()
 		//{
-		//	//Secret secrets = new Secret();
+		//	Sauce secrets = new Sauce();
 
 		//	string url = $"https://api.petfinder.com/v2/oauth/token";
 		//	var client = new RestClient(url)
@@ -114,10 +114,10 @@ namespace Project1.Models
 
 		//	// cant have it as headers
 		//	request.AddParameter("grant_type", "client_credentials");
-		//	// request.AddParameter("client_id", $"{secrets.PFPublicKey}");
-		//	// request.AddParameter("client_secret", $"{secrets.PFSecretKey}");
+			// request.AddParameter("client_id", $"{secrets.PFPublicKey}");
+			// request.AddParameter("client_secret", $"{secrets.PFSecretKey}");
 
-		//	// cant have it as string
+			// cant have it as string
 		//	string postData = $"grant_type=client_credentials&client_id={secrets.PFPublicKey}&client_secret={secrets.PFSecretKey}";
 			
 		//	// this dont work 
