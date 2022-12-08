@@ -29,8 +29,9 @@
             <p *ngIf="favPetsCost[i] >= 2 && favPetsCost[i] < 3;">$$$</p>
             <p *ngIf="favPetsCost[i] > 1 && favPetsCost[i] < 2;">$$</p>
             <!-- make value the favorite.note to autopopulate -->
-            <input type="text" [value]="favPet[i].note" [id]="'note'+f.id" placeholder="Put your thoughts here!">
+            <input type="text" [value]="GetNote(f.id)" [id]="'note'+f.id" placeholder="Put your thoughts here!">
             <button (click)="SaveNote('note'+f.id, f.id)">save note</button>
         </div>
+        <br><br>
     </div>
 </div>
