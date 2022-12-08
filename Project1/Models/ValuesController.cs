@@ -45,7 +45,7 @@ namespace Project1.Models
 			}
 			catch
 			{
-				//Task.Delay(3000);
+				Task.Delay(3000);
 				list = PetFinderAPI.GetPets(page).Result;
 			}
 			
