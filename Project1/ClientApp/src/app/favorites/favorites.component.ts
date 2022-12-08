@@ -21,14 +21,13 @@ export class FavoritesComponent implements OnInit {
   favPets: Animal[] = []; // the cats we are going to display that we got from the list
   
   favPetsCost: number[] = [];
-  
   pets: Animal[] =[];
 
   //test string
   currentUser:string = "";
-
-
-  constructor(private pfAPI: PetFinderService, private favoriteAPI: FavoritesService, private _ActivatedRoute: ActivatedRoute, private userAPI: UsersService) { 
+  
+  constructor(private pfAPI: PetFinderService, private favoriteAPI: FavoritesService, private _ActivatedRoute: ActivatedRoute, private userAPI: UsersService) 
+  { 
   this.userName = this._ActivatedRoute.snapshot.paramMap.get("username")!;
  
   this.favoriteAPI.CurrentUserFavorites().subscribe((results: Favorite[]) =>
@@ -77,28 +76,33 @@ export class FavoritesComponent implements OnInit {
 
   }
 
-  // GetUserId():void
-  // {
-  //  this.userAPI.GetAllUsers().subscribe((results: User[]) => 
+  getUsersById():void
+  {
+  //  this.userAPI.getUserById().subscribe((results: User[]) => 
   //  {
   //    if(this.userName != null)
   //        {
   //         for(let i = 0; i < results.length; i++)
   //          {
-  //            if (results[i].email === this.userName)
+  //            if (results[i].googleId === this.userName)
   //            {
-  //              let id: number = results[i].userId;
-  //              this.CurrentUserFavorites(id);
+  //               let user : string = results[i].googleId;
+  //              return this.favoriteAPI.CurrentUserFavorites();
   //            }
+            
   //          }
   //        }
+  //        alert('added to favs');
+  //        return this.favoriteAPI.CurrentUserFavorites();
   //  });
-  // }
+  }
 
+
+//Add a favorited pet from user's saved favorites
  AddFavoritePet(id: number): void{
   let newFavorite : Favorite = {} as Favorite;
   newFavorite.catId = id;
-  //newFav.UserId = loggedIn
+  // newFav.UserId = loggedIn
   this.favoriteAPI.AddFavoritePet(newFavorite).subscribe((result: Favorite)=>
   {
     console.log(result);
@@ -107,7 +111,8 @@ export class FavoritesComponent implements OnInit {
   
  }
 
- RemoveFavoritePet(id: number, user: string): void{
+ //Delete a favorited pet from user's saved favorites
+ RemoveFavoritePet(id: number, user: User): void{
   let indexToDelete = -1;
   this.favPet.forEach( f =>
   {
