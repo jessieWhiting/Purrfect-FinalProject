@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class FavoritesService {
 
   baseURL:string ="";
-  baseControllerRoute:string = "";// PUT: /favorites url
+  baseControllerRoute:string = "api/Favorites";
 
 
   constructor(private http: HttpClient, @Inject ('BASE_URL') private url:string)

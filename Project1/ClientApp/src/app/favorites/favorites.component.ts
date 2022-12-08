@@ -65,9 +65,9 @@ export class FavoritesComponent implements OnInit {
     });
   }
 
-  GetUserId():void
+  getUsersById():void
   {
-  //  this.userAPI.getAllUsers().subscribe((results: User[]) => 
+  //  this.userAPI.getUserById().subscribe((results: User[]) => 
   //  {
   //    if(this.userName != null)
   //        {
@@ -75,7 +75,7 @@ export class FavoritesComponent implements OnInit {
   //          {
   //            if (results[i].googleId === this.userName)
   //            {
-  //               let id : string = results[i].googleId;
+  //               let user : string = results[i].googleId;
   //              return this.favoriteAPI.CurrentUserFavorites();
   //            }
             
@@ -90,7 +90,7 @@ export class FavoritesComponent implements OnInit {
 //Add a favorited pet from user's saved favorites
  AddFavoritePet(id: number): void{
   let newFavorite : Favorite = {} as Favorite;
-  newFavorite.petId = id;
+  newFavorite.catId = id;
   // newFav.UserId = loggedIn
   this.favoriteAPI.AddFavoritePet(newFavorite).subscribe((result: Favorite)=>
   {
@@ -105,7 +105,7 @@ export class FavoritesComponent implements OnInit {
   let indexToDelete = -1;
   this.favPet.forEach( f =>
   {
-    if((f.petId === id ) && f.petId === id)
+    if((f.catId === id ) && f.catId === id)
     {
       indexToDelete = f.id;
     }
