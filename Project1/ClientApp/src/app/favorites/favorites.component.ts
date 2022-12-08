@@ -11,8 +11,6 @@ import { PFSingle } from '../PFSingle';
 import { BasicCatInfo } from '../basicCatInfo';
 import { CatService } from '../cat.service';
 
-
-
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
@@ -105,27 +103,46 @@ export class FavoritesComponent implements OnInit {
  AddFavoritePet(id: number): void{
   let newFavorite : Favorite = {} as Favorite;
   let newCat : BasicCatInfo = {} as BasicCatInfo;
-
+  newCat.petId = id;
+  newCat.shelterId = 17;
   newFavorite.catId = id;
   newFavorite.userId = this.currentUser.userId;
+  console.log(newCat);
+
   this.basicCatInfo.AddNewCat(newCat).subscribe(() =>
   {
-    this.favoriteAPI.AddFavoritePet(newFavorite).subscribe((result: Favorite)=>
-    {
-      console.log(result);
-      document.getElementById(`fav${id}`);
+    let identifiedPet : boolean = true;
+    this.favPets.forEach(pet => 
+      {
+      if(pet.id === id)
+      {
+        identifiedPet = false;
+      }
     });
+    if(identifiedPet === true)
+    {
+
+      this.favoriteAPI.AddFavoritePet(newFavorite).subscribe((result: Favorite)=>
+      {       
+        console.log(result);
+        document.getElementById(`fav${id}`);     
+      });
+    }
+    else
+    {
+      this.RemoveFavoritePet(id);
+    }
   });  
  }
 
  //Delete a favorited pet from user's saved favorites
- RemoveFavoritePet(id: number, user: User): void{
+ RemoveFavoritePet(id: number): void{
   let indexToDelete = -1;
   this.favPet.forEach( f =>
   {
     if((f.catId === id ) && f.catId === id)
     {
-      indexToDelete = f.id;
+      indexToDelete = f.favoriteId;
     }
   });
   this.favoriteAPI.RemoveFavoritePet(indexToDelete).subscribe((result: any) => 
@@ -135,8 +152,15 @@ export class FavoritesComponent implements OnInit {
   })
 
  }
- SaveNote(note:string, id:number){
+ SaveNote(note:string, id:number)
+ {
   // send to api to PUT the note, maybe need to make a new fav object and the overwrite it! 
+ }
+
+GetNote(id : number): string
+{
+  console.log(this.favPet.find(fav => fav.catId === id));
+   return this.favPet.find(fav => fav.catId === id)?.note!;
 }
 
  }

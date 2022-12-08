@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Project1.Models;
 
 namespace Project1.Controllers
 {
-    [Route("/api/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class CatsController : Controller
+    public class CatsController : ControllerBase
     {
         private readonly AdoptionCenterContext _context;
 
@@ -20,142 +20,102 @@ namespace Project1.Controllers
             _context = context;
         }
 
-        // GET: /api/Cats
-        public async Task<IActionResult> Index()
+        // GET: api/Cats
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Cat>>> GetCats()
         {
-              return View(await _context.Cats.ToListAsync());
+            return await _context.Cats.ToListAsync();
         }
 
-        // GET: /api/Cats/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: api/Cats/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Cat>> GetCat(int id)
         {
-            if (id == null || _context.Cats == null)
-            {
-                return NotFound();
-            }
-
-            var cat = await _context.Cats
-                .FirstOrDefaultAsync(m => m.PetId == id);
-            if (cat == null)
-            {
-                return NotFound();
-            }
-
-            return View(cat);
-        }
-
-        // GET: /api/Cats/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Cats/Create
-   
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PetId,ShelterId")] Cat cat)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(cat);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(cat);
-        }
-
-        // GET: /api/Cats/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Cats == null)
-            {
-                return NotFound();
-            }
-
             var cat = await _context.Cats.FindAsync(id);
+
             if (cat == null)
             {
                 return NotFound();
             }
-            return View(cat);
+
+            return cat;
         }
 
-        // POST: /api/Cats/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PetId,ShelterId")] Cat cat)
+        // PUT: api/Cats/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutCat(int id, Cat cat)
         {
             if (id != cat.PetId)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            if (ModelState.IsValid)
+            _context.Entry(cat).State = EntityState.Modified;
+
+            try
             {
-                try
-                {
-                    _context.Update(cat);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CatExists(cat.PetId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                await _context.SaveChangesAsync();
             }
-            return View(cat);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CatExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
 
-        // GET: /api/Cats/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // POST: api/Cats
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Cat>> PostCat(Cat cat)
         {
-            if (id == null || _context.Cats == null)
+            _context.Cats.Add(cat);
+            try
             {
-                return NotFound();
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (CatExists(cat.PetId))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            var cat = await _context.Cats
-                .FirstOrDefaultAsync(m => m.PetId == id);
+            return CreatedAtAction("GetCat", new { id = cat.PetId }, cat);
+        }
+
+        // DELETE: api/Cats/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCat(int id)
+        {
+            var cat = await _context.Cats.FindAsync(id);
             if (cat == null)
             {
                 return NotFound();
             }
 
-            return View(cat);
-        }
-
-        // POST: /api/Cats/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Cats == null)
-            {
-                return Problem("Entity set 'AdoptionCenterContext.Cats'  is null.");
-            }
-            var cat = await _context.Cats.FindAsync(id);
-            if (cat != null)
-            {
-                _context.Cats.Remove(cat);
-            }
-            
+            _context.Cats.Remove(cat);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            return NoContent();
         }
 
         private bool CatExists(int id)
         {
-          return _context.Cats.Any(e => e.PetId == id);
+            return _context.Cats.Any(e => e.PetId == id);
         }
     }
 }

@@ -15,10 +15,21 @@ export class CatService {
      this.baseURL = url; 
   }
 
-  AddNewCat(cat: BasicCatInfo)
+  AddNewCat(cat: BasicCatInfo):Observable<BasicCatInfo>
   {
+    this.http.get<BasicCatInfo>(this.baseURL + this.baseControllerRoute).subscribe((result : BasicCatInfo) =>
+    {
+      if(result === cat)
+      {
+        return alert('helllloooo');
+      }
+      else
+      {
+        return this.http.post<BasicCatInfo>(this.baseURL + this.baseControllerRoute , cat);
+      }
+    })
     console.log(cat);
-    return this.http.post(this.baseURL + this.baseControllerRoute + '/Create', cat);
+    return this.http.get<BasicCatInfo>(this.baseURL + this.baseControllerRoute);
   }
 
 }
