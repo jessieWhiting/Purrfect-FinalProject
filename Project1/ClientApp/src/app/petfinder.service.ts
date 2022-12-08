@@ -51,7 +51,7 @@ export class PetFinderService {
     if(PetFinderToken !== ""){
       // see if there is a token + check the date 
       let tokenArray:string[] = PetFinderToken.split(", ");
-      console.log(tokenArray);
+      // console.log(tokenArray);
       let tokenObj:PFToken = {token_type: tokenArray[0],
                               expires_in: parseInt(tokenArray[1]),
                               access_token: tokenArray[2],
