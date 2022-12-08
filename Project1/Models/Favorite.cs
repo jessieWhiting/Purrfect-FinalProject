@@ -11,6 +11,8 @@ public partial class Favorite
 
     public int? CatId { get; set; }
 
+    public string? Note { get; set; }
+
     public virtual Cat? Cat { get; set; }
 
     public virtual User? User { get; set; }

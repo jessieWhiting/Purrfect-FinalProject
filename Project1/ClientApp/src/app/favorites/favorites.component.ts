@@ -17,12 +17,11 @@ import { PFSingle } from '../PFSingle';
 export class FavoritesComponent implements OnInit {
 
   userName?: string;
-  favPet: Favorite[] = []; 
-  favPetToDisplay: Animal = {} as Animal;
-  // allFavoritesDisplayed: boolean = false;
-  favorites: Favorite[] = [];
+  favPet: Favorite[] = []; // list of favorite objects
+  favPets: Animal[] = []; // the cats we are going to display that we got from the list
+  
   favPetsCost: number[] = [];
-  favPets: Animal[] = [];
+  
   pets: Animal[] =[];
 
   //test string
