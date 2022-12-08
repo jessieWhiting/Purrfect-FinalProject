@@ -11,7 +11,7 @@ using Project1.Models;
 
 namespace Project1.Controllers
 {
-    [Route("/api/[Favorites]")]
+    [Route("/api/[controller]")]
     [ApiController]
     public class FavoritesController : Controller
     {

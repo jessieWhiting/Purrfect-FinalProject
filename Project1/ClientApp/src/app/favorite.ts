@@ -1,7 +1,7 @@
 export interface Favorite {
     id:      number;
     userId:  number;
-    petId:   number;
+    catId:   number;
     pet:     null;
     user:    null;
 }
