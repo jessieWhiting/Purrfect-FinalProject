@@ -30,21 +30,39 @@ export class UserProfileComponent implements OnInit {
     this.authService.authState.subscribe((user)=>{
       this.user = user;
       this.loggedIn = (user != null);
+      this.loginUser(this.user.id);
+    });
+    this.getAllUsers();
+  }
 
+  getAllUsers(): void{
+    this.userService.getAllUsers().subscribe((results: User[]) => {
+      this.users = results;
+      console.log(this.users);
     });
   }
 
   getUserById(googleId: string): void{
     this.userService.getUserById(googleId).subscribe((results: User) => {
       console.log(results);
-    })
+      this.currentUser = results;
+    });
+  }
+  //TEMP SOLUTION: logs user in with google id
+  loginUser(id:string): void{
+    for(let i = 0; i < this.users.length; i++){
+      if(id === this.users[i].googleId){
+        this.currentUser = this.users[i];
+        console.log(this.currentUser);
+      }
+    }
   }
 
+  //Registers new user to update the SQL database
   registerNewUser(email: string, firstName: string, lastName:string, phoneNumber: string, zipCode: string):void{
     this.userService.createNewUser(email, firstName, lastName, phoneNumber, zipCode, this.user.id).subscribe((result: User)=>{
       console.log(result);
       this.router.navigate([''])
     });
   }
-
 }
