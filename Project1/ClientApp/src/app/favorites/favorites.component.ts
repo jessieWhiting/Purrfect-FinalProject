@@ -6,7 +6,11 @@ import { FavoritesService } from '../favorite.service';
 import { PetFinderService } from '../petfinder.service';
 import { Animal, PFAPI } from '../PFAnimals';
 import { UsersService } from '../users.service';
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { PFSingle } from '../PFSingle';
+import { BasicCatInfo } from '../basicCatInfo';
+import { CatService } from '../cat.service';
+
 
 
 @Component({
@@ -16,7 +20,7 @@ import { PFSingle } from '../PFSingle';
 })
 export class FavoritesComponent implements OnInit {
 
-  userName?: string;
+  // userName: string;
   favPet: Favorite[] = []; // list of favorite objects
   favPets: Animal[] = []; // the cats we are going to display that we got from the list
   
@@ -24,16 +28,20 @@ export class FavoritesComponent implements OnInit {
   pets: Animal[] =[];
 
   //test string
-  currentUser:string = "";
-  
-  constructor(private pfAPI: PetFinderService, private favoriteAPI: FavoritesService, private _ActivatedRoute: ActivatedRoute, private userAPI: UsersService) 
+  currentUser: User = {} as User;
+
+  user: SocialUser = {} as SocialUser;//Gets googleID.
+  loggedIn: boolean = false;//Checks for logged in user.
+
+  constructor(private pfAPI: PetFinderService, private favoriteAPI: FavoritesService, private _ActivatedRoute: ActivatedRoute, 
+    private userAPI: UsersService, private authService: SocialAuthService, private basicCatInfo: CatService) 
   { 
-  this.userName = this._ActivatedRoute.snapshot.paramMap.get("username")!;
+ 
  
   this.favoriteAPI.CurrentUserFavorites().subscribe((results: Favorite[]) =>
   {
     this.favPet = results;   
-    console.log(this.favPet);
+    console.log(results);
     this.favPet.forEach(f => {
       // true should be a shelter id maybe? should that be in favorites or should we be checking against the cats table? cause im not sure how to acheive that...
       if(true)
@@ -72,43 +80,42 @@ export class FavoritesComponent implements OnInit {
     });
   });
   }
+
+  //Factoring cost in for pets medical needs.
   ngOnInit(): void {
 
-  }
+      this.authService.authState.subscribe((user)=>{
+      this.user = user;
+      this.loggedIn = (user != null);
+      // console.log(this.user);
 
-  getUsersById():void
-  {
-  //  this.userAPI.getUserById().subscribe((results: User[]) => 
-  //  {
-  //    if(this.userName != null)
-  //        {
-  //         for(let i = 0; i < results.length; i++)
-  //          {
-  //            if (results[i].googleId === this.userName)
-  //            {
-  //               let user : string = results[i].googleId;
-  //              return this.favoriteAPI.CurrentUserFavorites();
-  //            }
-            
-  //          }
-  //        }
-  //        alert('added to favs');
-  //        return this.favoriteAPI.CurrentUserFavorites();
-  //  });
-  }
+      this.userAPI.getUserById(this.user.id).subscribe((result : User) => 
+      {
+        console.log(result);
+        this.loggedIn = true;
+        this.currentUser = result;
+       
+      });
 
+    });
+    }
+ 
 
 //Add a favorited pet from user's saved favorites
  AddFavoritePet(id: number): void{
   let newFavorite : Favorite = {} as Favorite;
+  let newCat : BasicCatInfo = {} as BasicCatInfo;
+
   newFavorite.catId = id;
-  // newFav.UserId = loggedIn
-  this.favoriteAPI.AddFavoritePet(newFavorite).subscribe((result: Favorite)=>
+  newFavorite.userId = this.currentUser.userId;
+  this.basicCatInfo.AddNewCat(newCat).subscribe(() =>
   {
-    console.log(result);
-    document.getElementById(`fav${id}`);
-  });
-  
+    this.favoriteAPI.AddFavoritePet(newFavorite).subscribe((result: Favorite)=>
+    {
+      console.log(result);
+      document.getElementById(`fav${id}`);
+    });
+  });  
  }
 
  //Delete a favorited pet from user's saved favorites
@@ -125,10 +132,11 @@ export class FavoritesComponent implements OnInit {
   {
     console.log(result);
     document.getElementById(`cat${id}`);
-  });
-  }
+  })
 
-  SaveNote(note:string, id:number){
-    // send to api to PUT the note, maybe need to make a new fav object and the overwrite it! 
-  }
+ }
+ SaveNote(note:string, id:number){
+  // send to api to PUT the note, maybe need to make a new fav object and the overwrite it! 
+}
+
  }
