@@ -22,10 +22,10 @@ export class FavoritesComponent implements OnInit {
   favorites: Favorite[] = [];
   favPetsCost: number[] = [];
   favPets: Animal[] = [];
-  constructor(private pfAPI: PetFinderService, private favoriteAPI: FavoritesService) { }
   pets: Animal[] =[];
 
-  constructor(private pfAPI: PetFinderService, private favoriteAPI: FavoritesService, private _ActivatedRoute: ActivatedRoute, private userAPI: UsersService) { 
+  constructor(private pfAPI: PetFinderService, private favoriteAPI: FavoritesService, private _ActivatedRoute: ActivatedRoute, private userAPI: UsersService) 
+  { 
   this.userName = this._ActivatedRoute.snapshot.paramMap.get("username")!;
  
   this.favoriteAPI.CurrentUserFavorites().subscribe((results: Favorite[]) =>
@@ -34,9 +34,8 @@ export class FavoritesComponent implements OnInit {
     console.log(results);
   });
   }
+  //Factoring cost in for pets medical needs.
   ngOnInit(): void {
-
-
 
     // favPetsCost """algorithm"""
     let petCostLoopI:number = 0;
@@ -66,28 +65,33 @@ export class FavoritesComponent implements OnInit {
     });
   }
 
-  // GetUserId():void
-  // {
-  //  this.userAPI.GetAllUsers().subscribe((results: User[]) => 
+  GetUserId():void
+  {
+  //  this.userAPI.getAllUsers().subscribe((results: User[]) => 
   //  {
   //    if(this.userName != null)
   //        {
   //         for(let i = 0; i < results.length; i++)
   //          {
-  //            if (results[i].email === this.userName)
+  //            if (results[i].googleId === this.userName)
   //            {
-  //              let id: number = results[i].userId;
-  //              this.CurrentUserFavorites(id);
+  //               let id : string = results[i].googleId;
+  //              return this.favoriteAPI.CurrentUserFavorites();
   //            }
+            
   //          }
   //        }
+  //        alert('added to favs');
+  //        return this.favoriteAPI.CurrentUserFavorites();
   //  });
-  // }
+  }
 
+
+//Add a favorited pet from user's saved favorites
  AddFavoritePet(id: number): void{
   let newFavorite : Favorite = {} as Favorite;
   newFavorite.petId = id;
-  //newFav.UserId = loggedIn
+  // newFav.UserId = loggedIn
   this.favoriteAPI.AddFavoritePet(newFavorite).subscribe((result: Favorite)=>
   {
     console.log(result);
@@ -96,6 +100,7 @@ export class FavoritesComponent implements OnInit {
   
  }
 
+ //Delete a favorited pet from user's saved favorites
  RemoveFavoritePet(id: number, user: User): void{
   let indexToDelete = -1;
   this.favPet.forEach( f =>

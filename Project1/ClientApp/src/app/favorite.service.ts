@@ -16,12 +16,13 @@ export class FavoritesService {
    {
       this.baseURL = url;
    }
-   
+   //Add a pet to favorites page.
    AddFavoritePet(favorite : Favorite):Observable<Favorite>
    {
     return this.http.post<Favorite>(this.baseURL + this.baseControllerRoute, favorite);
    }
    //Check that this works (:
+   //A list of all INDIVIDUAL user favorites.
    CurrentUserFavorites():Observable<Favorite[]>
    {
     return this.http.get<Favorite[]>(this.baseURL + this.baseControllerRoute);
@@ -29,6 +30,7 @@ export class FavoritesService {
 
    //Make sure this works. Look into alternative solutions??
    //Later, take in CatId and UserId.
+   //Remove FAVORITED pet.
    RemoveFavoritePet(index: number):Observable<Favorite>
    {
     return this.http.delete<Favorite>(this.baseURL + this.baseControllerRoute + '/' + index);
