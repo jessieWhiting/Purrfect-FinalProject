@@ -19,7 +19,7 @@ export class UsersService {
   }
 
   getUserById(googleId: string): Observable<User>{
-    return this.http.get<User>(this.baseUrl + this.endPoint + googleId);
+    return this.http.get<User>(this.baseUrl + this.endPoint + '/' + googleId);
   }
 
   createNewUser(email: string, firstName: string, lastName: string, phoneNumber: string, zipCode: string, googleId: string): Observable<User>{

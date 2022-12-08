@@ -6,7 +6,7 @@
 
 <p>Just need access to the UserId and then also need to decide what to name the pet[]</p>
 
-<button (click)="getUsersById()">💕</button>
+<button (click)="AddFavoritePet(59086835)">💕</button>
 
 <div>
 <!-- for each this *ngFor="let f of favPet" -->
@@ -18,7 +18,8 @@
                 <img *ngIf="f.primary_photo_cropped === null" class="catListImg" src="assets/noImage.jpg" alt="">
             </a>
             <!-- replace currentUser with the user.id !!!!!! -->
-            <span><a [routerLink]="['../cat-info', '17', f.id]">{{f.name}}</a>> <button class="favButton" (click)="RemoveFavoritePet(f.id, currentUser)">💙</button></span>
+            <!-- (click)="RemoveFavoritePet(f.id, currentUser)" -->
+            <span><a [routerLink]="['../cat-info', '17', f.id]">{{f.name}}</a>> <button class="favButton" >💙</button></span>
             <p>{{f.description}}</p>
             <p>cost</p>
             <p *ngIf="favPetsCost[i] < 2">$</p>
