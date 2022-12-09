@@ -1,3 +1,4 @@
+import { UsersService } from './../users.service';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,6 +7,7 @@ import { FDADrugService } from '../fdadrug.service';
 import { PetFinderService } from '../petfinder.service';
 import { Animal, PFAPI,Pagination } from '../PFAnimals';
 import { RescueGroupsService } from '../rescue-groups.service';
+import { User } from '../user';
 
 
 @Component({
@@ -13,11 +15,12 @@ import { RescueGroupsService } from '../rescue-groups.service';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
+  user: SocialUser = {} as SocialUser;
+  loggedIn: boolean = false;
+  currentUser: User = {} as User;
 
   pageToShow: Pagination[] = [];
   petsToShow:Animal[] = [];
-  user: SocialUser = {} as SocialUser;
-  loggedIn: boolean = false;
   currentPage: string = "-1";
   previousLink:number = -1;
   nextLink:number = -1;
@@ -66,7 +69,6 @@ export class HomeComponent {
       this.user = user;
       this.loggedIn = (user != null);
     });
-
     console.log(`second in line ${this.petsToShow[1]}`);
   }
 

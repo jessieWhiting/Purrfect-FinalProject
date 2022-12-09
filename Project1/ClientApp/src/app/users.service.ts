@@ -8,7 +8,7 @@ import { SocialUser } from '@abacritt/angularx-social-login';
   providedIn: 'root'
 })
 export class UsersService {
-  user: SocialUser = {} as SocialUser;
+  static user: SocialUser = {} as SocialUser;
   endPoint: string = "api/Users";
   
 
