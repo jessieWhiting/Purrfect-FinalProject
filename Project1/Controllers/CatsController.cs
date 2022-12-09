@@ -77,7 +77,8 @@ namespace Project1.Controllers
         [HttpPost]
         public async Task<ActionResult<Cat>> PostCat(Cat cat)
         {
-            _context.Cats.Add(cat);
+			Console.WriteLine("posting " + cat.PetId);
+			_context.Cats.Add(cat);
             try
             {
                 await _context.SaveChangesAsync();
@@ -86,14 +87,14 @@ namespace Project1.Controllers
             {
                 if (CatExists(cat.PetId))
                 {
-                    return Conflict();
+                    // return Conflict();
                 }
                 else
                 {
                     throw;
                 }
             }
-
+            Console.WriteLine("posted " + cat.PetId);
             return CreatedAtAction("GetCat", new { id = cat.PetId }, cat);
         }
 

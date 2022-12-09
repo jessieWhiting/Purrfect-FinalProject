@@ -42,7 +42,7 @@ export class HomeComponent {
               private route: ActivatedRoute,
               private router: Router,
               private favoriteAPI: FavoritesService,
-              public favoriteButtonAPI: FavoriteButtonService,
+              private favoriteButtonAPI: FavoriteButtonService,
               private userAPI: UsersService,){
     this.routeSub = route.params.subscribe(params => {
       this.currentPage = params['page'];
@@ -93,6 +93,28 @@ export class HomeComponent {
      
     });
     console.log(`second in line ${this.petsToShow[1]}`);
+  }
+
+  AddFavoritePet(id:number):void {
+    let response:string = this.favoriteButtonAPI.ToggleFavoritePet(id, this.currentUser.userId, this.favPet);
+    let arrayChanger:Favorite = {} as Favorite;
+
+    // arrayChanger.favoriteId = parseInt(response.replace(/[^0-9\.]+/g, ""));
+    arrayChanger.userId = this.currentUser.userId;
+    arrayChanger.catId = id;
+    
+    
+    if (response.includes(`true`))
+    {
+      this.favPet.push(arrayChanger);
+      console.log(this.favPet);
+    } else 
+    {
+      let favToRemove:Favorite = this.favPet.find(fav => fav.catId === id)!;
+      let favToRemIndex:number = this.favPet.indexOf(favToRemove);
+      this.favPet.splice(favToRemIndex,1);
+    }
+
   }
 
 }

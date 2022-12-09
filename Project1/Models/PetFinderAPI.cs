@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using RestSharp;
 using RestSharp.Authenticators;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Project1.Models
@@ -173,10 +175,11 @@ namespace Project1.Models
 		{
 			MyHttp.DefaultRequestHeaders.Remove("Authorization");
 			MyHttp.DefaultRequestHeaders.Add("Authorization", "Bearer " + access_token);
+			// await Task.Delay(1500);
 			var connection = await MyHttp.GetAsync($"animals/{id}");
-			PFPet breeds = await connection.Content.ReadAsAsync<PFPet>();
+			PFPet thisPet = await connection.Content.ReadAsAsync<PFPet>();
 
-			return breeds;
+			return thisPet;
 		}
 		public static async Task<PFResults> GetPets(string page)
 		{
@@ -187,10 +190,29 @@ namespace Project1.Models
 		}
 		public static async Task<PFPet> GetSpecificPet(string id)
 		{
-			var connection = await MyHttp.GetAsync($"animals/{id}");
-			PFPet breeds = await connection.Content.ReadAsAsync<PFPet>();
-
-			return breeds;
+			Console.WriteLine("cl " + MyHttp.DefaultRequestHeaders.Authorization);
+			
+			PFPet thisPet = new PFPet();
+			try
+			{
+				var connection = await MyHttp.GetAsync($"animals/{id}");
+				thisPet = await connection.Content.ReadAsAsync<PFPet>();
+			}
+			catch
+			{
+				try
+				{
+					var connection = await MyHttp.GetAsync($"animals/{id}");
+					thisPet = await connection.Content.ReadAsAsync<PFPet>();
+				}
+				catch
+				{
+					PFPet deletedID = new PFPet();
+					deletedID.animal.id = -0079;
+					thisPet = deletedID;
+				}
+			}
+			return thisPet;
 		}
 
 	}
