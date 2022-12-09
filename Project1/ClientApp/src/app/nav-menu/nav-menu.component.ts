@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UsersService } from './../users.service';
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
@@ -12,8 +13,10 @@ export class NavMenuComponent {
   isExpanded = false;
   user: SocialUser = {} as SocialUser;
   loggedIn: boolean = false;
+  users: User[] = [];
+  currentUser: User = {} as User;
 
-  constructor(private authService: SocialAuthService, private userService: UsersService) { }
+  constructor(private authService: SocialAuthService) { }
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {

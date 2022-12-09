@@ -92,12 +92,11 @@ export class FavoritesComponent implements OnInit {
         console.log(result);
         this.loggedIn = true;
         this.currentUser = result;
-       
       });
 
     });
-    }
- 
+  }
+
 
 //Add a favorited pet from user's saved favorites
  AddFavoritePet(id: number): void{
