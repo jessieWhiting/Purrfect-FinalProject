@@ -8,6 +8,7 @@
 		<p>Phone Number: {{ currentUser.phoneNumber }}</p>
 		<p>Email: {{ currentUser.email }}</p>
 	</div>
+	<!-- If the current user's google ID is not registered to the SQL database, a one time register form appears -->
 	<div *ngIf="currentUser.googleId !== user.id">
 		<p>Register Here:</p>
 		<p>Email:</p>
@@ -27,6 +28,7 @@
 	<app-favorites></app-favorites>
 </div>
 
+<!-- No account information will appear, unless user is logged in -->
 <div *ngIf="!loggedIn">   
 	<p>Login to view account information</p>
 </div>
