@@ -55,9 +55,20 @@ namespace Project1.Models
 		[HttpGet("byId/{id}")]
 		public PFPet GetSpecific(string id)
 		{
+			PFPet list = new PFPet();
 			Console.WriteLine("xPF: getting pet: "+id);
-			PFPet list = PetFinderAPI.GetSpecificPet(id).Result;
-			return list;
+            try
+            {
+                list = PetFinderAPI.GetSpecificPet(id).Result;
+
+            }
+            catch
+            {
+				Task.Delay(3000);
+				list = PetFinderAPI.GetSpecificPet(id).Result;
+
+            }
+            return list;
 		}
 
 	}

@@ -36,4 +36,10 @@ export class FavoritesService {
     return this.http.delete<Favorite>(this.baseURL + this.baseControllerRoute + '/' + index);
    }
 
+  //  SaveNote(id : number, note: string): Observable<Favorite[]> {
+  //   return this.http.put<Favorite[]>(this.baseURL + this.baseControllerRoute + '/' + id);
+    
+
+   
+
 }
