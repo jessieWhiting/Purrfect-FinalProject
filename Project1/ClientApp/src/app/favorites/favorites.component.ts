@@ -107,11 +107,12 @@ export class FavoritesComponent implements OnInit {
   newCat.shelterId = 17;
   newFavorite.catId = id;
   newFavorite.userId = this.currentUser.userId;
-  console.log(newCat);
 
-  this.basicCatInfo.AddNewCat(newCat).subscribe(() =>
+  this.basicCatInfo.AddNewCat(newCat).subscribe((result:BasicCatInfo) =>
   {
+    console.log(result);
     let identifiedPet : boolean = true;
+    // check to see if this pet is in the users favorites, if not, we goto remove the cat
     this.favPets.forEach(pet => 
       {
       if(pet.id === id)
@@ -121,10 +122,9 @@ export class FavoritesComponent implements OnInit {
     });
     if(identifiedPet === true)
     {
-
       this.favoriteAPI.AddFavoritePet(newFavorite).subscribe((result: Favorite)=>
       {       
-        console.log(result);
+        console.log("AddFavoritePet: "+result);
         document.getElementById(`fav${id}`);     
       });
     }
@@ -140,7 +140,7 @@ export class FavoritesComponent implements OnInit {
   let indexToDelete = -1;
   this.favPet.forEach( f =>
   {
-    if((f.catId === id ) && f.catId === id)
+    if((f.catId === id ) && (f.userId === this.currentUser.userId))
     {
       indexToDelete = f.favoriteId;
     }
@@ -148,7 +148,8 @@ export class FavoritesComponent implements OnInit {
   this.favoriteAPI.RemoveFavoritePet(indexToDelete).subscribe((result: any) => 
   {
     console.log(result);
-    document.getElementById(`cat${id}`);
+    console.log(`div${id}`);
+    document.getElementById(`div${id}`)?.remove;
   })
 
  }
@@ -159,7 +160,6 @@ export class FavoritesComponent implements OnInit {
 
 GetNote(id : number): string
 {
-  console.log(this.favPet.find(fav => fav.catId === id));
    return this.favPet.find(fav => fav.catId === id)?.note!;
 }
 

@@ -13,7 +13,7 @@
 		<img src="{{p.primary_photo_cropped.medium}}" *ngIf=" null !== p.primary_photo_cropped" alt="">
 		<img *ngIf=" p.primary_photo_cropped === null" src="assets/noImage.jpg" alt="">
 	</a>
-	<button (click)="favoriteButtonAPI.AddFavoritePet(p.id, currentUser.userId, favPet)">💕</button>
+	<button [id]="'favButton'+p.id" (click)="AddFavoritePet(p.id)">💕</button>
 	<!-- <img src="{{p.photos[0].medium}}" width="200" (error)="setDefaultPic($event)"> -->
   </div>
 </div>
