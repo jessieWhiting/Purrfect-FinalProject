@@ -31,13 +31,13 @@ export class UserProfileComponent implements OnInit {
       this.authService.authState.subscribe((user: SocialUser)=>{
         this.user = user;
         this.loggedIn = (user != null);
+        //Logs google user in and allows program to verify that they're in the SQL database
         this.loginUser(this.user.id);
-
         this.getUserById(this.user.id);
       });
-    this.getAllUsers();
   };
 
+  //Grabs and lists all users stored in the Users table
   getAllUsers(): void{
     this.userService.getAllUsers().subscribe((results: User[]) => {
       this.users = results;
@@ -45,6 +45,7 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  //Grabs a specific user by google id
   getUserById(googleId: string): void{
     this.userService.getUserById(googleId).subscribe((results: User) => {
       console.log(results);
@@ -67,6 +68,7 @@ export class UserProfileComponent implements OnInit {
     this.userService.createNewUser(email, firstName, lastName, phoneNumber, zipCode, this.user.id).subscribe((result: User)=>{
       console.log(result);
       this.router.navigate(['/']);
+    
     });
   }
 }
