@@ -53,22 +53,13 @@ namespace Project1.Models
 		}
 
 		[HttpGet("byId/{id}")]
-		public PFPet GetSpecific(string id)
+		public async Task<PFPet> GetSpecific(string id)
 		{
-			PFPet list = new PFPet();
 			Console.WriteLine("xPF: getting pet: "+id);
-            try
-            {
-                list = PetFinderAPI.GetSpecificPet(id).Result;
+			PFPet thisPet = new PFPet();
+			thisPet = PetFinderAPI.GetSpecificPet(id).Result;
+			return thisPet;
 
-            }
-            catch
-            {
-				Task.Delay(3000);
-				list = PetFinderAPI.GetSpecificPet(id).Result;
-
-            }
-            return list;
 		}
 
 	}

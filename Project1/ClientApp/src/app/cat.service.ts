@@ -17,19 +17,24 @@ export class CatService {
 
   AddNewCat(cat: BasicCatInfo):Observable<BasicCatInfo>
   {
-    this.http.get<BasicCatInfo>(this.baseURL + this.baseControllerRoute).subscribe((result : BasicCatInfo) =>
+    let inDB:boolean = false;
+    this.http.get<BasicCatInfo[]>(this.baseURL + this.baseControllerRoute).subscribe((result : BasicCatInfo[]) =>
     {
-      if(result === cat)
+      result.forEach(element => {
+        if(element.petId === cat.petId){
+          inDB = true;
+        }
+      });
+    });
+    if(inDB)
       {
-        return alert('helllloooo');
+        console.log("cat registered already!")
+        return this.http.get<BasicCatInfo>(this.baseURL + this.baseControllerRoute +'/'+cat.petId);
       }
-      else
-      {
-        return this.http.post<BasicCatInfo>(this.baseURL + this.baseControllerRoute , cat);
+      else {
+        console.log("posting")
+        return this.http.post<BasicCatInfo>(this.baseURL + this.baseControllerRoute, cat);
       }
-    })
-    console.log(cat);
-    return this.http.get<BasicCatInfo>(this.baseURL + this.baseControllerRoute);
   }
 
 }

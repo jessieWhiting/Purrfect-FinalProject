@@ -4,12 +4,10 @@
 
 <p>Just need access to the UserId and then also need to decide what to name the pet[]</p>
 
-<button (click)="AddFavoritePet(59105198)">💕</button>
-
 <div>
 <!-- for each this *ngFor="let f of favPet" -->
     <div *ngFor="let f of favPets; index as i">
-        <div class="petInList">
+        <div class="petInList" [id]="'div'+f.id">
             <a [routerLink]="['../cat-info', '17', f.id]">
                 <!-- if image is null, use our backup-->
                 <img *ngIf="null !== f.primary_photo_cropped" src="{{f.primary_photo_cropped.medium}}" class="catListImg" alt="">
