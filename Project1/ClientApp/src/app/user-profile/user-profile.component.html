@@ -8,6 +8,7 @@
 		<h5>User Info:</h5>
 		<p>Phone Number: {{ currentUser.phoneNumber }}</p>
 		<p>Email: {{ currentUser.email }}</p>
+		
 	</div>
     </div>
 	<div *ngIf="currentUser.googleId !== user.id">
@@ -19,9 +20,9 @@
 		<p>Last Name:</p>
 		<input type="text" [(ngModel)]="lastName" placeholder="Last Name" required="required">
 		<p>Phone Number:</p>
-		<input type="text" [(ngModel)]="phoneNumber" placeholder="Phone Number" required="required">
+		<input type="text" [(ngModel)]="phoneNumber" placeholder="Phone Number" required="required" maxlength="10">
 		<p>Zipcode:</p>
-		<input type="text" [(ngModel)]="zipCode" placeholder="Zip Code" required="required">
+		<input type="text" [(ngModel)]="zipCode" placeholder="Zip Code" required="required" maxlength="5">
 		<br>
 		<br>
 		<button (click)="registerNewUser(email, firstName, lastName, phoneNumber, zipCode)">Register</button>
@@ -31,4 +32,6 @@
 
 <div *ngIf="!loggedIn">   
 	<p>Login to view account information</p>
+	
+	
 </div>
