@@ -1,3 +1,4 @@
+import { UsersService } from './../users.service';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,11 +19,12 @@ import { UsersService } from '../users.service';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
+  user: SocialUser = {} as SocialUser;
+  loggedIn: boolean = false;
+  currentUser: User = {} as User;
 
   pageToShow: Pagination[] = [];
   petsToShow:Animal[] = [];
-  user: SocialUser = {} as SocialUser;
-  loggedIn: boolean = false;
   currentPage: string = "-1";
   previousLink:number = -1;
   nextLink:number = -1;
@@ -81,6 +83,7 @@ export class HomeComponent {
       this.user = user;
       this.loggedIn = (user != null);
     });
+    
     this.userAPI.getUserById(this.user.id).subscribe((result : User) => 
     {
 
@@ -89,7 +92,6 @@ export class HomeComponent {
       this.currentUser = result;
      
     });
-
     console.log(`second in line ${this.petsToShow[1]}`);
   }
 
