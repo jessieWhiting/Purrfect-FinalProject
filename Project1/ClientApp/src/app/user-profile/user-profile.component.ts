@@ -67,6 +67,7 @@ export class UserProfileComponent implements OnInit {
     this.userService.createNewUser(email, firstName, lastName, phoneNumber, zipCode, this.user.id).subscribe((result: User)=>{
       console.log(result);
       this.router.navigate(['/']);
+    
     });
   }
 }
