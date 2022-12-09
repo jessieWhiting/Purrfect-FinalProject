@@ -10,13 +10,13 @@
 	<p>Description: <br>{{p.description}}</p>
     <a [routerLink]="['../../cat-info', '17', p.id]">
 		<!-- if image is null, use our backup-->
-		<img src="{{p.primary_photo_cropped.medium}}" *ngIf=" null !== p.primary_photo_cropped" alt="">
-		<img *ngIf=" p.primary_photo_cropped === null" src="assets/noImage.jpg" alt="">
+		<img src="{{p.primary_photo_cropped.medium}}" *ngIf=" null !== p.primary_photo_cropped"  class="catListImg" alt="">
+		<img *ngIf=" p.primary_photo_cropped === null" src="assets/catImage.jpg" alt="" class="catListImg" height="300px" width="300px">
 	</a>
-	<button [id]="'favButton'+p.id" (click)="AddFavoritePet(p.id)">💕</button>
+	<button [id]="'favButton'+p.id" (click)="AddFavoritePet(p.id)" class="favButton">💕</button>
 	<!-- <img src="{{p.photos[0].medium}}" width="200" (error)="setDefaultPic($event)"> -->
   </div>
 </div>
 
   
-<footer *ngFor="let pa of pageToShow; index as i"> Current Page: {{pa.current_page}} Total Pages: {{pa.total_pages}} <span *ngIf="pa._links.previous !== null"> <a [routerLink]="['../../home', previousLink]">Previous Page</a> </span> | <a [routerLink]="['../../home', nextLink]">Next Page</a></footer>
+<footer class="footer" *ngFor="let pa of pageToShow; index as i"> Current Page: {{pa.current_page}} Total Pages: {{pa.total_pages}} <span *ngIf="pa._links.previous !== null"> <a [routerLink]="['../../home', previousLink]">Previous Page</a> </span> | <a [routerLink]="['../../home', nextLink]">Next Page</a></footer>

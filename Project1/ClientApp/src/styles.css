@@ -25,22 +25,39 @@ code {
 }
 
 .catListImg {
-  max-width: 240px;
-  max-height: 240px;
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.catListImg:hover {
+  transform: scale(0.9);
 }
 
 .petInList {
  background-color: lightskyblue;
  border-radius: 5px;
 }
-
+/* BUTTONS: */
+/* ////////////////////////// */
 button {
   border-radius: 3px;
   border:0.16em solid #FFFFFF;
   background: #d7d7d7;
 }
-
+/* favorite Button */
 .favButton {
  color: pink;
 }
 
+
+/* FOOTER */
+/* ////////////////////////// */
+.footer{
+  border: solid 2px black;
+  border-radius: 15px;
+  padding-right: 50px;
+  padding-left: 50px;
+  padding: 20px;
+  text-align: right;
+
+}

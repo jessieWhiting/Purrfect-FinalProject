@@ -14,7 +14,7 @@ export class RescueGroupsService {
 
   constructor(private http: HttpClient) { }
 
-  getPets(){
+  getPets1(){
     this.http.get<any>(`${this.url}`, {headers: this.RGHeaders}).subscribe((results:any)=>{
       console.log(results);
 

@@ -1,3 +1,4 @@
+import { UsersService } from './../users.service';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,7 +11,7 @@ import { PetFinderService } from '../petfinder.service';
 import { Animal, PFAPI,Pagination } from '../PFAnimals';
 import { RescueGroupsService } from '../rescue-groups.service';
 import { User } from '../user';
-import { UsersService } from '../users.service';
+
 
 
 @Component({
@@ -18,18 +19,19 @@ import { UsersService } from '../users.service';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
+  user: SocialUser = {} as SocialUser;
+  loggedIn: boolean = false;
+  currentUser: User = {} as User;
 
   pageToShow: Pagination[] = [];
   petsToShow:Animal[] = [];
-  user: SocialUser = {} as SocialUser;
-  loggedIn: boolean = false;
   currentPage: string = "-1";
   previousLink:number = -1;
   nextLink:number = -1;
   pets: Animal [] =[];
 
   favPet: Favorite[] = []; // list of favorite objects
-  currentUser: User = {} as User;
+
   
   private routeSub: Subscription;
   
@@ -66,7 +68,7 @@ export class HomeComponent {
 
     // footer link fixing 
        
-    RGservice.getPets();
+    RGservice.getPets1();
     this.favoriteAPI.CurrentUserFavorites().subscribe((results: Favorite[]) =>
     {
       this.favPet = results;   
@@ -81,6 +83,7 @@ export class HomeComponent {
       this.user = user;
       this.loggedIn = (user != null);
     });
+    
     this.userAPI.getUserById(this.user.id).subscribe((result : User) => 
     {
 
@@ -89,7 +92,6 @@ export class HomeComponent {
       this.currentUser = result;
      
     });
-
     console.log(`second in line ${this.petsToShow[1]}`);
   }
 

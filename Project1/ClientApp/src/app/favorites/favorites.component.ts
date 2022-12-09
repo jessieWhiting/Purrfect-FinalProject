@@ -92,12 +92,11 @@ export class FavoritesComponent implements OnInit {
         console.log(result);
         this.loggedIn = true;
         this.currentUser = result;
-       
       });
 
     });
-    }
- 
+  }
+
 
 //Add a favorited pet from user's saved favorites
  AddFavoritePet(id: number): void{
@@ -107,7 +106,7 @@ export class FavoritesComponent implements OnInit {
   newCat.shelterId = 17;
   newFavorite.catId = id;
   newFavorite.userId = this.currentUser.userId;
-
+  
   this.basicCatInfo.AddNewCat(newCat).subscribe((result:BasicCatInfo) =>
   {
     console.log(result);
@@ -156,6 +155,7 @@ export class FavoritesComponent implements OnInit {
  }
  SaveNote(note:string, id:number)
  {
+  
   // send to api to PUT the note, maybe need to make a new fav object and the overwrite it! 
  }
 

@@ -2,11 +2,7 @@
 
 <h2>Welcome! The Cute List is home to all of your favorite furballs and potential pals!</h2>
 
-
-
 <p>Just need access to the UserId and then also need to decide what to name the pet[]</p>
-
-<button (click)="AddFavoritePet(59105578)">💕 x</button>
 
 <div>
 <!-- for each this *ngFor="let f of favPet" -->
@@ -15,13 +11,13 @@
             <a [routerLink]="['../cat-info', '17', f.id]">
                 <!-- if image is null, use our backup-->
                 <img *ngIf="null !== f.primary_photo_cropped" src="{{f.primary_photo_cropped.medium}}" class="catListImg" alt="">
-                <img *ngIf="f.primary_photo_cropped === null" class="catListImg" src="assets/noImage.jpg" alt="">
+                <img *ngIf="f.primary_photo_cropped === null" class="catListImg" src="assets/catImage.jpg" alt="">
             </a>
             <!-- replace currentUser with the user.id !!!!!! -->
             <!-- (click)="RemoveFavoritePet(f.id, currentUser)" -->
 
             <span><a [routerLink]="['../cat-info', '17', f.id]">{{f.name}}</a>> <button class="favButton" (click)="AddFavoritePet(f.id)">💕</button></span>
-
+            <p>{{f.gender}}</p>
             <p>{{f.description}}</p>
             <p>cost</p>
             <p *ngIf="favPetsCost[i] < 2">$</p>

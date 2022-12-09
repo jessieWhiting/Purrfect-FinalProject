@@ -1,4 +1,4 @@
-import { Router, RouterModule } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UsersService } from './../users.service';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
@@ -23,17 +23,20 @@ export class UserProfileComponent implements OnInit {
   phoneNumber: string = "";
   zipCode: string = "";
   googleId: string = this.user.id;
+
   
   constructor(private authService: SocialAuthService, private userService: UsersService, private router: Router) { }
 
   ngOnInit(): void {
-    this.authService.authState.subscribe((user)=>{
-      this.user = user;
-      this.loggedIn = (user != null);
-      this.loginUser(this.user.id);
-    });
+      this.authService.authState.subscribe((user: SocialUser)=>{
+        this.user = user;
+        this.loggedIn = (user != null);
+        this.loginUser(this.user.id);
+
+        this.getUserById(this.user.id);
+      });
     this.getAllUsers();
-  }
+  };
 
   getAllUsers(): void{
     this.userService.getAllUsers().subscribe((results: User[]) => {
@@ -48,7 +51,8 @@ export class UserProfileComponent implements OnInit {
       this.currentUser = results;
     });
   }
-  //TEMP SOLUTION: logs user in with google id
+
+  //logs user in with google id
   loginUser(id:string): void{
     for(let i = 0; i < this.users.length; i++){
       if(id === this.users[i].googleId){
@@ -62,7 +66,7 @@ export class UserProfileComponent implements OnInit {
   registerNewUser(email: string, firstName: string, lastName:string, phoneNumber: string, zipCode: string):void{
     this.userService.createNewUser(email, firstName, lastName, phoneNumber, zipCode, this.user.id).subscribe((result: User)=>{
       console.log(result);
-      this.router.navigate([''])
+      this.router.navigate(['/']);
     });
   }
 }
