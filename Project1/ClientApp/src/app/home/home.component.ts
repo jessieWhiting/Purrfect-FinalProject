@@ -11,7 +11,7 @@ import { PetFinderService } from '../petfinder.service';
 import { Animal, PFAPI,Pagination } from '../PFAnimals';
 import { RescueGroupsService } from '../rescue-groups.service';
 import { User } from '../user';
-import { UsersService } from '../users.service';
+
 
 
 @Component({
@@ -31,7 +31,7 @@ export class HomeComponent {
   pets: Animal [] =[];
 
   favPet: Favorite[] = []; // list of favorite objects
-  currentUser: User = {} as User;
+
   
   private routeSub: Subscription;
   
