@@ -11,7 +11,7 @@
     <a [routerLink]="['../../cat-info', '17', p.id]">
 		<!-- if image is null, use our backup-->
 		<img src="{{p.primary_photo_cropped.medium}}" *ngIf=" null !== p.primary_photo_cropped" alt="">
-		<img *ngIf=" p.primary_photo_cropped === null" src="assets/noImage.jpg" alt="">
+		<img *ngIf=" p.primary_photo_cropped === null" src="assets/catImage.jpg" alt="" height="300px" width="300px">
 	</a>
 	<button (click)="favoriteButtonAPI.AddFavoritePet(p.id, currentUser.userId, favPet)">💕</button>
 	<!-- <img src="{{p.photos[0].medium}}" width="200" (error)="setDefaultPic($event)"> -->
