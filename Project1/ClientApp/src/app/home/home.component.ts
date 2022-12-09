@@ -66,7 +66,7 @@ export class HomeComponent {
 
     // footer link fixing 
        
-    RGservice.getPets();
+    RGservice.getPets1();
     this.favoriteAPI.CurrentUserFavorites().subscribe((results: Favorite[]) =>
     {
       this.favPet = results;   

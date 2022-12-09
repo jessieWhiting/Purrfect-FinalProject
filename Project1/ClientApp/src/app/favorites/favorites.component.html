@@ -2,11 +2,9 @@
 
 <h2>Welcome! The Cute List is home to all of your favorite furballs and potential pals!</h2>
 
-
-
 <p>Just need access to the UserId and then also need to decide what to name the pet[]</p>
 
-<button (click)="AddFavoritePet(59086835)">💕</button>
+<button (click)="AddFavoritePet(59105198)">💕</button>
 
 <div>
 <!-- for each this *ngFor="let f of favPet" -->
@@ -21,7 +19,7 @@
             <!-- (click)="RemoveFavoritePet(f.id, currentUser)" -->
 
             <span><a [routerLink]="['../cat-info', '17', f.id]">{{f.name}}</a>> <button class="favButton" (click)="AddFavoritePet(f.id)">💕</button></span>
-
+            <p>{{f.gender}}</p>
             <p>{{f.description}}</p>
             <p>cost</p>
             <p *ngIf="favPetsCost[i] < 2">$</p>
