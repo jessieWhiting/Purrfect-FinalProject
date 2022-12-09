@@ -1,7 +1,7 @@
 <h2>{{catData.name}}</h2>
 <p> Age: {{catData.age}} // Size: {{catData.size}}</p>
- <a href="https://api.petfinder.com/v2/" ><img src="{{catData.primary_photo_cropped.medium}}" 
-	*ngIf=" null !== catData.primary_photo_cropped" alt=""><img *ngIf=" catData.primary_photo_cropped === null" src="assets/catImage.jpg" alt=""></a>
+ <a [routerLink]="['/']" ><img src="{{catData.primary_photo_cropped.medium}}" 
+	*ngIf=" null !== catData.primary_photo_cropped" class="catListImg" alt=""><img *ngIf=" catData.primary_photo_cropped === null" src="assets/catImage.jpg" class="catListImg" alt=""></a>
 <p> Colors: {{catData.colors.primary}}{{catData.colors.secondary}}{{catData.colors.tertiary}}</p>
 <h4>More info about {{catData.name}}</h4>
 <ul>
