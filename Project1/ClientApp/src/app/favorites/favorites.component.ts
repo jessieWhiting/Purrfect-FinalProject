@@ -107,6 +107,7 @@ export class FavoritesComponent implements OnInit {
   newFavorite.catId = id;
   newFavorite.userId = this.currentUser.userId;
   console.log(newCat);
+  let savedFavorite : Favorite[] = [];
 
   this.basicCatInfo.AddNewCat(newCat).subscribe(() =>
   {
@@ -153,6 +154,7 @@ export class FavoritesComponent implements OnInit {
  }
  SaveNote(note:string, id:number)
  {
+  
   // send to api to PUT the note, maybe need to make a new fav object and the overwrite it! 
  }
 
