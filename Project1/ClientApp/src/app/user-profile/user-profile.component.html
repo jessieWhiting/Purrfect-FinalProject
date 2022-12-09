@@ -1,27 +1,29 @@
 <div *ngIf="loggedIn">
-	<!-- <img src="{{ user.photoUrl }}">
+	<img src="{{ user.photoUrl }}">
 	<div>
-	<h4>Welcome {{ user.firstName }}{{ user.lastName }}!</h4>
-	<p>{{ user.email }}</p>
+		<h4>Welcome {{ currentUser.firstName }} {{ currentUser.lastName }}!</h4>
 	</div>
 	<div>
 		<h5>Contact Info:</h5>
-		<p>{{ user.id }}</p>
-	</div> -->
-	<p>Register Here:</p>
-	<p>Email:</p>
-	<input type="text" [(ngModel)]="email">
-	<p>First Name:</p>
-	<input type="text" [(ngModel)]="firstName">
-	<p>Last Name:</p>
-	<input type="text" [(ngModel)]="lastName">
-	<p>Phone Number:</p>
-	<input type="text" [(ngModel)]="phoneNumber">
-	<p>Zipcode:</p>
-	<input type="text" [(ngModel)]="zipCode">
-	<br>
-	<br>
-	<button (click)="registerNewUser(email, firstName, lastName, phoneNumber, zipCode)">Register</button>
+		<p>Phone Number: {{ currentUser.phoneNumber }}</p>
+		<p>Email: {{ currentUser.email }}</p>
+	</div>
+	<div *ngIf="currentUser.googleId !== user.id">
+		<p>Register Here:</p>
+		<p>Email:</p>
+		<input type="text" [(ngModel)]="email">
+		<p>First Name:</p>
+		<input type="text" [(ngModel)]="firstName">
+		<p>Last Name:</p>
+		<input type="text" [(ngModel)]="lastName">
+		<p>Phone Number:</p>
+		<input type="text" [(ngModel)]="phoneNumber">
+		<p>Zipcode:</p>
+		<input type="text" [(ngModel)]="zipCode">
+		<br>
+		<br>
+		<button (click)="registerNewUser(email, firstName, lastName, phoneNumber, zipCode)">Register</button>
+	</div>
 	<app-favorites></app-favorites>
 </div>
 
