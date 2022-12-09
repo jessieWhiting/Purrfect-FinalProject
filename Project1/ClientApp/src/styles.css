@@ -13,6 +13,7 @@ code {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+  
 }
 
 .homeDiv1{
@@ -35,7 +36,10 @@ code {
 
 .petInList {
  background-color: lightskyblue;
+ border:2px solid grey;
  border-radius: 5px;
+ padding: 20px;
+ 
 }
 /* BUTTONS: */
 /* ////////////////////////// */
@@ -53,11 +57,20 @@ button {
 /* FOOTER */
 /* ////////////////////////// */
 .footer{
-  border: solid 2px black;
+  border: solid 2px grey;
   border-radius: 15px;
   padding-right: 50px;
   padding-left: 50px;
   padding: 20px;
   text-align: right;
 
+}
+
+/* ACCOUNT */
+/* ////////////////////////// */
+.accountHeader{
+  border:2px solid grey;
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 20px;
 }

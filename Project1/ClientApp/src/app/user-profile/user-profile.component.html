@@ -1,26 +1,31 @@
 <div *ngIf="loggedIn">
+	<div class="accountHeader">
 	<img src="{{ user.photoUrl }}">
 	<div>
 		<h4>Welcome {{ currentUser.firstName }} {{ currentUser.lastName }}!</h4>
 	</div>
 	<div>
-		<h5>Contact Info:</h5>
+		<h5>User Info:</h5>
 		<p>Phone Number: {{ currentUser.phoneNumber }}</p>
 		<p>Email: {{ currentUser.email }}</p>
-	</div>
+		
+
+    </div>
+
 	<!-- If the current user's google ID is not registered to the SQL database, a one time register form appears -->
+
 	<div *ngIf="currentUser.googleId !== user.id">
-		<p>Register Here:</p>
-		<p>Email:</p>
-		<input type="text" [(ngModel)]="email" placeholder="Email">
+		<p>Register Here: </p>
+		<p>Email: </p>
+		<input type="text" [(ngModel)]="email" placeholder="Email" required="required">
 		<p>First Name:</p>
-		<input type="text" [(ngModel)]="firstName" placeholder="First Name">
+		<input type="text" [(ngModel)]="firstName" placeholder="First Name" required="required">
 		<p>Last Name:</p>
-		<input type="text" [(ngModel)]="lastName" placeholder="Last Name">
+		<input type="text" [(ngModel)]="lastName" placeholder="Last Name" required="required">
 		<p>Phone Number:</p>
-		<input type="text" [(ngModel)]="phoneNumber" placeholder="Phone Number">
+		<input type="text" [(ngModel)]="phoneNumber" placeholder="Phone Number" required="required" maxlength="10">
 		<p>Zipcode:</p>
-		<input type="text" [(ngModel)]="zipCode" placeholder="Zip Code">
+		<input type="text" [(ngModel)]="zipCode" placeholder="Zip Code" required="required" maxlength="5">
 		<br>
 		<br>
 		<button (click)="registerNewUser(email, firstName, lastName, phoneNumber, zipCode)">Register</button>
@@ -31,4 +36,6 @@
 <!-- No account information will appear, unless user is logged in -->
 <div *ngIf="!loggedIn">   
 	<p>Login to view account information</p>
+	
+	
 </div>
