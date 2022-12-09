@@ -49,24 +49,28 @@ export class FavoriteButtonService {
         // return 'removed';
       }
       
-    })
+    });
     let output:string = `${identifiedPet}*${favResponse.favoriteId}`
     return output;
    }
   
    //Delete a favorited pet from user's saved favorites
-   RemoveFavoritePet(id: number, favPet: Favorite[], currentUserId:number): void{
+  RemoveFavoritePet(id: number, favPet: Favorite[], currentUserId:number): void{
     let indexToDelete = -1;
-    favPet.forEach( f =>
-    {
-      if((f.catId === id ) && (f.userId === currentUserId))
-      {
-        indexToDelete = f.favoriteId;
-      }
+    this.favoriteAPI.CurrentUserFavorites().subscribe((results:Favorite[]) => {
+      results.forEach( f =>
+        {
+          if((f.catId === id ))
+          {
+            indexToDelete = f.favoriteId;
+          }
+          
+        });
+        this.favoriteAPI.RemoveFavoritePet(indexToDelete).subscribe((result: any) => 
+          {
+            document.getElementById(`favButton${id}`)!.innerHTML = 'removed to favorites';
+          });
     });
-    this.favoriteAPI.RemoveFavoritePet(indexToDelete).subscribe((result: any) => 
-    {
-      document.getElementById(`favButton${id}`)!.innerHTML = 'removed to favorites';
-    })
-}
+    
+  }
 }

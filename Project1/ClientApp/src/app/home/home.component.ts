@@ -96,10 +96,8 @@ export class HomeComponent {
   AddFavoritePet(id:number):void {
     let response:string = this.favoriteButtonAPI.ToggleFavoritePet(id, this.currentUser.userId, this.favPet);
     let arrayChanger:Favorite = {} as Favorite;
-    // remove response take out first chars not numbers
-    console.log(response);
-    console.log(response.replace(/[^0-9\.]+/g, ""));
-    arrayChanger.favoriteId = parseInt(response.replace(/[^0-9\.]+/g, ""));
+
+    // arrayChanger.favoriteId = parseInt(response.replace(/[^0-9\.]+/g, ""));
     arrayChanger.userId = this.currentUser.userId;
     arrayChanger.catId = id;
     

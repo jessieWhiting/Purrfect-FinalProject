@@ -140,17 +140,18 @@ export class FavoritesComponent implements OnInit {
   let indexToDelete = -1;
   this.favPet.forEach( f =>
   {
-    if((f.catId === id ) && (f.userId === this.currentUser.userId))
+    if((f.catId === id ) )
+    //&& (f.userId === this.currentUser.userId)
     {
       indexToDelete = f.favoriteId;
     }
   });
   this.favoriteAPI.RemoveFavoritePet(indexToDelete).subscribe((result: any) => 
   {
-    console.log(result);
     console.log(`div${id}`);
-    document.getElementById(`div${id}`)?.remove;
-  })
+    var element = document.getElementById(`div${id}`)!;
+    element.innerHTML = ``;
+  });
 
  }
  SaveNote(note:string, id:number)
