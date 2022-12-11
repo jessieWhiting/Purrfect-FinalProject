@@ -193,6 +193,15 @@ namespace Project1.Models
 			Console.WriteLine("cl " + MyHttp.DefaultRequestHeaders.Authorization);
 			
 			PFPet thisPet = new PFPet();
+			PFPet deletedID = new PFPet();
+			Animal delAnimal = new Animal();
+			delAnimal.id = int.Parse(id);
+			delAnimal.age = "deleted";
+			// try and access our cat db to provide a name
+			delAnimal.name = "Adopted :) :(";
+			delAnimal.attributes= new Attributes();
+			
+			deletedID.animal = delAnimal;
 			try
 			{
 				var connection = await MyHttp.GetAsync($"animals/{id}");
@@ -207,8 +216,6 @@ namespace Project1.Models
 				}
 				catch
 				{
-					PFPet deletedID = new PFPet();
-					deletedID.animal.id = -0079;
 					thisPet = deletedID;
 				}
 			}

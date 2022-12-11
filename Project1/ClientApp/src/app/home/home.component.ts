@@ -92,7 +92,6 @@ export class HomeComponent {
       this.currentUser = result;
      
     });
-    console.log(`second in line ${this.petsToShow[1]}`);
   }
 
   AddFavoritePet(id:number):void {
