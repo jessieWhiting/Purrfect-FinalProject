@@ -2,32 +2,34 @@
 
 <h2>Welcome! The Cute List is home to all of your favorite furballs and potential pals!</h2>
 
-<p>Just need access to the UserId and then also need to decide what to name the pet[]</p>
-
+<p *ngIf="deletedCounter > 0">it looks like {{deletedCounter}} of the cats you were interested in have been adopted! we're sorry you missed out but there are plenty of cats looking to love you !!</p>
+<hr>
 <div>
+    <h4 *ngIf="!loggedIn">It looks like you aren't logged in!</h4>
 <!-- for each this *ngFor="let f of favPet" -->
     <div *ngFor="let f of favPets; index as i">
         <div class="petInList" [id]="'div'+f.id">
             <a [routerLink]="['../cat-info', '17', f.id]">
                 <!-- if image is null, use our backup-->
-                <img *ngIf="null !== f.primary_photo_cropped" src="{{f.primary_photo_cropped.medium}}" class="catListImg" alt="">
-                <img *ngIf="f.primary_photo_cropped === null" class="catListImg" src="assets/catImage.jpg" alt="">
+                <img *ngIf="null !== f.primary_photo_cropped" src="{{f.primary_photo_cropped.medium}}" alt="">
+                <img *ngIf="f.primary_photo_cropped === null" src="assets/catImage.jpg" alt="">
             </a>
             <!-- replace currentUser with the user.id !!!!!! -->
             <!-- (click)="RemoveFavoritePet(f.id, currentUser)" -->
-
-            <span><a [routerLink]="['../cat-info', '17', f.id]">{{f.name}}</a>> <button class="favButton" (click)="AddFavoritePet(f.id)">💕</button></span>
-            <p>{{f.gender}}</p>
-            <p>{{f.description}}</p>
-            <p>cost</p>
-            <p *ngIf="favPetsCost[i] < 2">$</p>
-            <p *ngIf="favPetsCost[i] >= 3 && favPetsCost[i] < 4;">$$$$</p>
-            <p *ngIf="favPetsCost[i] >= 2 && favPetsCost[i] < 3;">$$$</p>
-            <p *ngIf="favPetsCost[i] > 1 && favPetsCost[i] < 2;">$$</p>
-            <!-- make value the favorite.note to autopopulate -->
-            <input type="text" [value]="GetNote(f.id)" [id]="'note'+f.id" placeholder="Put your thoughts here!">
-            <button (click)="SaveNote('note'+f.id, f.id)">save note</button>
+            <div class="petInListContent">
+                <span><a [routerLink]="['../cat-info', '17', f.id]">{{f.name}}</a> <button class="favButton" (click)="AddFavoritePet(f.id)">💕</button></span>
+                <p>{{f.gender}} | {{f.age}} | {{favPetsCostFinder(f.id)}}</p>
+                <p>{{f.description}}</p>
+                
+                <!-- make value the favorite.note to autopopulate -->
+                <br>
+                
+                <textarea rows="2" [value]="GetNote(f.id)" [id]="'note'+f.id" placeholder="Put your thoughts here!">
+                </textarea>
+                
+                <button (click)="SaveNote('note'+f.id, f.id)">save note</button> <p [id]="'alert'+f.id"></p>
+            </div>
         </div>
-        <br><br>
+        <br>
     </div>
 </div>

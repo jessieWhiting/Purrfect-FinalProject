@@ -21,12 +21,27 @@ export class FavoritesService {
    {
     return this.http.post<Favorite>(this.baseURL + this.baseControllerRoute, favorite);
    }
+
+   // puts fav obj on top of old one
+   //unfinshed mayb?
+   ChangeNote(favorite:Favorite){
+    return this.http.put<Favorite>(this.baseURL + this.baseControllerRoute+'/'+favorite.favoriteId, favorite);
+   }
+
+
    //Check that this works (:
    //A list of all INDIVIDUAL user favorites.
+   // this is sorta legacy it gets all favorites
    CurrentUserFavorites():Observable<Favorite[]>
    {
     return this.http.get<Favorite[]>(this.baseURL + this.baseControllerRoute);
    }
+   // new user favs, only by 1 user
+   CurrentUserFavoritesById(id:number):Observable<Favorite[]>
+   {
+    return this.http.get<Favorite[]>(this.baseURL + this.baseControllerRoute + '/User/'+ id);
+   }
+
 
    //Make sure this works. Look into alternative solutions??
    //Later, take in CatId and UserId.

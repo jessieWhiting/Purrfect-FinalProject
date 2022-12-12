@@ -101,6 +101,28 @@ export class PetFinderService {
     return this.http.get<PFAPI>(`${this.url}pf/list/${page}`);
   }
 
+  getPetsByZip(page:number, zip:string):Observable<PFAPI>{
+    let output:PFAPI = {} as PFAPI;
+
+    // if a token exists in local storage and is valid,
+    if(this.isTokenExpired()){
+    
+    this.getToken().subscribe((results:PFToken)=>{
+      let tokenParams:string = `${results.token_type}, ${results.expires_in}, ${results.access_token}, ${Date.now()}`;
+      localStorage.setItem("PetFinderToken", tokenParams);
+      // write new token to local storage
+      console.log("we got a new token!");
+      return this.http.get<PFAPI>(`${this.url}pf/newToken/list/${page}/${zip}/${results.access_token}`,);
+    });
+
+    } else{
+      console.log("we are using our token!")
+      return this.http.get<PFAPI>(`${this.url}pf/list/${page}/${zip}`);
+    }
+    // last catch ?
+    return this.http.get<PFAPI>(`${this.url}pf/list/${page}/${zip}`);
+  }
+
   // get a pet with an id
   getSpecificPet(id:string):Observable<PFSingle>{
     // if a token exists in local storage and is valid, 
