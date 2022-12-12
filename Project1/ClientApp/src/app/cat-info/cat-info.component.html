@@ -2,7 +2,7 @@
 <h2>{{catData.name}} <button *ngIf="loggedIn" [id]="'favButton'+catData.id" (click)="AddFavoritePet(catData.id)" class="favButton">💕</button></h2>
 <p> Age: {{catData.age}} // Size: {{catData.size}}</p>
  <a [routerLink]="['/']" ><img src="{{catData.primary_photo_cropped.medium}}" 
-	*ngIf=" null !== catData.primary_photo_cropped" class="specificCatImage" alt=""><img *ngIf=" catData.primary_photo_cropped === null" src="assets/catImage.jpg" class="specificCatImage" alt=""></a>
+	*ngIf=" null !== catData.primary_photo_cropped" class="specificCatImage catListImg" alt=""><img *ngIf=" catData.primary_photo_cropped === null" src="assets/catImage.jpg" class="specificCatImage" alt=""></a>
 <p> Colors: {{catData.colors.primary}}{{catData.colors.secondary}}{{catData.colors.tertiary}}</p>
 <h4>More info about {{catData.name}}</h4>
 <ul>
