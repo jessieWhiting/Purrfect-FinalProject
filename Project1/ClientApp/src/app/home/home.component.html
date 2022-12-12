@@ -1,22 +1,25 @@
 <div>
-<h2>Welcome to the Purrfect Pals Adoption Center: </h2>
-<h3>Here You will find a list of available Cats for Adoption!</h3>
-<p>Click on a Pal's name to see more information about them!</p>
+	<h2>Welcome to the Purrfect Pals Adoption Center: </h2>
+	<h3>Here You will find a list of available Cats for Adoption!</h3>
+	<p>Click on a Pal's name to see more information about them!</p>
 
-
-<div class="homeDiv1" *ngFor="let p of petsToShow; index as i">
-	<p><a [routerLink]="['../../cat-info', '17', p.id]">{{p.name}}</a> is {{p.age}} :)</p>
-	<p>Gender: {{p.gender}}</p>
-	<p>Description: <br>{{p.description}}</p>
-    <a [routerLink]="['../../cat-info', '17', p.id]">
-		<!-- if image is null, use our backup-->
-		<img src="{{p.primary_photo_cropped.medium}}" *ngIf=" null !== p.primary_photo_cropped"  class="catListImg" alt="">
-		<img *ngIf=" p.primary_photo_cropped === null" src="assets/catImage.jpg" alt="" class="catListImg" height="300px" width="300px">
-	</a>
-	<button [id]="'favButton'+p.id" (click)="AddFavoritePet(p.id)" class="favButton">💕</button>
-	<!-- <img src="{{p.photos[0].medium}}" width="200" (error)="setDefaultPic($event)"> -->
-  </div>
+	<div class="homeCatHolder">
+		<div class="homeDiv1" *ngFor="let p of petsToShow; index as i">
+			<p><a [routerLink]="['../../cat-info', '17', p.id]">{{p.name}}</a> is {{p.age}} :)</p>
+			<p>Gender: {{p.gender}}</p>
+			<p>Description: <br>{{p.description}}</p>
+    		<a [routerLink]="['../../cat-info', '17', p.id]">
+				<!-- if image is null, use our backup-->
+				<img src="{{p.primary_photo_cropped.medium}}" *ngIf=" null !== p.primary_photo_cropped"  class="catListImg" alt="">
+				<img *ngIf=" p.primary_photo_cropped === null" src="assets/catImage.jpg" alt="" class="catListImg" height="300px" width="300px">
+			</a>
+			<button [id]="'favButton'+p.id" (click)="AddFavoritePet(p.id)" class="favButton">💕</button>
+  		</div>
+	</div>
+	<footer class="footer" *ngFor="let pa of pageToShow; index as i"> 
+		<p>Current Page: {{pa.current_page}}/{{pa.total_pages}} | <span *ngIf="showZipOnFooter">in {{currentUser.zipCode}} | </span>
+		<span *ngIf="pa._links.previous !== null"> <a [routerLink]="['../../home', previousLink]">Previous Page</a> | </span> 
+		<a [routerLink]="['../../home', nextLink]">Next Page</a></p>
+	</footer>
 </div>
-
   
-<footer class="footer" *ngFor="let pa of pageToShow; index as i"> Current Page: {{pa.current_page}} Total Pages: {{pa.total_pages}} <span *ngIf="pa._links.previous !== null"> <a [routerLink]="['../../home', previousLink]">Previous Page</a> </span> | <a [routerLink]="['../../home', nextLink]">Next Page</a></footer>

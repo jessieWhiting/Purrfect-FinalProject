@@ -42,13 +42,28 @@ namespace Project1.Controllers
 
             return favorite;
         }
+        // get: /api/Favorites/User/id
+        [HttpGet("User/{id}")]
+        public async Task<IEnumerable<Favorite>> GetFavoriteByUser(int id)
+        {
+            var favoriteList = await _context.Favorites.ToListAsync();
+			var favByUser = favoriteList.Where(x => x.UserId == id);
+
+			if (favByUser == null)
+			{
+				return (IEnumerable<Favorite>)NotFound();
+
+			}
+
+            return favByUser;
+        }
 
         // PUT: /api/Favorites/5
       
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFavorite(int id, Favorite favorite)
         {
-            if (id != favorite.CatId)
+            if (id != favorite.FavoriteId)
             {
                 return BadRequest();
             }

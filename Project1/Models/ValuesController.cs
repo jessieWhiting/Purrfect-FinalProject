@@ -24,6 +24,13 @@ namespace Project1.Models
 			PFResults list = PetFinderAPI.GetPetsAddToken(page, access_token).Result;
 			return list;
 		}
+		[HttpGet("newToken/list/{page}/{zip}/{access_token}")]
+		public PFResults GetPetsByZipAddToken(string page, string zip, string access_token)
+		{
+			Console.WriteLine("xPF: getting pet list @" + page + " in " + zip);
+			PFResults list = PetFinderAPI.GetPetsByZipAddToken(page, zip, access_token).Result;
+			return list;
+		}
 
 		[HttpGet("newToken/byId/{id}/{access_token}")]
 		public PFPet GetSpecificAddToken(string id, string access_token)
@@ -49,6 +56,24 @@ namespace Project1.Models
 				list = PetFinderAPI.GetPets(page).Result;
 			}
 			
+			return list;
+		}
+
+		[HttpGet("list/{page}/{zip}")]
+		public PFResults GetPetsByZip(string page, string zip)
+		{
+			Console.WriteLine("xPF: getting pet list @" + page + " in " + zip);
+			PFResults list = new PFResults();
+			try
+			{
+				list = PetFinderAPI.GetPetsByZip(page, zip).Result;
+			}
+			catch
+			{
+				Task.Delay(3000);
+				list = PetFinderAPI.GetPetsByZip(page, zip).Result;
+			}
+
 			return list;
 		}
 

@@ -171,6 +171,15 @@ namespace Project1.Models
 
 			return breeds;
 		}
+		public static async Task<PFResults> GetPetsByZipAddToken(string page, string zip, string access_token)
+		{
+			MyHttp.DefaultRequestHeaders.Remove("Authorization");
+			MyHttp.DefaultRequestHeaders.Add("Authorization", "Bearer " + access_token);
+			var connection = await MyHttp.GetAsync($"animals?type=cat&location={zip}&page={page}");
+			PFResults breeds = await connection.Content.ReadAsAsync<PFResults>();
+
+			return breeds;
+		}
 		public static async Task<PFPet> GetSpecificPetAddToken(string id, string access_token)
 		{
 			MyHttp.DefaultRequestHeaders.Remove("Authorization");
@@ -184,6 +193,13 @@ namespace Project1.Models
 		public static async Task<PFResults> GetPets(string page)
 		{
 			var connection = await MyHttp.GetAsync($"animals?type=cat&page={page}");
+			PFResults breeds = await connection.Content.ReadAsAsync<PFResults>();
+
+			return breeds;
+		}
+		public static async Task<PFResults> GetPetsByZip(string page, string zip)
+		{
+			var connection = await MyHttp.GetAsync($"animals?type=cat&location={zip}&page={page}");
 			PFResults breeds = await connection.Content.ReadAsAsync<PFResults>();
 
 			return breeds;

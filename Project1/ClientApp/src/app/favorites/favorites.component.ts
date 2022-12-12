@@ -42,11 +42,9 @@ export class FavoritesComponent implements OnInit {
         console.log(result);
         this.loggedIn = true;
         this.currentUser = result;
-      });
+      
 
-    });
-
-  this.favoriteAPI.CurrentUserFavorites().subscribe((results: Favorite[]) =>
+    this.favoriteAPI.CurrentUserFavoritesById(this.currentUser.userId).subscribe((results: Favorite[]) =>
   {
     this.favPet = results;
     this.favPet.forEach(f => {
@@ -63,6 +61,10 @@ export class FavoritesComponent implements OnInit {
       }
     });
   });
+
+    });
+  });
+  
   }
 
   ngOnInit(): void {
@@ -152,10 +154,21 @@ export class FavoritesComponent implements OnInit {
   });
 
  }
- SaveNote(note:string, id:number)
+ SaveNote(noteElementID:string, id:number)
  {
-  
-  // send to api to PUT the note, maybe need to make a new fav object and the overwrite it! 
+  // get fav object and add new string then put in param  
+  let toChange:Favorite = {} as Favorite;
+  this.favPet.forEach(fav => {
+    if(fav.catId === id){
+      toChange = fav;
+    }
+  });
+  let textBox:string = (document.getElementById(`note${id}`) as HTMLTextAreaElement).value;
+  toChange.note = textBox;
+  this.favoriteAPI.ChangeNote(toChange).subscribe(() => {
+    var textBox = document.getElementById(`alert${id}`)!;
+    textBox.innerHTML = `changed!`;
+  });
  }
 
 GetNote(id : number): string
