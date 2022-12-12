@@ -11,7 +11,7 @@
         <div class="petInList" [id]="'div'+f.id">
             <a [routerLink]="['../cat-info', '17', f.id]">
                 <!-- if image is null, use our backup-->
-                <img *ngIf="null !== f.primary_photo_cropped" src="{{f.primary_photo_cropped.medium}}" alt="">
+                <img *ngIf="null !== f.primary_photo_cropped" src="{{f.primary_photo_cropped.medium}}" alt="" >
                 <img *ngIf="f.primary_photo_cropped === null" src="assets/catImage.jpg" alt="">
             </a>
             <!-- replace currentUser with the user.id !!!!!! -->
