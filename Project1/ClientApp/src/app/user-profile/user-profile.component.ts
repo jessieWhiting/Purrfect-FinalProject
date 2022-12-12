@@ -16,6 +16,7 @@ export class UserProfileComponent implements OnInit {
 
   users: User[] = [];
   currentUser: User = {} as User;
+  // variables for form
   email: string = ""; 
   firstName: string = ""; 
   lastName: string = "";
