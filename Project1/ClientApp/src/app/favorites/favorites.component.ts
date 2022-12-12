@@ -18,14 +18,11 @@ import { CatService } from '../cat.service';
 })
 export class FavoritesComponent implements OnInit {
 
-  // userName: string;
   favPet: Favorite[] = []; // list of favorite objects
   favPets: Animal[] = []; // the cats we are going to display that we got from the list
   deletedCounter:number = 0;
 
-  //test string
   currentUser: User = {} as User;
-
   user: SocialUser = {} as SocialUser;//Gets googleID.
   loggedIn: boolean = false;//Checks for logged in user.
 
@@ -37,34 +34,32 @@ export class FavoritesComponent implements OnInit {
       this.loggedIn = (user != null);
       // console.log(this.user);
 
+      // after google login, get our data on user
       this.userAPI.getUserById(this.user.id).subscribe((result : User) => 
       {
         console.log(result);
         this.loggedIn = true;
         this.currentUser = result;
-      
-
-    this.favoriteAPI.CurrentUserFavoritesById(this.currentUser.userId).subscribe((results: Favorite[]) =>
-  {
-    this.favPet = results;
-    this.favPet.forEach(f => {
-      // true should be a shelter id maybe? should that be in favorites or should we be checking against the cats table? cause im not sure how to acheive that...
-      if(true){
-        this.pfAPI.getSpecificPet(f.catId.toString()).subscribe((results:PFSingle) => {
-          if(results.animal.age === "deleted")
-          {
-            this.deletedCounter++;
-          } else{
-            this.favPets.push(results.animal);
-          }
+        // then get the favorites this user has
+        this.favoriteAPI.CurrentUserFavoritesById(this.currentUser.userId).subscribe((results: Favorite[]) =>
+        {
+          this.favPet = results;
+          this.favPet.forEach(f => {
+            // true should be a shelter id maybe? should that be in favorites or should we be checking against the cats table? cause im not sure how to acheive that...
+            if(true){
+              this.pfAPI.getSpecificPet(f.catId.toString()).subscribe((results:PFSingle) => {
+                if(results.animal.age === "deleted")
+                {
+                  this.deletedCounter++;
+                } else{
+                  this.favPets.push(results.animal);
+                }
+              });
+            }
+          });
         });
-      }
+      });
     });
-  });
-
-    });
-  });
-  
   }
 
   ngOnInit(): void {
@@ -99,81 +94,79 @@ export class FavoritesComponent implements OnInit {
     return output;
   }
 
-//Add a favorited pet from user's saved favorites
- AddFavoritePet(id: number): void{
-  let newFavorite : Favorite = {} as Favorite;
-  let newCat : BasicCatInfo = {} as BasicCatInfo;
-  newCat.petId = id;
-  newCat.shelterId = 17;
-  newFavorite.catId = id;
-  newFavorite.userId = this.currentUser.userId;
+  //Add a favorited pet from user's saved favorites
+  AddFavoritePet(id: number): void {
+    let newFavorite : Favorite = {} as Favorite;
+    let newCat : BasicCatInfo = {} as BasicCatInfo;
+    newCat.petId = id;
+    newCat.shelterId = 17;
+    newFavorite.catId = id;
+    newFavorite.userId = this.currentUser.userId;
   
-  this.basicCatInfo.AddNewCat(newCat).subscribe((result:BasicCatInfo) =>
-  {
-    console.log(result);
-    let identifiedPet : boolean = true;
-    // check to see if this pet is in the users favorites, if not, we goto remove the cat
-    this.favPets.forEach(pet => 
+    this.basicCatInfo.AddNewCat(newCat).subscribe((result:BasicCatInfo) =>
+    {
+      console.log(result);
+      let identifiedPet : boolean = true;
+      // check to see if this pet is in the users favorites, if not, we goto remove the cat
+      this.favPets.forEach(pet => 
       {
-      if(pet.id === id)
+        if(pet.id === id)
+        {
+          identifiedPet = false;
+        }
+      });
+      if(identifiedPet === true)
       {
-        identifiedPet = false;
+        this.favoriteAPI.AddFavoritePet(newFavorite).subscribe((result: Favorite)=>
+        {       
+          console.log("AddFavoritePet: "+result);
+          document.getElementById(`fav${id}`);     
+        });
+      }
+      else
+      {
+        this.RemoveFavoritePet(id);
+      }
+    });  
+  }
+
+  //Delete a favorited pet from user's saved favorites
+  RemoveFavoritePet(id: number): void{
+    let indexToDelete = -1;
+    this.favPet.forEach( f =>
+    {
+      if((f.catId === id ) )
+      //&& (f.userId === this.currentUser.userId)
+      {
+        indexToDelete = f.favoriteId;
       }
     });
-    if(identifiedPet === true)
+    this.favoriteAPI.RemoveFavoritePet(indexToDelete).subscribe((result: any) => 
     {
-      this.favoriteAPI.AddFavoritePet(newFavorite).subscribe((result: Favorite)=>
-      {       
-        console.log("AddFavoritePet: "+result);
-        document.getElementById(`fav${id}`);     
-      });
-    }
-    else
-    {
-      this.RemoveFavoritePet(id);
-    }
-  });  
- }
-
- //Delete a favorited pet from user's saved favorites
- RemoveFavoritePet(id: number): void{
-  let indexToDelete = -1;
-  this.favPet.forEach( f =>
+      var element = document.getElementById(`div${id}`)!;
+      element.innerHTML = ``;
+    });
+  }
+ 
+  SaveNote(noteElementID:string, id:number)
   {
-    if((f.catId === id ) )
-    //&& (f.userId === this.currentUser.userId)
-    {
-      indexToDelete = f.favoriteId;
-    }
-  });
-  this.favoriteAPI.RemoveFavoritePet(indexToDelete).subscribe((result: any) => 
+    // get fav object and add new string then put in param  
+    let toChange:Favorite = {} as Favorite;
+    this.favPet.forEach(fav => {
+      if(fav.catId === id){
+        toChange = fav;
+      }
+    });
+    let textBox:string = (document.getElementById(`note${id}`) as HTMLTextAreaElement).value;
+    toChange.note = textBox;
+    this.favoriteAPI.ChangeNote(toChange).subscribe(() => {
+      var textBox = document.getElementById(`alert${id}`)!;
+      textBox.innerHTML = `changed!`;
+    });
+  }
+
+  GetNote(id : number): string
   {
-    console.log(`div${id}`);
-    var element = document.getElementById(`div${id}`)!;
-    element.innerHTML = ``;
-  });
-
- }
- SaveNote(noteElementID:string, id:number)
- {
-  // get fav object and add new string then put in param  
-  let toChange:Favorite = {} as Favorite;
-  this.favPet.forEach(fav => {
-    if(fav.catId === id){
-      toChange = fav;
-    }
-  });
-  let textBox:string = (document.getElementById(`note${id}`) as HTMLTextAreaElement).value;
-  toChange.note = textBox;
-  this.favoriteAPI.ChangeNote(toChange).subscribe(() => {
-    var textBox = document.getElementById(`alert${id}`)!;
-    textBox.innerHTML = `changed!`;
-  });
- }
-
-GetNote(id : number): string
-{
-   return this.favPet.find(fav => fav.catId === id)?.note!;
+    return this.favPet.find(fav => fav.catId === id)?.note!;
+  }
 }
-
- }
