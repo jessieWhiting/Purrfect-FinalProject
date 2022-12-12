@@ -27,9 +27,10 @@ export class HomeComponent {
   petsToShow:Animal[] = [];
   currentPage: string = "-1";
   previousLink:number = -1;
-  nextLink:number = -1;
+  nextLink:number = 2;
   pets: Animal [] =[];
-
+  gotPetsYet:boolean = false;
+  showZipOnFooter:boolean = false;
   favPet: Favorite[] = []; // list of favorite objects
 
   
@@ -48,33 +49,13 @@ export class HomeComponent {
       this.currentPage = params['page'];
     });
 
+    // api test 
     fdadrug.testing();
+    console.log(RGservice.getPets(1));
 
-    if (this.currentPage === undefined) {
-      PFservice.getPets(1).subscribe((results:PFAPI)=>{
-        this.petsToShow = results.animals;
-        this.pageToShow.push(results.pagination);
-      });
-      this.nextLink = 2;
-    } else {
-      PFservice.getPets(parseInt(this.currentPage)).subscribe((results:PFAPI)=>{
-        this.petsToShow = results.animals;
-        this.pageToShow.push(results.pagination);
-
-      });
-      this.nextLink = parseInt(this.currentPage) + 1;
-      this.previousLink = parseInt(this.currentPage) - 1;
-    }
-
-    // footer link fixing 
-       
-    RGservice.getPets1();
-    this.favoriteAPI.CurrentUserFavorites().subscribe((results: Favorite[]) =>
-    {
-      this.favPet = results;   
-      console.log(results);
-     
-    });  
+    
+    
+    
     }
     
   ngOnInit(): void{
@@ -82,17 +63,78 @@ export class HomeComponent {
     this.authService.authState.subscribe((user)=>{
       this.user = user;
       this.loggedIn = (user != null);
-    });
-    
-    this.userAPI.getUserById(this.user.id).subscribe((result : User) => 
-    {
+
+      this.userAPI.getUserById(this.user.id).subscribe((result : User) => 
+      {
 
       console.log(result);
       this.loggedIn = true;
       this.currentUser = result;
-     
+      // get pets here to make sure we have a user or not 
+      this.getPetsToShow();
+        this.gotPetsYet = true;
+      });
+
     });
-    console.log(`second in line ${this.petsToShow[1]}`);
+    
+    
+
+    this.favoriteAPI.CurrentUserFavorites().subscribe((results: Favorite[]) =>
+    {
+      this.favPet = results;   
+      console.log(results);
+     
+    });  
+
+    if(!this.gotPetsYet){
+      this.getPetsToShow();
+    }
+    
+  }
+
+  getPetsToShow():void{
+    let noUser:boolean = true;
+    if(this.loggedIn && (this.currentUser.zipCode.length === 5)){
+      noUser = false;
+    }
+    if(noUser){
+      console.log("not logged in, getting pets anywhere")
+      if (this.currentPage === undefined) {
+        this.PFservice.getPets(1).subscribe((results:PFAPI)=>{
+          this.petsToShow = results.animals;
+          this.pageToShow.push(results.pagination);
+        });
+        this.nextLink = 2;
+      } else {
+        this.PFservice.getPets(parseInt(this.currentPage)).subscribe((results:PFAPI)=>{
+          this.petsToShow = results.animals;
+          this.pageToShow.push(results.pagination);
+        });
+        // set navigation links
+        this.nextLink = parseInt(this.currentPage) + 1;
+        this.previousLink = parseInt(this.currentPage) - 1;
+      }
+    }
+    else{
+      console.log("logged in and has zip code"+this.currentUser.zipCode)
+      this.showZipOnFooter = true;
+      if (this.currentPage === undefined) {
+        this.PFservice.getPetsByZip(1, this.currentUser.zipCode).subscribe((results:PFAPI)=>{
+          this.petsToShow = results.animals;
+          this.pageToShow.push(results.pagination);
+        });
+        this.nextLink = 2;
+      } else {
+        this.PFservice.getPetsByZip(parseInt(this.currentPage), this.currentUser.zipCode).subscribe((results:PFAPI)=>{
+          this.petsToShow = results.animals;
+          this.pageToShow.push(results.pagination);
+        });
+        // set navigation links
+        this.nextLink = parseInt(this.currentPage) + 1;
+        this.previousLink = parseInt(this.currentPage) - 1;
+      }
+    }
+    
   }
 
   AddFavoritePet(id:number):void {

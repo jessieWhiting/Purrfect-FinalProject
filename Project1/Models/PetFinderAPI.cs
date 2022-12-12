@@ -171,6 +171,15 @@ namespace Project1.Models
 
 			return breeds;
 		}
+		public static async Task<PFResults> GetPetsByZipAddToken(string page, string zip, string access_token)
+		{
+			MyHttp.DefaultRequestHeaders.Remove("Authorization");
+			MyHttp.DefaultRequestHeaders.Add("Authorization", "Bearer " + access_token);
+			var connection = await MyHttp.GetAsync($"animals?type=cat&location={zip}&page={page}");
+			PFResults breeds = await connection.Content.ReadAsAsync<PFResults>();
+
+			return breeds;
+		}
 		public static async Task<PFPet> GetSpecificPetAddToken(string id, string access_token)
 		{
 			MyHttp.DefaultRequestHeaders.Remove("Authorization");
@@ -188,11 +197,27 @@ namespace Project1.Models
 
 			return breeds;
 		}
+		public static async Task<PFResults> GetPetsByZip(string page, string zip)
+		{
+			var connection = await MyHttp.GetAsync($"animals?type=cat&location={zip}&page={page}");
+			PFResults breeds = await connection.Content.ReadAsAsync<PFResults>();
+
+			return breeds;
+		}
 		public static async Task<PFPet> GetSpecificPet(string id)
 		{
 			Console.WriteLine("cl " + MyHttp.DefaultRequestHeaders.Authorization);
 			
 			PFPet thisPet = new PFPet();
+			PFPet deletedID = new PFPet();
+			Animal delAnimal = new Animal();
+			delAnimal.id = int.Parse(id);
+			delAnimal.age = "deleted";
+			// try and access our cat db to provide a name
+			delAnimal.name = "Adopted :) :(";
+			delAnimal.attributes= new Attributes();
+			
+			deletedID.animal = delAnimal;
 			try
 			{
 				var connection = await MyHttp.GetAsync($"animals/{id}");
@@ -207,8 +232,6 @@ namespace Project1.Models
 				}
 				catch
 				{
-					PFPet deletedID = new PFPet();
-					deletedID.animal.id = -0079;
 					thisPet = deletedID;
 				}
 			}
