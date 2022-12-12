@@ -1,6 +1,6 @@
 <header>
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3"
   >
     <div class="container">
       <a class="navbar-brand" [routerLink]="['/']">Purrfect Pals</a>
@@ -26,15 +26,19 @@
             [routerLinkActiveOptions]="{ exact: true }"
           >
             <a class="nav-link text-dark" [routerLink]="['/']">Pals(Home)</a>
+          </li>   
+
+            <li class="nav-item-dropdown nav-item" [routerLinkActive]="['link-active']">
+            <p class="nav-link-account text-dark nav-link accountButton">Account</p>
+            <div>
+            <a class="nav-link-content text-dark nav-link" [routerLink]="['/user-profile']">User Profile</a>
+            <a class="nav-link-content text-dark nav-link dropDownLink1" [routerLink]="['/favorites']">CuteList💕</a>
+            </div>
+            
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/favorites']">CuteList(Favorites)</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/user-profile']">Account</a>
-          </li>
+    
           <li class="nav-item">
-            <button class="btn btn-outline-dark" *ngIf="loggedIn"  (click)="signOut()">Sign Out</button>
+            <button class="signOutButton" *ngIf="loggedIn"  (click)="signOut()">Sign Out</button>
 
             <asl-google-signin-button *ngIf="!loggedIn" type='icon' size='medium'></asl-google-signin-button>
           </li>

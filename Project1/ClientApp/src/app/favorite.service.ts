@@ -29,7 +29,7 @@ export class FavoritesService {
    }
 
 
-   //Check that this works (:
+   
    //A list of all INDIVIDUAL user favorites.
    // this is sorta legacy it gets all favorites
    CurrentUserFavorites():Observable<Favorite[]>

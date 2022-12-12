@@ -150,6 +150,7 @@ export class FavoritesComponent implements OnInit {
  
   SaveNote(noteElementID:string, id:number)
   {
+    // Works as adding a note AND saves to the DB.
     // get fav object and add new string then put in param  
     let toChange:Favorite = {} as Favorite;
     this.favPet.forEach(fav => {
@@ -164,7 +165,7 @@ export class FavoritesComponent implements OnInit {
       textBox.innerHTML = `changed!`;
     });
   }
-
+    // Displays previously generated notes.
   GetNote(id : number): string
   {
     return this.favPet.find(fav => fav.catId === id)?.note!;

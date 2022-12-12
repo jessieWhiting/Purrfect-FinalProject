@@ -1,6 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
 
 /* Provide sufficient contrast against white background */
+
 a {
   color: #0366d6;
 }
@@ -16,6 +16,15 @@ code {
   
 }
 
+
+/* HOME STUFF */
+/* ////////////////////////// */
+
+
+.pushDown{
+  padding-top: 5em;
+}
+
 .homeDiv1{
   border: 3px solid gray;
   border-radius: 10px;
@@ -24,11 +33,13 @@ code {
   margin-bottom: 5px;
   margin-left:5px;
   width: 47%;
+  background-color: #eaeaea;
   
 }
 .homeCatHolder {
   display: flex;
   flex-wrap: wrap;
+ 
 }
 .catListImg {
   max-width: 100%;
@@ -81,6 +92,10 @@ button {
  color: pink;
 }
 
+body{
+background-color: #96847D;
+}
+
 
 /* FOOTER */
 /* ////////////////////////// */
@@ -101,3 +116,5 @@ button {
   padding: 30px;
   margin-bottom: 20px;
 }
+
+
