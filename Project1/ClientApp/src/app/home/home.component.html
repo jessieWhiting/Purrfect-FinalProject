@@ -1,4 +1,5 @@
 <div class="pushDown">
+	<br>
 	<p>Click here to go to the next page of Pals! <a [routerLink]="['../../home', nextLink]">Next Page</a></p>
 	<h3>Here You will find a list of available Cats for Adoption!</h3>
 	<h2>Welcome to the Purrfect Pals Adoption Center:  </h2>
@@ -7,15 +8,20 @@
 	<hr>
 	<div class="homeCatHolder">
 		<div class="homeDiv1" *ngFor="let p of petsToShow; index as i">
-			<p><a [routerLink]="['../../cat-info', '17', p.id]">{{p.name}}</a> is {{p.age}} :)</p>
-			<p>Gender: {{p.gender}}</p>
-			<p>Description: <br>{{p.description}}</p>
+			<span class="petName">
+			<a class="petName" [routerLink]="['../../cat-info', '17', p.id]">{{p.name}}</a>
+				<button *ngIf="loggedIn" [id]="'favButton'+p.id" (click)="AddFavoritePet(p.id)" class="favButton">
+					<span class="heartEmoji">💕</span>
+					<span class="hoverEmoji">💞</span>
+				</button>
+			</span>
+			<p>Gender: {{p.gender}} // {{p.age}}</p>
+			<p>{{p.description}}</p>
     		<a [routerLink]="['../../cat-info', '17', p.id]">
 				<!-- if image is null, use our backup-->
-				<img src="{{p.primary_photo_cropped.medium}}" *ngIf=" null !== p.primary_photo_cropped"  class="catListImg" alt="">
-				<img *ngIf=" p.primary_photo_cropped === null" src="assets/catImage.jpg" alt="" class="catListImg" height="300px" width="300px">
+				<img src="{{p.primary_photo_cropped.medium}}" *ngIf=" null !== p.primary_photo_cropped"  class="catListImg minWidth100" alt="">
+				<img *ngIf=" p.primary_photo_cropped === null" src="assets/catImage.jpg" alt="" class="catListImg">
 			</a>
-			<button *ngIf="loggedIn" [id]="'favButton'+p.id" (click)="AddFavoritePet(p.id)" class="favButton">💕</button>
   		</div>
 	</div>
 	<footer class="footer" *ngFor="let pa of pageToShow; index as i"> 
