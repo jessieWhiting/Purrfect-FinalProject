@@ -1,22 +1,23 @@
+
 <div class="pushDown">
 	<br>
+	<h2>Welcome to the Purrfect Pals Adoption Center:  </h2>	
+	<h3>Here You will find a list of available Pals for Adoption! Please Login/Register to see Pals in YOUR area!</h3>
+	<p>Click on a Pal to learn more about them!</p>
 	<p>Click here to go to the next page of Pals! <a [routerLink]="['../../home', nextLink]">Next Page</a></p>
-	<h3>Here You will find a list of available Cats for Adoption!</h3>
-	<h2>Welcome to the Purrfect Pals Adoption Center:  </h2>
-	<p>Click on a Pal's name to see more information about them!</p>
 
 	<hr>
 	<div class="homeCatHolder">
 		<div class="homeDiv1" *ngFor="let p of petsToShow; index as i">
 			<span class="petName">
-			<a class="petName" [routerLink]="['../../cat-info', '17', p.id]">{{p.name}}</a>
+			<a class="petName" [routerLink]="['../../cat-info', '17', p.id]">{{i +1}}: {{p.name}}</a>
 				<button *ngIf="loggedIn" [id]="'favButton'+p.id" (click)="AddFavoritePet(p.id)" class="favButton">
 					<span class="heartEmoji">💕</span>
 					<span class="hoverEmoji">💞</span>
 				</button>
 			</span>
-			<p>Gender: {{p.gender}} // {{p.age}}</p>
-			<p>{{p.description}}</p>
+			<p class="basicInfo">Gender: {{p.gender}} // {{p.age}}</p>
+			<p class="basicInfo">{{p.description}}</p>
     		<a [routerLink]="['../../cat-info', '17', p.id]">
 				<!-- if image is null, use our backup-->
 				<img src="{{p.primary_photo_cropped.medium}}" *ngIf=" null !== p.primary_photo_cropped"  class="catListImg minWidth100" alt="">
@@ -25,7 +26,7 @@
   		</div>
 	</div>
 	<footer class="footer" *ngFor="let pa of pageToShow; index as i"> 
-		<p>Current Page: {{pa.current_page}}/{{pa.total_pages}} <span *ngIf="showZipOnFooter">in {{currentUser.zipCode}}  </span> |
+		<p>Current Page: {{pa.current_page}}/ {{pa.total_pages}} <span *ngIf="showZipOnFooter">results in: {{currentUser.zipCode}}  </span> |
 		<span *ngIf="pa._links.previous !== null"> <a [routerLink]="['../../home', previousLink]">Previous Page</a> | </span> 
 		<a [routerLink]="['../../home', nextLink]">Next Page</a></p>
 	</footer>

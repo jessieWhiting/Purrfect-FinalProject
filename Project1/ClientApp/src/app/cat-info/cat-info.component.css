@@ -3,8 +3,12 @@
     max-width: 700px;
     min-height: 400px;
     min-width: 400px;
-    border: 5px solid #ff9c78;;
+    border: 5px solid #ff9c78;
     border-radius: 5px;
+}
+p{
+    font-size: 16px;
+    text-shadow: 2px 2px 5px white;
 }
 
 
@@ -13,18 +17,23 @@
 }
 h2 {
     padding-top: .4em;
+    text-shadow: 2px 2px 5px white;
 }
 h2 .favButton {
     font-size: 1em;
+    text-shadow: 2px 2px 5px white;
 } 
 h3 {
     padding-top: .75em;
+    text-shadow: 2px 2px 5px white;
 }
 h4 {
     padding-bottom: 6px;
+    text-shadow: 2px 2px 5px white;
 }
 h5 {
     padding-bottom: 8px;
+    text-shadow: 2px 2px 5px white;
 }
 
 .catInfoHalf {
@@ -37,3 +46,26 @@ h5 {
     }
 }
 
+.contactInfo{
+    border: 3px solid #ff9c78;
+    border-radius: 10px;
+    background-color: rgba(122, 180, 216, 0.628);
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px white;
+}
+
+.basicCatInfo{
+    border: 3px solid #ff9c78;
+    border-radius: 10px;
+    background-color: rgba(122, 180, 216, 0.628);
+    margin-top: 10px;
+    padding:10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    text-shadow: 2px 2px 5px white;
+
+
+}

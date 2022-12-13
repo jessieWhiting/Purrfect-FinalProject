@@ -1,6 +1,20 @@
 
 /* Provide sufficient contrast against white background */
 
+h2{
+  font-family: 'Poppins',sans-serif;
+  
+}
+
+h3{
+  font-family: 'Poppins',sans-serif;
+}
+
+.basicInfo{
+  font-size: 20px;
+  
+}
+
 a {
   color: #0366d6;
 }
@@ -13,7 +27,6 @@ code {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
-  
 }
 
 
@@ -33,20 +46,31 @@ code {
   background-color: rgba(122, 180, 216, 0.628);
   word-break: break-all;
   white-space: normal;
+ 
+
 }
 .homeDiv1 p, a {
   padding: 3px;
 }
 
 .petName {
-  font-size: 32px;
-  color: #ff703c;
+  font-size: 30px;
+  color: #ff9c78;
+}
+@media(max-width: 500px){
+
+  body{
+    background-color: #eaeaea !important;
+    background-image: none !important;
+  }
 }
 
 @media(min-width: 768px){
   .homeDiv1 {
     width: 49%;
+
   }
+  
 }
 @media(min-width: 1366px){
   .homeDiv1 {
@@ -93,12 +117,13 @@ code {
 @media (min-width: 768px){
   .petInListContent {
     padding-left: 4px;
+  
   }
   .petInList {
     display: flex;
   }
   .petInList {
-    max-height: 300px;
+    max-height: 500px;
   }
 }
 textarea {
@@ -135,8 +160,11 @@ button {
 }
 
 body{
-background-color: #eaeaea
-;
+background-image: url("assets/Paws6.jpg");
+background-position: right;
+background-repeat: repeat-y;
+
+
 }
 
 
