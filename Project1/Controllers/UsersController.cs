@@ -14,7 +14,6 @@ namespace Project1.Controllers
     public class UsersController : ControllerBase
     {
         private readonly AdoptionCenterContext _context;
-        AdoptionCenterContext db = new AdoptionCenterContext();
 
         public UsersController(AdoptionCenterContext context)
         {
