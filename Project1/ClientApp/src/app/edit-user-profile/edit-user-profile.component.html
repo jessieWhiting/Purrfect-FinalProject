@@ -1,1 +1,25 @@
-<button (click)="updateUserInfo()"></button>
+<!-- <div *ngIf="!isEditing">
+    <button (click)="updateUserInfo()">Update Information</button>
+</div> -->
+
+<form [formGroup]="form">
+
+    <label for="first-name">First Name: </label>
+    <input id="first-name" type="text" formControlName="firstName">
+    <br>
+    <label for="last-name">Last Name: </label>
+    <input id="last-name" type="text" formControlName="lastName">
+    <br>
+    <label for="email">Email: </label>
+    <input id="email" type="text" formControlName="email">
+    <br>
+    <label for="phoneNumber">Phone Number: </label>
+    <input id="phoneNumber" type="text" formControlName="phoneNumber">
+    <br>
+    <label for="zipCode">Zipcode: </label>
+    <input id="zipCode" type="text" formControlName="zipCode">
+
+    <br>
+    <button (click)="updateUserInfo()">Submit</button>
+    
+  </form>
