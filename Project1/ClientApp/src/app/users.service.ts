@@ -27,4 +27,8 @@ export class UsersService {
     let newUser: User = {userId:0, email: email, firstName: firstName, lastName: lastName, admin: newAdmin, phoneNumber: phoneNumber, zipCode: zipCode, googleId: googleId}
     return this.http.post<User>(this.baseUrl + this.endPoint, newUser);
   }
+
+  updateUserInfo(userId: number, user: User): Observable<User>{
+    return this.http.put<User>(this.baseUrl + this.endPoint + '/' + userId, user);
+  }
 }

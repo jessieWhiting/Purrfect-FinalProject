@@ -21,6 +21,7 @@ namespace Project1.Models
 		private static HttpClient _realClient = null;
 		public static HttpClient MyHttp
 		{
+			//This is the Initiation of our HttpClient. Here the client is generated with our base URL
 			get
 			{
 				if (_realClient == null)
@@ -204,6 +205,8 @@ namespace Project1.Models
 
 			return breeds;
 		}
+
+		//Makes another pet object and if the try catch fails, it has another message to tell angular that the pet has been removed from the db
 		public static async Task<PFPet> GetSpecificPet(string id)
 		{
 			Console.WriteLine("cl " + MyHttp.DefaultRequestHeaders.Authorization);
