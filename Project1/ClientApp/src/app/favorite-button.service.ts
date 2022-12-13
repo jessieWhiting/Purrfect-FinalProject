@@ -36,7 +36,7 @@ export class FavoriteButtonService {
       {
         this.favoriteAPI.AddFavoritePet(newFavorite).subscribe((result: Favorite)=>
         {
-          document.getElementById(`favButton${id}`)!.innerHTML = 'added to favorites';
+          document.getElementById(`favButton${id}`)!.innerHTML = '<img class="favButtonGif" src="https://localhost:44451/assets/favorite.gif">';
           console.log(result)
           // return 'added';
           favResponse = result;
@@ -60,7 +60,7 @@ export class FavoriteButtonService {
     this.favoriteAPI.CurrentUserFavorites().subscribe((results:Favorite[]) => {
       results.forEach( f =>
         {
-          if((f.catId === id ))
+          if((f.catId === id) && (f.userId === currentUserId))
           {
             indexToDelete = f.favoriteId;
           }
@@ -68,7 +68,7 @@ export class FavoriteButtonService {
         });
         this.favoriteAPI.RemoveFavoritePet(indexToDelete).subscribe((result: any) => 
           {
-            document.getElementById(`favButton${id}`)!.innerHTML = 'removed to favorites';
+            document.getElementById(`favButton${id}`)!.innerHTML = '💔';
           });
     });
     

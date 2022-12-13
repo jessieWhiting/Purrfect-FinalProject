@@ -1,12 +1,9 @@
-<h1 class="pushDown">Cute List 💕: </h1>
-
-<h2>Welcome! The Cute List is home to all of your favorite furballs and potential pals!</h2>
-
+<div class="pushDown">
+<h1>Cute List 💕: The home to all of your favorite furballs and potential pals!</h1>
 <p *ngIf="deletedCounter > 0">it looks like {{deletedCounter}} of the cats you were interested in have been adopted! we're sorry you missed out but there are plenty of cats looking to love you !!</p>
 <hr>
 <div>
     <h4 *ngIf="!loggedIn">It looks like you aren't logged in!</h4>
-<!-- for each this *ngFor="let f of favPet" -->
     <div *ngFor="let f of favPets; index as i">
         <div class="petInList" [id]="'div'+f.id">
             <a [routerLink]="['../cat-info', '17', f.id]">
@@ -14,22 +11,24 @@
                 <img *ngIf="null !== f.primary_photo_cropped" src="{{f.primary_photo_cropped.medium}}" alt="" class="catListImg">
                 <img *ngIf="f.primary_photo_cropped === null" src="assets/catImage.jpg" alt="">
             </a>
-            <!-- replace currentUser with the user.id !!!!!! -->
-            <!-- (click)="RemoveFavoritePet(f.id, currentUser)" -->
             <div class="petInListContent">
-                <span><a [routerLink]="['../cat-info', '17', f.id]">{{f.name}}</a> <button class="favButton" (click)="AddFavoritePet(f.id)">💕</button></span>
+                <span>
+                    <a [routerLink]="['../cat-info', '17', f.id]">{{f.name}}</a>
+                    <button *ngIf="loggedIn" [id]="'favButton'+f.id" (click)="AddFavoritePet(f.id)" class="favButton">
+                        <span class="heartEmoji">💕</span>
+                        <span class="hoverEmoji">💔</span>
+                    </button>
+                </span>
                 <p>{{f.gender}} | {{f.age}} | {{favPetsCostFinder(f.id)}}</p>
                 <p>{{f.description}}</p>
-                
-                <!-- make value the favorite.note to autopopulate -->
                 <br>
-                
                 <textarea rows="2" [value]="GetNote(f.id)" [id]="'note'+f.id" placeholder="Put your thoughts here!">
                 </textarea>
-                
-                <button (click)="SaveNote('note'+f.id, f.id)">save note</button> <p [id]="'alert'+f.id"></p>
+                <br>
+                <span style="display:block ruby"><button (click)="SaveNote('note'+f.id, f.id)">save note</button><p [id]="'alert'+f.id"></p></span>
             </div>
         </div>
         <br>
     </div>
+</div>
 </div>

@@ -26,6 +26,7 @@ export class CatInfoComponent implements OnInit {
   loggedIn: boolean = false;
   currentUser: User = {} as User;
   favPet: Favorite[] = []; // list of favorite objects
+  catFavorited:boolean = false;
 
   private routeSub: Subscription;
 
@@ -55,6 +56,17 @@ export class CatInfoComponent implements OnInit {
       {
         this.loggedIn = true;
         this.currentUser = result;
+        // after we have our user data, grab there favorites and see if this cat is one of theirs :)
+        this.favoriteAPI.CurrentUserFavoritesById(this.currentUser.userId).subscribe((results: Favorite[]) =>
+        {
+          this.favPet = results;
+          this.favPet.forEach(fav => {
+            console.log("fav'd? "+ (fav.catId === parseInt(this.catID)));
+            if(fav.catId === parseInt(this.catID)){
+              this.catFavorited = true;
+            }
+          });
+        });
       });
     });
     
@@ -70,11 +82,6 @@ export class CatInfoComponent implements OnInit {
     } else {
       console.log("what api is this for?????")
     }
-
-    this.favoriteAPI.CurrentUserFavorites().subscribe((results: Favorite[]) =>
-    {
-      this.favPet = results;
-    });
   }
 
   AddFavoritePet(id:number):void {
@@ -86,12 +93,35 @@ export class CatInfoComponent implements OnInit {
     if (response.includes(`true`))
     {
       this.favPet.push(arrayChanger);
-      console.log(this.favPet);
+      this.catFavorited = true;
     } else 
     {
       let favToRemove:Favorite = this.favPet.find(fav => fav.catId === id)!;
       let favToRemIndex:number = this.favPet.indexOf(favToRemove);
       this.favPet.splice(favToRemIndex,1);
+      this.catFavorited = false;
     }
+  }
+  SaveNote(noteElementID:string, id:number)
+  {
+    // Works as adding a note AND saves to the DB.
+    // get fav object and add new string then put in param  
+    let toChange:Favorite = {} as Favorite;
+    this.favPet.forEach(fav => {
+      if((fav.catId === id)  && (fav.userId === this.currentUser.userId)){
+        toChange = fav;
+      }
+    });
+    let textBox:string = (document.getElementById(`note${id}`) as HTMLTextAreaElement).value;
+    toChange.note = textBox;
+    this.favoriteAPI.ChangeNote(toChange).subscribe(() => {
+      var textBox = document.getElementById(`alert${id}`)!;
+      textBox.innerHTML = `changed!`;
+    });
+  }
+    // Displays previously generated notes.
+  GetNote(id : number): string
+  {
+    return this.favPet.find(fav => (fav.catId === id)  && (fav.userId === this.currentUser.userId))?.note!;
   }
 }

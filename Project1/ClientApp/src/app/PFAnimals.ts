@@ -78,13 +78,13 @@ export interface Colors {
 
 export interface Contact {
     email:   null | string;
-    phone:   string;
+    phone:   null | string;
     address: Address;
 }
 
 export interface Address {
     address1: null | string;
-    address2: null;
+    address2: null | string;
     city:     string;
     state:    string;
     postcode: string;
