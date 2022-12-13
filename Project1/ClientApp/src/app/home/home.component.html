@@ -1,7 +1,9 @@
-<div>
-	<h2>Welcome to the Purrfect Pals Adoption Center: </h2>
+<div class="pushDown">
+	<p>Click here to go to the next page of Pals! <a [routerLink]="['../../home', nextLink]">Next Page</a></p>
 	<h3>Here You will find a list of available Cats for Adoption!</h3>
+	<h2>Welcome to the Purrfect Pals Adoption Center:  </h2>
 	<p>Click on a Pal's name to see more information about them!</p>
+
 	<hr>
 	<div class="homeCatHolder">
 		<div class="homeDiv1" *ngFor="let p of petsToShow; index as i">

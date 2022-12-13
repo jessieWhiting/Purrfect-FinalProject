@@ -1,6 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
 
 /* Provide sufficient contrast against white background */
+
 a {
   color: #0366d6;
 }
@@ -16,33 +16,48 @@ code {
   
 }
 
+
+/* HOME STUFF */
+/* ////////////////////////// */
+
+
+.pushDown{
+  padding-top: 5em;
+}
+
 .homeDiv1{
-  border: 3px solid gray;
+  border: 3px solid #ff9c78;;
   border-radius: 10px;
   padding: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left:5px;
   width: 47%;
+  background-color: rgba(122, 180, 216, 0.628);
   
 }
 .homeCatHolder {
   display: flex;
   flex-wrap: wrap;
+ 
 }
 .catListImg {
   max-width: 100%;
   max-height: 320px;
   transition: transform .15s;
+  border: 5px solid #eaeaea;
+  border-radius: 5px;
 }
 
 .catListImg:hover {
   transform: scale(0.9);
+  border: 5px solid #ff9c78;;
+  border-radius: 5px;
 }
 
 .petInList {
- background-color: lightskyblue;
- border:2px solid grey;
+ background-color: rgba(122, 180, 216, 0.628);
+ border:2px solid #ff9c78;;
  border-radius: 5px;
  padding: 20px;
  
@@ -81,11 +96,16 @@ button {
  color: pink;
 }
 
+body{
+background-color: #eaeaea
+;
+}
+
 
 /* FOOTER */
 /* ////////////////////////// */
 .footer{
-  border: solid 2px grey;
+  border: solid 2px #ff9c78;;
   border-radius: 15px;
   padding: 20px 20px 3px 20px;
   text-align: right;
@@ -96,8 +116,10 @@ button {
 /* ACCOUNT */
 /* ////////////////////////// */
 .accountHeader{
-  border:2px solid grey;
+  border:2px solid #ff9c78;;
   border-radius: 15px;
   padding: 30px;
   margin-bottom: 20px;
 }
+
+
