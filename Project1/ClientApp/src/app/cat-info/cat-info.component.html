@@ -16,9 +16,9 @@
     		<h2>😻Inquire about {{catData.name}}!😻</h2>
     		<ul>
 				<li>{{catData.name}} is from {{catData.contact.address.city}}, {{catData.contact.address.state}}</li>
-    		    <li>Email: <a href="mailto:{{catData.contact.email}}" class="href">{{catData.contact.email}}</a></li>
     		    <li>Phone: {{catData.contact.phone}}</li>
-    			<li>Zip Code: {{catData.contact.address.postcode}}
+    			<li>Zip Code: {{catData.contact.address.postcode}}</li>
+				<li class="email">Email: <a href="mailto:{{catData.contact.email}}" class="href">{{catData.contact.email}}</a>
 					<!-- <span *ngIf="loggedIn">, that's around {{catData.distance}} miles away from you</span> 
 					this needs another api endpoint for getSpecificByZip, but even then you'd need to recall the api when a user signs in on cat-info :p -->
 				</li>
@@ -37,6 +37,7 @@
 			</h4>
 			<h5>Age: {{catData.age}} // Size: {{catData.size}} <span *ngIf="!catData.breeds.unknown">// Breed: {{catData.breeds.primary}}</span></h5>
 			<h5>Colors: {{catData.colors.primary}} {{catData.colors.secondary}} {{catData.colors.tertiary}}</h5>
+			<h5>History:</h5>
 			<ul>
     			<li>Fixed: <span *ngIf="catData.attributes.spayed_neutered; else fixedX">✔️</span><ng-template #fixedX>❌</ng-template></li>
     			<li>House Trained: <span *ngIf="catData.attributes.house_trained; else houseTX">✔️</span><ng-template #houseTX>❌</ng-template></li>

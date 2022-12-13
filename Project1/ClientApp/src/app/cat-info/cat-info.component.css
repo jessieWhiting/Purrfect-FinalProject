@@ -54,6 +54,8 @@ h5 {
     margin-top: 10px;
     margin-bottom: 20px;
     text-shadow: 2px 2px 5px white;
+    font-size:  18px;
+    font-weight: bold;
 }
 
 .basicCatInfo{
@@ -69,3 +71,4 @@ h5 {
 
 
 }
+

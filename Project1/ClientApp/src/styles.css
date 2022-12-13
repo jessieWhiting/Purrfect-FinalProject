@@ -3,24 +3,29 @@
 
 h2{
   font-family: 'Poppins',sans-serif;
+  text-shadow: 2px 2px 5px white;
   
 }
 
 h3{
   font-family: 'Poppins',sans-serif;
+  text-shadow: 2px 2px 5px white;
 }
 
 .basicInfo{
   font-size: 20px;
+  text-shadow: 2px 2px 5px white;
   
 }
 
 a {
   color: #0366d6;
+ 
 }
 
 code {
   color: #e01a76;
+  
 }
 
 .btn-primary {
@@ -164,7 +169,6 @@ background-image: url("assets/Paws6.jpg");
 background-position: right;
 background-repeat: repeat-y;
 
-
 }
 
 
@@ -180,13 +184,7 @@ background-repeat: repeat-y;
   margin-top: 7px;
 }
 
-/* ACCOUNT */
-/* ////////////////////////// */
-.accountHeader{
-  border:2px solid #ff9c78;;
-  border-radius: 15px;
-  padding: 30px;
-  margin-bottom: 20px;
-}
+
+
 
 
