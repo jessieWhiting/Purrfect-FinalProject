@@ -7,6 +7,7 @@
     border-radius: 5px;
 }
 
+
 .catInfo {
     display: flex;
 }
@@ -35,3 +36,4 @@ h5 {
         display: block;
     }
 }
+
