@@ -15,6 +15,7 @@ import { Secret } from './secret';
 import { PetFinderService } from './petfinder.service';
 import { delay, interval } from 'rxjs';
 import { CatInfoComponent } from './cat-info/cat-info.component';
+import { AristocatsComponent } from './aristocats/aristocats.component';
 
 
 export function initializeApp(PFServ:PetFinderService) {
@@ -39,6 +40,7 @@ export function initializeApp(PFServ:PetFinderService) {
     FavoritesComponent,
     UserProfileComponent,
     CatInfoComponent,
+    AristocatsComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,7 @@ export function initializeApp(PFServ:PetFinderService) {
       { path: 'user-profile', component: UserProfileComponent},
       { path: 'favorites', component: FavoritesComponent},
       { path: 'cat-info/:shelter/:cat', component: CatInfoComponent},
+      { path: 'aristocats', component: AristocatsComponent},
     ]),
     AppRoutingModule,
     CommonModule,

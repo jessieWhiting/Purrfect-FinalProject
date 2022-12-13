@@ -9,7 +9,7 @@
         	</button></h2>
 			<a [routerLink]="['/']" >
 			    <img src="{{catData.primary_photo_cropped.medium}}"*ngIf=" null !== catData.primary_photo_cropped" class="specificCatImage catListImg" alt="">
-			    <img *ngIf=" catData.primary_photo_cropped === null" src="assets/catImage.jpg" class="specificCatImage" alt="">
+			    <img *ngIf=" catData.primary_photo_cropped === null" src="assets/catImage.jpg" class="specificCatImage specCatImageDefault" alt="">
 			</a>
     		<h2>Inquire about {{catData.name}}!</h2>
     		<ul>

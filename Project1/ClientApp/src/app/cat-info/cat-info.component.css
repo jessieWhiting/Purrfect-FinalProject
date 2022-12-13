@@ -35,3 +35,7 @@ h5 {
         display: block;
     }
 }
+
+.specCatImageDefault {
+    max-height: 510px;
+}
