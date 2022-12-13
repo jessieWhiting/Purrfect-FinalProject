@@ -96,7 +96,7 @@ export class CatInfoComponent implements OnInit {
       this.catFavorited = true;
     } else 
     {
-      let favToRemove:Favorite = this.favPet.find(fav => fav.catId === id)!;
+      let favToRemove:Favorite = this.favPet.find(fav => (fav.catId === id)  && (fav.userId === this.currentUser.userId))!;
       let favToRemIndex:number = this.favPet.indexOf(favToRemove);
       this.favPet.splice(favToRemIndex,1);
       this.catFavorited = false;
@@ -107,21 +107,27 @@ export class CatInfoComponent implements OnInit {
     // Works as adding a note AND saves to the DB.
     // get fav object and add new string then put in param  
     let toChange:Favorite = {} as Favorite;
+    let textBox:string = (document.getElementById(`note${id}`) as HTMLTextAreaElement).value;
+    toChange.note = textBox;
     this.favPet.forEach(fav => {
       if((fav.catId === id)  && (fav.userId === this.currentUser.userId)){
         toChange = fav;
       }
     });
-    let textBox:string = (document.getElementById(`note${id}`) as HTMLTextAreaElement).value;
-    toChange.note = textBox;
-    this.favoriteAPI.ChangeNote(toChange).subscribe(() => {
+    this.favoriteAPI.ChangeNote(toChange).subscribe((results:Favorite) => {
       var textBox = document.getElementById(`alert${id}`)!;
       textBox.innerHTML = `changed!`;
     });
+    
   }
     // Displays previously generated notes.
   GetNote(id : number): string
   {
-    return this.favPet.find(fav => (fav.catId === id)  && (fav.userId === this.currentUser.userId))?.note!;
+    let output:string = ""
+    let catFavObject:string = this.favPet.find(fav => (fav.catId === id)  && (fav.userId === this.currentUser.userId))?.note!;
+    if (catFavObject != undefined){
+      output = catFavObject;
+    }
+    return output;
   }
 }

@@ -11,8 +11,10 @@
 			<span class="petName">
 			<a class="petName" [routerLink]="['../../cat-info', '17', p.id]">{{p.name}}</a>
 				<button *ngIf="loggedIn" [id]="'favButton'+p.id" (click)="AddFavoritePet(p.id)" class="favButton">
-					<span class="heartEmoji">💕</span>
-					<span class="hoverEmoji">💞</span>
+					<span class="heartEmoji" *ngIf="!isCatFavorited.get(p.id)">💕</span>
+					<span class="heartEmoji" *ngIf="isCatFavorited.get(p.id)"><img class="favButtonGif" src="https://localhost:44451/assets/favorite.gif"></span>
+                	<span class="hoverEmoji" *ngIf="!isCatFavorited.get(p.id)">💞</span>
+					<span class="hoverEmoji" *ngIf="isCatFavorited.get(p.id)">💔</span>
 				</button>
 			</span>
 			<p>Gender: {{p.gender}} // {{p.age}}</p>
