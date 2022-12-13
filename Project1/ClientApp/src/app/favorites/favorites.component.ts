@@ -144,7 +144,7 @@ export class FavoritesComponent implements OnInit {
     this.favoriteAPI.RemoveFavoritePet(indexToDelete).subscribe((result: any) => 
     {
       var element = document.getElementById(`div${id}`)!;
-      element.innerHTML = ``;
+      element.parentNode?.removeChild(element);
     });
   }
  
@@ -154,7 +154,7 @@ export class FavoritesComponent implements OnInit {
     // get fav object and add new string then put in param  
     let toChange:Favorite = {} as Favorite;
     this.favPet.forEach(fav => {
-      if(fav.catId === id){
+      if((fav.catId === id)  && (fav.userId === this.currentUser.userId)){
         toChange = fav;
       }
     });
@@ -168,6 +168,6 @@ export class FavoritesComponent implements OnInit {
     // Displays previously generated notes.
   GetNote(id : number): string
   {
-    return this.favPet.find(fav => fav.catId === id)?.note!;
+    return this.favPet.find(fav => (fav.catId === id)  && (fav.userId === this.currentUser.userId))?.note!;
   }
 }

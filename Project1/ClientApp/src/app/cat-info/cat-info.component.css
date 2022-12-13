@@ -7,3 +7,33 @@
     border-radius: 5px;
 }
 
+
+.catInfo {
+    display: flex;
+}
+h2 {
+    padding-top: .4em;
+}
+h2 .favButton {
+    font-size: 1em;
+} 
+h3 {
+    padding-top: .75em;
+}
+h4 {
+    padding-bottom: 6px;
+}
+h5 {
+    padding-bottom: 8px;
+}
+
+.catInfoHalf {
+    padding-right: 32px;
+}
+
+@media(max-width: 768px){
+    .catInfo {
+        display: block;
+    }
+}
+
