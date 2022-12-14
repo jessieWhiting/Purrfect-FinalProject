@@ -37,4 +37,13 @@ export class CatService {
       }
   }
 
+  AddPoint(cat:BasicCatInfo):Observable<BasicCatInfo>
+  {
+    return this.http.put<BasicCatInfo>(this.baseURL+ this.baseControllerRoute +'/'+ cat.petId, cat);
+  }
+
+  GetCatDb():Observable<BasicCatInfo[]>
+  {
+    return this.http.get<BasicCatInfo[]>(this.baseURL+ this.baseControllerRoute);
+  }
 }

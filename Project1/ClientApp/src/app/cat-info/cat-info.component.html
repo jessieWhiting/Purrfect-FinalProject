@@ -9,7 +9,7 @@
         	</button></h2>
 			<a [routerLink]="['/']" >
 			    <img src="{{catData.primary_photo_cropped.medium}}"*ngIf=" null !== catData.primary_photo_cropped" class="specificCatImage catListImg" alt="">
-			    <img *ngIf=" catData.primary_photo_cropped === null" src="assets/catImage.jpg" class="specificCatImage" alt="">
+			    <img *ngIf=" catData.primary_photo_cropped === null" src="assets/catImage.jpg" class="specificCatImage specCatImageDefault" alt="">
 			</a>
 		  
 			<div class="contactInfo">
@@ -45,6 +45,7 @@
     			<li>Declawed : <span *ngIf="catData.attributes.declawed; else declawX">✔️</span><ng-template #declawX>❌</ng-template></li>
     			<li>Additional Needs: <span *ngIf="catData.attributes.special_needs; else needsX">✔️</span><ng-template #needsX>❌</ng-template></li>
     			<li>Shots UTD: <span *ngIf="catData.attributes.shots_current; else shotsX">✔️</span><ng-template #shotsX>❌</ng-template></li>
+				<li>Projected cost: {{favPetsCostFinder()}}</li>
 			</ul>
 			<!--
 			<div class="noteSection" *ngIf="loggedIn && catFavorited">

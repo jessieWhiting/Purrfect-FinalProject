@@ -38,7 +38,7 @@ export class FavoriteButtonService {
       {
         this.favoriteAPI.AddFavoritePet(newFavorite).subscribe((result: Favorite)=>
         {
-          document.getElementById(`favButton${id}`)!.innerHTML = '<img class="favButtonGif" src="https://localhost:44451/assets/favorite.gif">';
+          document.getElementById(`favButton${id}`)!.innerHTML = '<img class="favButtonGif" src="/assets/favorite.gif">';
           console.log(result)
           // return 'added';
           favResponse = result;

@@ -1,0 +1,18 @@
+<div class="pushDown">
+    <h2>The Aristocats List!</h2>
+    <div class="masonry">
+        <div class="grid js-masonry" *ngFor="let p of petsToShow; index as i">
+          <figure class="item">
+            <a href="#">
+                <div *ngIf=" null !== p.primary_photo_cropped" class="styled" [ngStyle]="{'background-image.src': '{{p.primary_photo_cropped.medium}}'}">
+                    
+                <p>{{p.name}} | x points</p>
+                </div>
+                
+
+            </a>
+            </figure>
+        </div>
+      </div>
+
+</div>

@@ -70,10 +70,10 @@ export class FavoritesComponent implements OnInit {
     let output:string = "";
     let count:number = 1;
     let catToParse:Animal = this.favPets.find(f => f.id === id)!;
-    if(catToParse.attributes.shots_current){
+    if(!catToParse.attributes.shots_current){
       count += .5;
     }
-    if(catToParse.attributes.spayed_neutered){
+    if(!catToParse.attributes.spayed_neutered){
       count += 1;
     }
     if(catToParse.attributes.special_needs){
@@ -87,9 +87,8 @@ export class FavoritesComponent implements OnInit {
     }
     
     // convert our value to display 
-    for(let i = 0; i === Math.round(count) ; i++){
-      console.log("loop "+id)
-      output.concat("$");
+    for(let i = 0; i < Math.round(count) ; i++){
+      output = output.concat("$");
     }
     return output;
   }
