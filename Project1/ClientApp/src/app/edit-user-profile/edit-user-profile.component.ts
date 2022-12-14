@@ -33,13 +33,15 @@ export class EditUserProfileComponent implements OnInit {
 
   isEditing: boolean = false;
 
-  form = this.fb.group({
-    firstName: [''],
-    lastName: [''],
-    email: [''],
-    phoneNumber: [''],
-    zipCode: [''],
-  });
+  form: FormGroup = {} as FormGroup;
+
+  // form = this.fb.group({
+  //   firstName: [''],
+  //   lastName: [''],
+  //   email: [''],
+  //   phoneNumber: [''],
+  //   zipCode: [''],
+  // });
   
   constructor(private userService: UsersService, private fb: FormBuilder, private authService: SocialAuthService) { }
   
@@ -50,6 +52,14 @@ export class EditUserProfileComponent implements OnInit {
       // after google login, get our data on user
       this.userService.getUserById(this.user.id).subscribe((result : User) => 
       {
+        // this.form.value.firstName = this.currentUser.firstName;
+        this.form = this.fb.group({
+            firstName: ['this.currentUser.firstName'],
+            lastName: new FormControl(result.lastName),
+            email: ['{{this.currentUser.email}}'],
+            phoneNumber: [''],
+            zipCode: [''],
+          });
         this.loggedIn = true;
         this.currentUser = result;
       });
@@ -59,9 +69,17 @@ export class EditUserProfileComponent implements OnInit {
     this.updateUserInfo();
   }
 
+  onClick(){
+    this.isEditing = !this.isEditing;
+  }
+
   updateUserInfo(){
     console.log(this.currentUser);
-    this.userService.updateUserInfo(this.currentUser.userId, this.currentUser).subscribe((result: User) =>{
+    let formUser: User = this.form.value as User;
+    formUser.googleId = this.currentUser.googleId;
+    formUser.admin = this.currentUser.admin;
+    formUser.userId = this.currentUser.userId;
+    this.userService.updateUserInfo(this.currentUser.userId, formUser).subscribe((result: User) =>{
       console.log(result);
       console.log(this.currentUser);
     });
