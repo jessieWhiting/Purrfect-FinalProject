@@ -1,8 +1,9 @@
+<body>
 <div class="pushDown">
     <h2 class="aristocatHeader">The Aristocats List! <h3>Every cool cat who's been given a paws up!</h3></h2>
 
-    <div class="masonry">
-        <div class="grid js-masonry" *ngFor="let p of petsToShow; index as i">
+    <div class="masonry ">
+        <div class="grid js-masonry " *ngFor="let p of petsToShow; index as i">
             <figure class="item">
                 <div class="masonryHolder">
                 <a class="aristocatBorder"[routerLink]="['../cat-info', '17', p.id]">
@@ -17,4 +18,5 @@
         </div>
       </div>
 
-</div>
+</div> 
+</body>
