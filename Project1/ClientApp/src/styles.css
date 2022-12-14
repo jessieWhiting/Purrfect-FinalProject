@@ -33,6 +33,7 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+ 
 
 
 /* HOME STUFF */
@@ -193,7 +194,7 @@ button {
 }
 
 
-body{
+.mainBackground{
 background-image: url("assets/Paws6.jpg");
 background-position: right;
 background-repeat: repeat-y;
@@ -237,6 +238,14 @@ background-repeat: repeat-y;
   margin-top: 10px;
   text-align: center;
 
+  
+}
+
+.aristocatBackground{
+  background-image: url('/assets/Cat7.jpg'), url("assets/Paws6.jpg");
+  background-position: left, right;
+  background-repeat: repeat-y, repeat-y;
+  
   
 }
 
