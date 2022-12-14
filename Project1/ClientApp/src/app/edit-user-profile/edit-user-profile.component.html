@@ -1,47 +1,27 @@
-<!-- <div *ngIf="!isEditing">
-    <button (click)="updateUserInfo()">Update Information</button>
-</div> -->
+<div>
+    <button (click)="isEditing = !isEditing">Update Information</button>
+</div>
 
-<!-- <form>
+<div *nfIf="!isEditing">
+    <form [formGroup]="form" (ngSubmit)="updateUserInfo()">
 
-    <label>First Name: </label>
-    <input name="firstName" type="text" [(ngModel)]="firstName">
-    <br>
-    <label>Last Name: </label>
-    <input name="lastName" type="text" [(ngModel)]="lastName">
-    <br>
-    <label>Email: </label>
-    <input name="email" type="text" [(ngModel)]="email">
-    <br>
-    <label>Phone Number: </label>
-    <input name="phoneNumber" type="text" [(ngModel)]="phoneNumber">
-    <br>
-    <label>Zipcode: </label>
-    <input name="zipCode" type="text" [(ngModel)]="zipCode">
+        <label for="first-name">First Name: </label>
+        <input id="first-name" type="text" formControlName="firstName" value="currentUser.firstName">
+        <br>
+        <label for="last-name">Last Name: </label>
+        <input id="last-name" type="text" formControlName="lastName">
+        <br>
+        <label for="email">Email: </label>
+        <input id="email" type="text" formControlName="email">
+        <br>
+        <label for="phoneNumber">Phone Number: </label>
+        <input id="phoneNumber" type="text" formControlName="phoneNumber">
+        <br>
+        <label for="zipCode">Zipcode: </label>
+        <input id="zipCode" type="text" formControlName="zipCode">
 
-    <br>
-    <button (click)="updateUserInfo()">Submit</button>
-    
-</form> -->
-
-<form [formGroup]="form">
-
-    <label for="first-name">First Name: </label>
-    <input id="first-name" type="text" formControlName="firstName">
-    <br>
-    <label for="last-name">Last Name: </label>
-    <input id="last-name" type="text" formControlName="lastName">
-    <br>
-    <label for="email">Email: </label>
-    <input id="email" type="text" formControlName="email">
-    <br>
-    <label for="phoneNumber">Phone Number: </label>
-    <input id="phoneNumber" type="text" formControlName="phoneNumber">
-    <br>
-    <label for="zipCode">Zipcode: </label>
-    <input id="zipCode" type="text" formControlName="zipCode">
-
-    <br>
-    <button (click)="updateUserInfo()">Submit</button>
-    
-</form>
+        <br>
+        <button>Submit</button>
+        
+    </form>
+</div>

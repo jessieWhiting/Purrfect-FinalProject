@@ -31,12 +31,10 @@
 		<br>
 		<button (click)="registerNewUser(email, firstName, lastName, phoneNumber, zipCode)">Register</button>
 	</div>
-	<!-- <app-edit-user-profile></app-edit-user-profile> -->
+	<app-edit-user-profile></app-edit-user-profile>
 	<app-favorites></app-favorites>
 
 </div>
 
 <!-- No account information will appear, unless user is logged in -->
-<div *ngIf="!loggedIn">   
-	<p>Login to view account information</p>
-</div>
+<h4 *ngIf="!loggedIn">Login to view account information</h4>
