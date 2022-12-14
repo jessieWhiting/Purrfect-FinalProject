@@ -21,11 +21,15 @@
   -moz-transition: all 0.3s;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+  border: 5px solid #eaeaea;
+  border-radius: 5px;
 }
 .item:hover img {
   -moz-transform: scale(1.05);
   -webkit-transform: scale(1.05);
   transform: scale(1.05);
+  border: 5px solid #ff9c78;
+  border-radius: 5px;
 }
 @media only screen and (min-width: 400px) {
     .masonry {
@@ -79,4 +83,19 @@
 	font-size: 20px;
 	color: white;
 	text-shadow: black -1px 2px 4px;
+    text-align: center;
 }
+
+.aristocatHeader{
+    border: 3px solid #ff9c78;
+    border-radius: 10px;
+    background-color: rgba(122, 180, 216, 0.628);
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px white;
+    text-align: center;
+    font-size:  32px;
+    font-weight: bold;
+}
+

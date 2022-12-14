@@ -21,18 +21,20 @@ html {
 .navbar{
   background-color: #5e8198ee;
   position: fixed;
-  width: 80%;
+  width: 60%;
   margin-left: 180px;
   transition: top 0.3s;
   margin-bottom: 20px;
   border-radius: 0px 0px 8px 8px;
 
 }
-@media(min-width: 500px){
+@media(min-width: 300px){
   .navbar {
     width: 60%;
     text-align: right;
-
+  }
+  .navbar-brand {
+    font-size: 1.1rem;
   }
   
 }
@@ -111,7 +113,7 @@ padding: 8px;
  }
  .accountButton{
   margin-bottom: 0;
-  padding-bottom: 0;
+  padding-bottom: 8px;
  }
 
 .signOutButton{
@@ -137,5 +139,10 @@ padding: 8px;
 .navbar-brand {
   padding: 4px !important;
   color: #ff703c !important;
+}
+
+.palsImage{
+  height: 60px;
+  width: 70px;
 }
 
