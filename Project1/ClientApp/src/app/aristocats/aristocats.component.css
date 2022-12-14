@@ -83,6 +83,7 @@
 	font-size: 20px;
 	color: white;
 	text-shadow: black -1px 2px 4px;
+    text-align: center;
 }
 
 .aristocatHeader{
@@ -97,6 +98,4 @@
     font-size:  32px;
     font-weight: bold;
 }
-
-
 
