@@ -11,6 +11,8 @@ import { PetFinderService } from '../petfinder.service';
 import { Animal, PFAPI, Pagination } from '../PFAnimals';
 import { RescueGroupsService } from '../rescue-groups.service';
 import { User } from '../user';
+import { BasicCatInfo } from '../basicCatInfo';
+import { CatService } from '../cat.service';
 
 @Component({
   selector: 'app-home',
@@ -42,7 +44,8 @@ export class HomeComponent {
               private router: Router,
               private favoriteAPI: FavoritesService,
               private favoriteButtonAPI: FavoriteButtonService,
-              private userAPI: UsersService,){
+              private userAPI: UsersService,
+              private ourCatAPI: CatService,){
     // get page number
     this.routeSub = route.params.subscribe(params => {
       this.currentPage = params['page'];
@@ -67,17 +70,18 @@ export class HomeComponent {
         // if we have a user we'll try to get pets by zip code here and confirm that
         this.getPetsToShow();
         this.gotPetsYet = true;
+        // gets the list of favorites to check when adding/removing favorites
+        this.favoriteAPI.CurrentUserFavoritesById(this.currentUser.userId).subscribe((results: Favorite[]) =>
+        {
+          this.favPet = results;
+          results.forEach(fav => {
+            this.isCatFavorited.set(fav.catId, true);
+          });
+        });  
       });
     });
 
-    // gets the list of favorites to check when adding/removing favorites
-    this.favoriteAPI.CurrentUserFavorites().subscribe((results: Favorite[]) =>
-    {
-      this.favPet = results;
-      results.forEach(fav => {
-        this.isCatFavorited.set(fav.catId, true);
-      });
-    });  
+    
 
     // if the user was not logged in, this will make sure we have some pets on the page
     if(!this.gotPetsYet){
@@ -148,5 +152,17 @@ export class HomeComponent {
       this.favPet.splice(favToRemIndex,1);
       this.isCatFavorited.set(id, false);
     }
+  }
+
+  like(id:number):void{
+    let toSend:BasicCatInfo = {} as BasicCatInfo;
+    toSend.petId = id;
+    toSend.shelterId = 17 
+    this.ourCatAPI.AddPoint(toSend).subscribe((results) =>
+    {
+      console.log(`trying to like ${id}`)
+      console.log(results);
+      document.getElementById(`likeTxt${id}`)!.innerHTML = 'liked!';
+    });
   }
 }
