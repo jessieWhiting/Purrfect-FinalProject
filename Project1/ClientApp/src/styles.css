@@ -14,8 +14,12 @@ h3{
 
 .basicInfo{
   font-size: 20px;
-  text-shadow: 2px 2px 5px white;
-  
+  text-shadow: 2px 2px 5px white; 
+  margin-bottom: 0px;
+}
+.basicInfoDesc {
+  display: inline-block;
+  word-break: break-word;
 }
 
 a {
@@ -226,6 +230,7 @@ background-repeat: repeat-y;
   font-size: 18px;
   margin-bottom: 4px;
   margin-top: 7px;
+  background-color: white;
 }
 
 .welcomeMessage{
@@ -235,7 +240,8 @@ background-repeat: repeat-y;
   padding-left: 10px;
   padding-right: 10px;
   text-shadow: 2px 2px 5px white;
-  margin-top: 10px;
+  margin-top: 6px;
+  margin-bottom: 6px;
   text-align: center;
 
   

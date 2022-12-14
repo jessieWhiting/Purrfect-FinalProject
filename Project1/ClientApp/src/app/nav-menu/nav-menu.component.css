@@ -142,7 +142,10 @@ padding: 8px;
 }
 
 .palsImage{
-  height: 60px;
-  width: 70px;
+  width: 72px;
+max-height: 100%;
+position: relative;
+top: -4px;
+right: 4px;
 }
 
