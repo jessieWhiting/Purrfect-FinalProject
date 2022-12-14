@@ -27,7 +27,7 @@
                 <p>{{f.description}}</p>
                 <p>Leave a CUTE note about {{f.name}}: </p>
                 <div style="display:inline">
-                <textarea class="textArea" rows="3" [value]="GetNote(f.id)" [id]="'note'+f.id" placeholder="Put your thoughts here!">
+                <textarea class="textArea" rows="4" [value]="GetNote(f.id)" [id]="'note'+f.id" placeholder="Put your thoughts here!">
                 </textarea><span><button class="noteButton" (click)="SaveNote('note'+f.id, f.id)">💌</button><p [id]="'alert'+f.id"></p></span>
               
              

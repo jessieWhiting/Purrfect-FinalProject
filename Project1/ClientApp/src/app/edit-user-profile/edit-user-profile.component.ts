@@ -55,12 +55,13 @@ export class EditUserProfileComponent implements OnInit {
       this.userService.getUserById(this.user.id).subscribe((result : User) => 
       {
         // this.form.value.firstName = this.currentUser.firstName;
+        
         this.form = this.fb.group({
-            firstName: new FormControl(result.firstName),
-            lastName: new FormControl(result.lastName),
-            email: new FormControl(result.email),
-            phoneNumber: new FormControl(result.phoneNumber),
-            zipCode: new FormControl(result.zipCode),
+            firstName: new FormControl(result.firstName, Validators.required),
+            lastName: new FormControl(result.lastName, Validators.required),
+            email: new FormControl(result.email, Validators.required),
+            phoneNumber: new FormControl(result.phoneNumber, Validators.minLength(10)),
+            zipCode: new FormControl(result.zipCode, Validators.minLength(5)),
           });
         this.loggedIn = true;
         
