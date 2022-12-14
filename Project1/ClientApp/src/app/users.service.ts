@@ -30,6 +30,6 @@ export class UsersService {
 
   updateUserInfo(userId: number, user: User): Observable<User>{
     console.log(user.userId);
-    return this.http.put<User>(this.baseUrl + this.endPoint + '/' + user.userId, user);
+    return this.http.put<User>(this.baseUrl + this.endPoint + '/' + userId, user);
   }
 }

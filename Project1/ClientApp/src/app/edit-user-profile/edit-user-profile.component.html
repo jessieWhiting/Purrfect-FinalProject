@@ -2,7 +2,7 @@
     <button (click)="updateUserInfo()">Update Information</button>
 </div> -->
 
-<form>
+<!-- <form>
 
     <label>First Name: </label>
     <input name="firstName" type="text" [(ngModel)]="firstName">
@@ -22,9 +22,9 @@
     <br>
     <button (click)="updateUserInfo()">Submit</button>
     
-</form>
+</form> -->
 
-<!-- <form>
+<form [formGroup]="form">
 
     <label for="first-name">First Name: </label>
     <input id="first-name" type="text" formControlName="firstName">
@@ -44,4 +44,4 @@
     <br>
     <button (click)="updateUserInfo()">Submit</button>
     
-</form> -->
+</form>
