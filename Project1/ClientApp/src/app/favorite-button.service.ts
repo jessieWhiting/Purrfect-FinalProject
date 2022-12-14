@@ -38,7 +38,8 @@ export class FavoriteButtonService {
       {
         this.favoriteAPI.AddFavoritePet(newFavorite).subscribe((result: Favorite)=>
         {
-          document.getElementById(`favButton${id}`)!.innerHTML = '<img class="favButtonGif" src="/assets/favorite.gif">';
+          document.getElementById(`favButtonCont${id}`)!.innerHTML = `<img class="favButtonGif" src="/assets/favorite.gif">`;
+          document.getElementById(`favTxt${id}`)!.innerHTML = 'favorited!';
           console.log(result)
           // return 'added';
           favResponse = result;
@@ -72,7 +73,8 @@ export class FavoriteButtonService {
         });
         this.favoriteAPI.RemoveFavoritePet(indexToDelete).subscribe((result: any) => 
           {
-            document.getElementById(`favButton${id}`)!.innerHTML = '💔';
+            document.getElementById(`favButtonCont${id}`)!.innerHTML = '💔';
+            document.getElementById(`favTxt${id}`)!.innerHTML = 'removed :(';
           });
     });
     

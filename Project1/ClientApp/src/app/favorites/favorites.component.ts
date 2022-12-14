@@ -88,7 +88,7 @@ export class FavoritesComponent implements OnInit {
     
     // convert our value to display 
     for(let i = 0; i < Math.round(count) ; i++){
-      output = output.concat("$");
+      output = output.concat("💲");
     }
     return output;
   }

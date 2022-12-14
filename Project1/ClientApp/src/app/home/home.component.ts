@@ -162,7 +162,7 @@ export class HomeComponent {
     {
       console.log(`trying to like ${id}`)
       console.log(results);
-      document.getElementById(`like${id}`)!.innerHTML = '!!';
+      document.getElementById(`likeTxt${id}`)!.innerHTML = 'liked!';
     });
   }
 }

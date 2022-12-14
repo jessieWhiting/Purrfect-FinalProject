@@ -3,7 +3,6 @@
 <h1 class="favHeader1">Cute List 💕: </h1>
 <h2 class="favHeader2">Home to all of your favorite furballs and potential pals!</h2>
 <p *ngIf="deletedCounter > 0">It looks like {{deletedCounter}} of the cats you were interested in have been adopted! We're sorry you missed out but there are plenty of cats looking to love you !!</p>
-<hr>
 </div>
 <div class="favBackground">
     <h4 class="favHeader3" *ngIf="!loggedIn">⛔ It looks like you aren't logged in ⛔</h4>
@@ -22,7 +21,9 @@
                         <span class="hoverEmoji">💔</span>
                     </button>
                 </span>
-                <p class="petBasicInfo">{{f.gender}} | {{f.age}} | {{favPetsCostFinder(f.id)}}</p>
+                <p class="petBasicInfo">{{f.gender}} | {{f.age}} | {{favPetsCostFinder(f.id)}} 
+                    <span class="dollarInfo">the 1/4 💲s indicate the adoption cost range you may be looking at</span>
+                </p>
                 <p>{{f.description}}</p>
                 <p>Leave a CUTE note about {{f.name}}: </p>
                 <div style="display:inline">

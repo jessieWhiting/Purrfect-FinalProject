@@ -16,12 +16,16 @@
 			<span class="petName">
 			<a class="petName" [routerLink]="['../../cat-info', '17', p.id]">{{i +1}}: {{p.name}}</a>
 				<button *ngIf="loggedIn" [id]="'favButton'+p.id" (click)="AddFavoritePet(p.id)" class="favButton">
+					<div [id]="'favButtonCont'+p.id" >
 					<span class="heartEmoji" *ngIf="!isCatFavorited.get(p.id)">💕</span>
 					<span class="heartEmoji" *ngIf="isCatFavorited.get(p.id)"><img class="favButtonGif" src="/assets/favorite.gif"></span>
                 	<span class="hoverEmoji" *ngIf="!isCatFavorited.get(p.id)">💞</span>
 					<span class="hoverEmoji" *ngIf="isCatFavorited.get(p.id)">💔</span>
+					</div>
+					<p class="favTxt" *ngIf="!isCatFavorited.get(p.id)" [id]="'favTxt'+p.id">save them!</p>
+					<p class="favTxt" *ngIf="isCatFavorited.get(p.id)" [id]="'favTxt'+p.id">remove from fav's</p>
 				</button>
-				<button [id]="'like'+p.id" (click)="like(p.id)" class="likeButton"><img class="favButtonGif" src="/assets/pawsup.png"></button>
+				<button [id]="'like'+p.id" (click)="like(p.id)" class="likeButton"><img class="favButtonGif" src="/assets/pawsup.png"><p class="likeTxt" [id]="'likeTxt'+p.id">like them!</p></button>
 			</span>
 			<p class="basicInfo">Gender: {{p.gender}} // {{p.age}}</p>
 			<p class="basicInfo">{{p.description}}</p>
@@ -32,7 +36,7 @@
 			</a>
   		</div>
 	</div>
-	<footer class="footer" *ngFor="let pa of pageToShow; index as i"> 
+	<footer class="footer" *ngFor="let pa of pageToShow | slice:-1; index as i"> 
 		<p>Current Page: {{pa.current_page}}/ {{pa.total_pages}} <span *ngIf="showZipOnFooter">results in: {{currentUser.zipCode}}  </span> |
 		<span *ngIf="pa._links.previous !== null"> <a [routerLink]="['../../home', previousLink]">Previous Page</a> | </span> 
 		<a [routerLink]="['../../home', nextLink]">Next Page</a></p>
