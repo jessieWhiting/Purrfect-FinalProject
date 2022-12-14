@@ -139,12 +139,14 @@ export class HomeComponent {
     if (response.includes(`true`))
     {
       this.favPet.push(arrayChanger);
-      console.log(this.favPet);
+      this.isCatFavorited.set(id, true);
+      // console.log(this.favPet);
     } else 
     {
       let favToRemove:Favorite = this.favPet.find(fav => (fav.catId === id)  && (fav.userId === this.currentUser.userId))!;
       let favToRemIndex:number = this.favPet.indexOf(favToRemove);
       this.favPet.splice(favToRemIndex,1);
+      this.isCatFavorited.set(id, false);
     }
   }
 }
