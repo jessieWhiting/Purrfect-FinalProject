@@ -130,4 +130,31 @@ export class CatInfoComponent implements OnInit {
     }
     return output;
   }
+
+  favPetsCostFinder():string{
+    let output:string = "";
+    let count:number = 1;
+    // only one cat on this page
+    if(!this.catData.attributes.shots_current){
+      count += .5;
+    }
+    if(!this.catData.attributes.spayed_neutered){
+      count += 1;
+    }
+    if(this.catData.attributes.special_needs){
+      count += .5;
+    }
+    if(this.catData.size === "Large"){
+      count += .5;
+    }
+    if(this.catData.species === "idk yet lol"){
+      // would like to do something with breed costs here and hopefully insurance !!
+    }
+    
+    // convert our value to display 
+    for(let i = 0; i < Math.round(count) ; i++){
+      output = output.concat("$");
+    }
+    return output;
+  }
 }

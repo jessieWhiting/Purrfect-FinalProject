@@ -1,0 +1,27 @@
+/* ACCOUNT */
+/* ////////////////////////// */
+.accountHeader{
+    border:2px solid #ff9c78;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    font-size:  18px;
+    padding-top: 20px;
+    padding-left: 10px;
+    font-weight: bold;
+    background-color:rgba(122, 180, 216, 0.628);
+    text-shadow: 2px 2px 5px white;
+
+    
+  }
+  .accountHeader img{
+    border: 2px solid #ff9c78;
+    border-radius: 10px;
+  }
+  
+  .welcomePicture{
+    height: 400px;
+    width: 400px;
+    float:right;
+    border: none !important;
+  }
+ 

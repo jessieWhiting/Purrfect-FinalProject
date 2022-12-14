@@ -34,6 +34,7 @@ public partial class AdoptionCenterContext : DbContext
             entity.ToTable("Cat");
 
             entity.Property(e => e.PetId).ValueGeneratedNever();
+            entity.Property(e => e.Points).HasDefaultValueSql("((0))");
         });
 
         modelBuilder.Entity<Favorite>(entity =>
