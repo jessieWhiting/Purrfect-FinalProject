@@ -18,6 +18,8 @@
     		<ul>
 				<li>{{catData.name}} is from {{catData.contact.address.city}}, {{catData.contact.address.state}}</li>
     		    <li>Phone: {{catData.contact.phone}}</li>
+				<li>City: {{catData.contact.address.city}}</li>
+				<li>State: {{catData.contact.address.state}}</li>
     			<li>Zip Code: {{catData.contact.address.postcode}}</li>
 				<li class="email">Email: <a href="mailto:{{catData.contact.email}}" class="href">{{catData.contact.email}}</a></li>
 				<li>Powered by<a href=catData.url>Pet Finder</a></li>
@@ -40,8 +42,8 @@
 				<span *ngIf="catData.environment.cats">Other cats, </span>
 			</h5>
 			<h5>Age: {{catData.age}} // Size: {{catData.size}} <span *ngIf="!catData.breeds.unknown">// Breed: {{catData.breeds.primary}}</span></h5>
-			<h5>Breed: {{catData.breeds.primary}}</h5>
 			<h5>Colors: {{catData.colors.primary}} {{catData.colors.secondary}} {{catData.colors.tertiary}}</h5>
+			
 			
 			<ul class="medNeeds">
     			<li>Fixed: <span *ngIf="catData.attributes.spayed_neutered; else fixedX">✔️</span><ng-template #fixedX>❌</ng-template></li>
