@@ -1,13 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
 <div class="updateForm">
->>>>>>> 855b95c9472bda1bfc5ae8729b730a6ea4c18cc7
-=======
-
-<div class="updateForm">
->>>>>>> 3170cb349ebd91afcdb3f525252a7c9d770278db
 <div *ngIf="isEditing">
     <button (click)="isEditing = !isEditing">Update Information</button>
 </div>
@@ -16,15 +7,7 @@
     <form [formGroup]="form" (ngSubmit)="updateUserInfo()">
 
         <label for="first-name">First Name: </label>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <input id="first-name" type="text" formControlName="firstName">
-=======
         <input class="in1" id="first-name" type="text" formControlName="firstName" placeholder="First Name" required >
->>>>>>> 855b95c9472bda1bfc5ae8729b730a6ea4c18cc7
-=======
-        <input class="in1" id="first-name" type="text" formControlName="firstName" placeholder="First Name" required >
->>>>>>> 3170cb349ebd91afcdb3f525252a7c9d770278db
         <br>
         <label for="last-name">Last Name: </label>
         <input class="in2" id="last-name" type="text" formControlName="lastName" placeholder="Last Name" required="required">
