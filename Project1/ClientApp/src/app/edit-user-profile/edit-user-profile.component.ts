@@ -46,31 +46,30 @@ export class EditUserProfileComponent implements OnInit {
   constructor(private userService: UsersService, private fb: FormBuilder, private authService: SocialAuthService) { }
   
   ngOnInit(): void {
+    this.isEditing = false;
     this.authService.authState.subscribe((user)=>{
       this.user = user;
       this.loggedIn = (user != null);
+      
       // after google login, get our data on user
       this.userService.getUserById(this.user.id).subscribe((result : User) => 
       {
         // this.form.value.firstName = this.currentUser.firstName;
         this.form = this.fb.group({
-            firstName: ['this.currentUser.firstName'],
+            firstName: new FormControl(result.firstName),
             lastName: new FormControl(result.lastName),
-            email: ['{{this.currentUser.email}}'],
-            phoneNumber: [''],
-            zipCode: [''],
+            email: new FormControl(result.email),
+            phoneNumber: new FormControl(result.phoneNumber),
+            zipCode: new FormControl(result.zipCode),
           });
         this.loggedIn = true;
+        
         this.currentUser = result;
       });
     });
   }
   onSubmit(){
     this.updateUserInfo();
-  }
-
-  onClick(){
-    this.isEditing = !this.isEditing;
   }
 
   updateUserInfo(){
