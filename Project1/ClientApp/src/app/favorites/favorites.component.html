@@ -1,31 +1,36 @@
 <div class="pushDown">
-<h1>Cute List 💕: The home to all of your favorite furballs and potential pals!</h1>
-<p *ngIf="deletedCounter > 0">it looks like {{deletedCounter}} of the cats you were interested in have been adopted! we're sorry you missed out but there are plenty of cats looking to love you !!</p>
+<div class="favHeader">
+<h1 class="favHeader1">Cute List 💕: </h1>
+<h2 class="favHeader2">Home to all of your favorite furballs and potential pals!</h2>
+<p *ngIf="deletedCounter > 0">It looks like {{deletedCounter}} of the cats you were interested in have been adopted! We're sorry you missed out but there are plenty of cats looking to love you !!</p>
 <hr>
-<div>
-    <h4 *ngIf="!loggedIn">It looks like you aren't logged in!</h4>
-    <div *ngFor="let f of favPets; index as i">
+</div>
+<div class="favBackground">
+    <h4 class="favHeader3" *ngIf="!loggedIn">⛔ It looks like you aren't logged in ⛔</h4>
+    <div   *ngFor="let f of favPets; index as i">
         <div class="petInList" [id]="'div'+f.id">
             <a [routerLink]="['../cat-info', '17', f.id]">
                 <!-- if image is null, use our backup-->
                 <img *ngIf="null !== f.primary_photo_cropped" src="{{f.primary_photo_cropped.medium}}" alt="" class="catListImg">
-                <img *ngIf="f.primary_photo_cropped === null" src="assets/catImage.jpg" alt="">
+                <img *ngIf="f.primary_photo_cropped === null" src="assets/catImage.jpg" alt="" class="catListImg" >
             </a>
             <div class="petInListContent">
                 <span>
-                    <a [routerLink]="['../cat-info', '17', f.id]">{{f.name}}</a>
+                    <a class="petName" [routerLink]="['../cat-info', '17', f.id]">{{f.name}}</a>
                     <button *ngIf="loggedIn" [id]="'favButton'+f.id" (click)="AddFavoritePet(f.id)" class="favButton">
                         <span class="heartEmoji">💕</span>
                         <span class="hoverEmoji">💔</span>
                     </button>
                 </span>
-                <p>{{f.gender}} | {{f.age}} | {{favPetsCostFinder(f.id)}}</p>
+                <p class="petBasicInfo">{{f.gender}} | {{f.age}} | {{favPetsCostFinder(f.id)}}</p>
                 <p>{{f.description}}</p>
-                <br>
-                <textarea rows="2" [value]="GetNote(f.id)" [id]="'note'+f.id" placeholder="Put your thoughts here!">
-                </textarea>
-                <br>
-                <span style="display:block ruby"><button (click)="SaveNote('note'+f.id, f.id)">save note</button><p [id]="'alert'+f.id"></p></span>
+                <p>Leave a CUTE note about {{f.name}}: </p>
+                <div style="display:inline">
+                <textarea class="textArea" rows="3" [value]="GetNote(f.id)" [id]="'note'+f.id" placeholder="Put your thoughts here!">
+                </textarea><span><button class="noteButton" (click)="SaveNote('note'+f.id, f.id)">💌</button><p [id]="'alert'+f.id"></p></span>
+              
+             
+               </div>
             </div>
         </div>
         <br>

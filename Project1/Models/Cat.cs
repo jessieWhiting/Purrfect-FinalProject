@@ -9,5 +9,7 @@ public partial class Cat
 
     public int? ShelterId { get; set; }
 
+    public int? Points { get; set; }
+
     public virtual ICollection<Favorite> Favorites { get; } = new List<Favorite>();
 }

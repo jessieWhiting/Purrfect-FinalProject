@@ -21,12 +21,35 @@ html {
 .navbar{
   background-color: #5e8198ee;
   position: fixed;
-  width: 75%;
-  margin-left: 220px;
+  width: 80%;
+  margin-left: 180px;
   transition: top 0.3s;
   margin-bottom: 20px;
   border-radius: 10px;
 
+}
+@media(min-width: 500px){
+  .navbar {
+    width: 60%;
+    text-align: right;
+
+  }
+  
+}
+
+@media(min-width: 768px){
+  .navbar {
+    width: 58%;
+    text-align: center;
+
+  }
+  
+}
+@media(min-width: 1366px){
+  .navbar {
+    width: 80%;
+    text-align: center;
+  }
 }
 
 .navbar a{
@@ -101,7 +124,7 @@ padding: 8px;
 
 .signOutButton:hover {
  display: inline-block;
- background-color: #ff9c78;
+ background-color: #ff703c;
  color: #eaeaea !important;
  border-radius: 10px;
  padding-bottom: 8px;
@@ -115,3 +138,4 @@ padding: 8px;
   padding: 4px !important;
   color: #ff703c !important;
 }
+
