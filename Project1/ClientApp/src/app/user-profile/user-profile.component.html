@@ -1,4 +1,7 @@
-<div class="pushDown" *ngIf="loggedIn">
+<div class="pushDown">
+<h4 class="userHeader" *ngIf="!loggedIn">⛔ It looks like you aren't logged in ⛔</h4>
+<div *ngIf="loggedIn">
+
 	
 	<div class="accountHeader">
 		
@@ -35,6 +38,7 @@
 	<app-favorites></app-favorites>
 
 </div>
+</div>
 
-<!-- No account information will appear, unless user is logged in -->
-<h4 *ngIf="!loggedIn">Login to view account information</h4>
+
+
