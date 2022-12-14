@@ -27,6 +27,7 @@ export class AristocatsComponent implements OnInit {
   favPet: Favorite[] = []; // list of favorite objects
   isCatFavorited: Map<number, boolean> = new Map();
   catPoints:BasicCatInfo[] = [];
+  pageLoaded:boolean = false;
 
   constructor(private PFservice:PetFinderService,
               private authService:SocialAuthService,
@@ -72,17 +73,26 @@ export class AristocatsComponent implements OnInit {
         this.catPoints.sort(function (a,b) {
           return a.points - b.points;
         });
+        // why,,,
+        // this.petsToShow.sort((a,b) => this.catPoints.indexOf(a.id) - this.catPoints.indexOf(b.id))
         // put petstoshow in order of the ids to the ids of the catPoints array
-        
+        this.pageLoaded = true;
       });
     });
   }
 
   pointCount(id:number):string{
+    console.log(id);
     let output:string = ``;
-    this.catPoints.forEach(cat => {
-      output = output.concat(cat.points.toString());
-    });
+    let pointVal:number | undefined = 
+    this.catPoints.find(cat => {
+      cat.petId == id
+    })?.points;
+    let pointCatch:number = -1;
+    if(pointVal != undefined) {
+      pointCatch = pointVal;
+    }
+    output = output.concat(pointCatch.toString());
     return output;
   }
 

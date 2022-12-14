@@ -1,16 +1,17 @@
 <div class="pushDown">
-    <h2>The Aristocats List!</h2>
+    <h2>The Aristocats List! Every cool cat whos been given a paws up!</h2>
     <div class="masonry">
         <div class="grid js-masonry" *ngFor="let p of petsToShow; index as i">
-          <figure class="item">
-            <a href="#">
-                <div *ngIf=" null !== p.primary_photo_cropped" class="styled" [ngStyle]="{'background-image.src': '{{p.primary_photo_cropped.medium}}'}">
+            <figure class="item">
+                <div class="masonryHolder">
+                <a [routerLink]="['../cat-info', '17', p.id]">
                     
-                <p>{{p.name}} | x points</p>
+                    <img *ngIf=" null !== p.primary_photo_cropped" src="{{p.primary_photo_cropped.medium}}" class="thumbnail img-responsive" title="Image {{i}}">
+				    <img *ngIf=" p.primary_photo_cropped === null" src="assets/catImage.jpg" class="thumbnail img-responsive" title="Image {{i}}">
+                    <p class="namePlate">{{p.name}} </p>
+                    <!-- | <span *ngIf="pageLoaded">{{pointCount(p.id)}}</span> points -->
+                </a>
                 </div>
-                
-
-            </a>
             </figure>
         </div>
       </div>

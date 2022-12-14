@@ -51,7 +51,10 @@
     			<li>Declawed : <span *ngIf="catData.attributes.declawed; else declawX">✔️</span><ng-template #declawX>❌</ng-template></li>
     			<li>Additional Needs: <span *ngIf="catData.attributes.special_needs; else needsX">✔️</span><ng-template #needsX>❌</ng-template></li>
     			<li>Shots UTD: <span *ngIf="catData.attributes.shots_current; else shotsX">✔️</span><ng-template #shotsX>❌</ng-template></li>
-				<li>Projected cost: {{favPetsCostFinder()}}</li>		
+				<div class="projCost">
+				<li>Projected cost: {{favPetsCostFinder()}}</li>
+				<li class="dollarInfo">the 1/4 💲s indicate the adoption cost range you may be looking at</li>
+				</div>
 			</ul>
 		
 			<!--

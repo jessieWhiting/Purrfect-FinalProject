@@ -25,7 +25,7 @@ html {
   margin-left: 180px;
   transition: top 0.3s;
   margin-bottom: 20px;
-  border-radius: 10px;
+  border-radius: 0px 0px 8px 8px;
 
 }
 @media(min-width: 500px){

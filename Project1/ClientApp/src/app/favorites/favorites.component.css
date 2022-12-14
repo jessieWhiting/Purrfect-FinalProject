@@ -105,15 +105,16 @@ p{
   }
 
 .favHeader{
-    border: 3px solid #ff9c78;
+    border: 4px solid #ff9c78;
     border-radius: 10px;
     background-color: rgba(122, 180, 216, 0.628);
     margin-top: 10px;
     padding:10px;
     margin-top: 10px;
     margin-bottom: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 2px;
     text-shadow: 2px 2px 5px white;
+    text-align: center;
 }
 
 .favHeader1{
@@ -130,3 +131,16 @@ p{
 
 }
 
+.dollarInfo {
+    color:#eaeaea;
+    background-color: rgba(27, 27, 27, 0.5);
+    border-radius: 8px;
+    display: none;
+    text-shadow: none;
+    font-weight: lighter;
+    padding: 3px;
+    font-size: 15px;
+}
+.petBasicInfo:hover .dollarInfo {
+    display: inline;
+}
