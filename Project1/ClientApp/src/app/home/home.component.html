@@ -29,6 +29,7 @@
 			</span>
 			<p class="basicInfo">Gender: {{p.gender}} // {{p.age}}</p>
 			<p class="basicInfo">{{p.description}}</p>
+			<h4>Status: {{p.status}}</h4>
     		<a [routerLink]="['../../cat-info', '17', p.id]">
 				<!-- if image is null, use our backup-->
 				<img src="{{p.primary_photo_cropped.medium}}" *ngIf=" null !== p.primary_photo_cropped"  class="catListImg minWidth100" alt="">

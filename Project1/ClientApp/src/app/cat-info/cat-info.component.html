@@ -18,11 +18,15 @@
     		<ul>
 				<li>{{catData.name}} is from {{catData.contact.address.city}}, {{catData.contact.address.state}}</li>
     		    <li>Phone: {{catData.contact.phone}}</li>
+				<li>City: {{catData.contact.address.city}}</li>
+				<li>State: {{catData.contact.address.state}}</li>
     			<li>Zip Code: {{catData.contact.address.postcode}}</li>
-				<li class="email">Email: <a href="mailto:{{catData.contact.email}}" class="href">{{catData.contact.email}}</a>
+				<li class="email">Email: <a href="mailto:{{catData.contact.email}}" class="href">{{catData.contact.email}}</a></li>
+				<li>Powered by<a href="{{catData.url}}">Pet Finder</a></li>
+					
 					<!-- <span *ngIf="loggedIn">, that's around {{catData.distance}} miles away from you</span> 
 					this needs another api endpoint for getSpecificByZip, but even then you'd need to recall the api when a user signs in on cat-info :p -->
-				</li>
+				
     		</ul>
 		</div>
 		</div>
@@ -31,15 +35,17 @@
 			<hr>
 			<p>{{catData.description}}</p>
 			<hr>
-			<h4 *ngIf="catData.environment.children || catData.environment.dogs || catData.environment.cats">
+			<h4>Status: {{catData.status}}</h4>
+			<h5 *ngIf="catData.environment.children || catData.environment.dogs || catData.environment.cats">
 				Good With: <span *ngIf="catData.environment.children">Children, </span>
 				<span *ngIf="catData.environment.dogs">Dogs, </span>
 				<span *ngIf="catData.environment.cats">Other cats, </span>
-			</h4>
+			</h5>
 			<h5>Age: {{catData.age}} // Size: {{catData.size}} <span *ngIf="!catData.breeds.unknown">// Breed: {{catData.breeds.primary}}</span></h5>
 			<h5>Colors: {{catData.colors.primary}} {{catData.colors.secondary}} {{catData.colors.tertiary}}</h5>
-			<h5>History:</h5>
-			<ul>
+			
+			
+			<ul class="medNeeds">
     			<li>Fixed: <span *ngIf="catData.attributes.spayed_neutered; else fixedX">✔️</span><ng-template #fixedX>❌</ng-template></li>
     			<li>House Trained: <span *ngIf="catData.attributes.house_trained; else houseTX">✔️</span><ng-template #houseTX>❌</ng-template></li>
     			<li>Declawed : <span *ngIf="catData.attributes.declawed; else declawX">✔️</span><ng-template #declawX>❌</ng-template></li>
@@ -50,6 +56,7 @@
 				<li class="dollarInfo">the 1/4 💲s indicate the adoption cost range you may be looking at</li>
 				</div>
 			</ul>
+		
 			<!--
 			<div class="noteSection" *ngIf="loggedIn && catFavorited">
 				<textarea class="textArea" rows="3" [value]="GetNote(catData.id)" [id]="'note'+catData.id" placeholder="Put your thoughts here!">

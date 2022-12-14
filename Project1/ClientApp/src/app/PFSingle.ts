@@ -19,7 +19,7 @@ export interface Animal {
     environment:            Environment;
     tags:                   string[];
     name:                   string;
-    description:            null;
+    description:            string;
     organization_animal_id: string;
     photos:                 PrimaryPhotoCropped[];
     primary_photo_cropped:  PrimaryPhotoCropped;

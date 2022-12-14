@@ -11,8 +11,6 @@
 		<p>Phone Number: {{ currentUser.phoneNumber }}</p>
 		<p>Email: {{ currentUser.email }}</p>
 		<p>Zip: {{ currentUser.zipCode }}</p>
-		
-
     </div>
 
 	<!-- If the current user's google ID is not registered to the SQL database, a one time register form appears -->
@@ -33,8 +31,7 @@
 		<br>
 		<button (click)="registerNewUser(email, firstName, lastName, phoneNumber, zipCode)">Register</button>
 	</div>
-
-	<app-edit-user-profile></app-edit-user-profile>
+	<!-- <app-edit-user-profile></app-edit-user-profile> -->
 	<app-favorites></app-favorites>
 
 </div>
