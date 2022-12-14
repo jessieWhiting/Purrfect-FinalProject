@@ -1,28 +1,28 @@
 <div class="updateForm">
-<div *ngIf="isEditing">
+<div *ngIf="!isEditing">
     <button (click)="isEditing = !isEditing">Update Information</button>
 </div>
 
-<div *ngIf="!isEditing">
+<div *ngIf="isEditing">
     <form [formGroup]="form" (ngSubmit)="updateUserInfo()">
 
         <label for="first-name">First Name: </label>
-        <input class="in1" id="first-name" type="text" formControlName="firstName" placeholder="First Name" required >
+        <input class="in1" id="first-name" type="text" formControlName="firstName">
         <br>
         <label for="last-name">Last Name: </label>
-        <input class="in2" id="last-name" type="text" formControlName="lastName" placeholder="Last Name" required="required">
+        <input class="in2" id="last-name" type="text" formControlName="lastName">
         <br>
         <label for="email">Email: </label>
-        <input class="in3"  id="email" type="text" formControlName="email" placeholder="Email" required="required">
+        <input class="in3"  id="email" type="text" formControlName="email">
         <br>
         <label for="phoneNumber">Phone Number: </label>
-        <input class="in4"  id="phoneNumber" type="text" formControlName="phoneNumber" placeholder="Phone Number" required="required">
+        <input class="in4"  id="phoneNumber" type="text" formControlName="phoneNumber">
         <br>
         <label for="zipCode">Zipcode: </label>
-        <input class="in5"  id="zipCode" type="text" formControlName="zipCode" placeholder="Zip Code" required="required">
+        <input class="in5"  id="zipCode" type="text" formControlName="zipCode">
 
         <br>
-        <input type="submit" value="Submit">
+        <button type="submit" [disabled]="!form.valid">Submit</button>
 
     </form>
 </div>

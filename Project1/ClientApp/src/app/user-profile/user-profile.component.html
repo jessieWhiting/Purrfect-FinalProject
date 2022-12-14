@@ -21,15 +21,15 @@
 	<div *ngIf="currentUser.googleId !== user.id">
 		<p>Register Here: </p>
 		<p>Email: </p>
-		<input type="text" [(ngModel)]="email" placeholder="Email" required="required">
+		<input type="text" [(ngModel)]="email" placeholder="Email" required="required" minlength="1">
 		<p>First Name:</p>
-		<input type="text" [(ngModel)]="firstName" placeholder="First Name" required="required">
+		<input type="text" [(ngModel)]="firstName" placeholder="First Name" required="required" minlength="1">
 		<p>Last Name:</p>
-		<input type="text" [(ngModel)]="lastName" placeholder="Last Name" required="required">
+		<input type="text" [(ngModel)]="lastName" placeholder="Last Name" required="required" minlength="1">
 		<p>Phone Number:</p>
 		<input type="text" [(ngModel)]="phoneNumber" placeholder="Phone Number" required="required" maxlength="10">
 		<p>Zipcode:</p>
-		<input type="text" [(ngModel)]="zipCode" placeholder="Zip Code" required="required" maxlength="5">
+		<input type="text" [(ngModel)]="zipCode" placeholder="Zip Code" required="required" minlength="1" maxlength="5">
 		<br>
 		<br>
 		<button (click)="registerNewUser(email, firstName, lastName, phoneNumber, zipCode)">Register</button>
