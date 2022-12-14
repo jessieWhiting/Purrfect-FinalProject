@@ -1,7 +1,7 @@
 <div class="pushDown">
     <div class="catInfo">
         <div class="catInfoHalf">	
-            <h2 class="basicCatInfo">{{catData.name}} <button *ngIf="loggedIn" [id]="'favButton'+catData.id" (click)="AddFavoritePet(catData.id)" class="favButton">
+            <h2 class="basicCatInfo catName">{{catData.name}} <button *ngIf="loggedIn" [id]="'favButton'+catData.id" (click)="AddFavoritePet(catData.id)" class="favButton">
                 <span class="heartEmoji" *ngIf="!catFavorited">💕</span>
 				<span class="heartEmoji" *ngIf="catFavorited"><img class="favButtonGif" src="https://localhost:44451/assets/favorite.gif"></span>
                 <span class="hoverEmoji">💞</span>
@@ -26,7 +26,7 @@
 		</div>
 		</div>
 		<div class="catInfoHalf basicCatInfo">
-			<h3>More info about {{catData.name}}</h3>
+			<h3 class="moreInfo">More info about {{catData.name}}</h3>
 			<hr>
 			<p>{{catData.description}}</p>
 			<hr>
@@ -46,10 +46,9 @@
     			<li>Shots UTD: <span *ngIf="catData.attributes.shots_current; else shotsX">✔️</span><ng-template #shotsX>❌</ng-template></li>
 			</ul>
 			<div class="noteSection" *ngIf="loggedIn && catFavorited">
-				<textarea rows="2" [value]="GetNote(catData.id)" [id]="'note'+catData.id" placeholder="Put your thoughts here!">
+				<textarea class="textArea" rows="3" [value]="GetNote(catData.id)" [id]="'note'+catData.id" placeholder="Put your thoughts here!">
                 </textarea>
-				<br>
-                <span style="display:block ruby"><button (click)="SaveNote('note'+ catData.id, catData.id)">💌</button><p [id]="'alert'+catData.id"></p></span>
+                <span><button class="noteButton" (click)="SaveNote('note'+ catData.id, catData.id)">💌</button><p [id]="'alert'+catData.id"></p></span>
 			</div>
 		</div>
     </div>

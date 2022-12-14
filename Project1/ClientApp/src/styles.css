@@ -97,7 +97,7 @@ code {
 
 .catListImg:hover {
   transform: scale(0.9);
-  border: 5px solid #ff9c78;;
+  border: 5px solid #ff9c78;
   border-radius: 5px;
 }
 .minWidth100 {
@@ -106,7 +106,7 @@ code {
 
 .petInList {
  background-color: rgba(122, 180, 216, 0.628);
- border:2px solid #ff9c78;;
+ border:2px solid #ff9c78;
  border-radius: 5px;
  padding: 20px;
  
@@ -170,18 +170,45 @@ background-position: right;
 background-repeat: repeat-y;
 
 }
+.welcomeHeader{
+  text-shadow: 2px 2px 5px white;
+  text-decoration: underline;
+}
+
+.noteHeader{
+  text-shadow: 2px 2px 5px white;
+}
+
+.messageHeader{
+  text-shadow: 2px 2px 5px white;
+}
+
+
 
 
 /* FOOTER */
 /* ////////////////////////// */
 .footer{
-  border: solid 2px #ff9c78;;
+  border: solid 2px #ff9c78;
   border-radius: 15px;
   padding: 20px 20px 3px 20px;
   text-align: right;
   font-size: 18px;
   margin-bottom: 4px;
   margin-top: 7px;
+}
+
+.welcomeMessage{
+  border: 3px solid #ff9c78;
+  border-radius: 10px;
+  background-color: #ffc0a9f6;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-shadow: 2px 2px 5px white;
+  margin-top: 10px;
+  text-align: center;
+
+  
 }
 
 

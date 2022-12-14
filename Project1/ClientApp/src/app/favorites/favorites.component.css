@@ -51,3 +51,39 @@ p{
     font-size: 30px;
 }
 
+.textArea{
+    width: 500px;
+   }
+   
+.noteButton{
+       font-size: 40px;
+       float:right;
+       margin-right: 350px;
+}
+
+.favHeader{
+    border: 3px solid #ff9c78;
+    border-radius: 10px;
+    background-color: rgba(122, 180, 216, 0.628);
+    margin-top: 10px;
+    padding:10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    text-shadow: 2px 2px 5px white;
+}
+
+.favHeader1{
+    text-align: center;
+    text-decoration: underline;
+}
+.favHeader2{
+    text-align: center;
+}
+.favHeader3{
+    text-align: center;
+    text-decoration: underline;
+    color: red !important;
+
+}
+

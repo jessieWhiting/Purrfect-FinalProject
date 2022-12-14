@@ -69,6 +69,23 @@ h5 {
     padding-bottom: 20px;
     text-shadow: 2px 2px 5px white;
 
+}
 
+.moreInfo{
+    text-align: center;
+}
+
+.textArea{
+    width: 500px;
+}
+   
+.noteButton{
+       font-size: 40px;
+       float:right;
+       margin-right: 65px;
+}
+
+.catName{
+    text-align: center;
 }
 

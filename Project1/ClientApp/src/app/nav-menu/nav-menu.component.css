@@ -32,7 +32,6 @@ html {
   .navbar {
     width: 60%;
     text-align: right;
-   
 
   }
   
@@ -41,6 +40,7 @@ html {
 @media(min-width: 768px){
   .navbar {
     width: 58%;
+    text-align: center;
 
   }
   
@@ -48,6 +48,7 @@ html {
 @media(min-width: 1366px){
   .navbar {
     width: 80%;
+    text-align: center;
   }
 }
 

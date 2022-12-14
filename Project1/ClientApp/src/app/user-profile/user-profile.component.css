@@ -10,6 +10,7 @@
     font-weight: bold;
     background-color:rgba(122, 180, 216, 0.628);
     text-shadow: 2px 2px 5px white;
+
     
   }
   .accountHeader img{
@@ -23,3 +24,4 @@
     float:right;
     border: none !important;
   }
+ 
