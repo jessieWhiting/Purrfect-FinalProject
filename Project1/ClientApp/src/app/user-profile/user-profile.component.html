@@ -1,6 +1,8 @@
 <div class="pushDown" *ngIf="loggedIn">
+	
 	<div class="accountHeader">
-	<img src="{{ user.photoUrl }}">
+		
+	<img src="{{ user.photoUrl }}"><img src="/assets/Cat6.jpg" alt=""  class="welcomePicture">
 	<div>
 		<h4>Welcome {{ currentUser.firstName }} {{ currentUser.lastName }}!</h4>
 	</div>
@@ -9,6 +11,7 @@
 		<p>Phone Number: {{ currentUser.phoneNumber }}</p>
 		<p>Email: {{ currentUser.email }}</p>
 		<p>Zip: {{ currentUser.zipCode }}</p>
+		
 
     </div>
 
@@ -30,8 +33,10 @@
 		<br>
 		<button (click)="registerNewUser(email, firstName, lastName, phoneNumber, zipCode)">Register</button>
 	</div>
+
 	<app-edit-user-profile></app-edit-user-profile>
 	<app-favorites></app-favorites>
+
 </div>
 
 <!-- No account information will appear, unless user is logged in -->

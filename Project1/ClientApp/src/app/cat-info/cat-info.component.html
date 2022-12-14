@@ -1,7 +1,7 @@
 <div class="pushDown">
     <div class="catInfo">
-        <div class="catInfoHalf">
-            <h2>{{catData.name}} <button *ngIf="loggedIn" [id]="'favButton'+catData.id" (click)="AddFavoritePet(catData.id)" class="favButton">
+        <div class="catInfoHalf">	
+            <h2 class="basicCatInfo catName">{{catData.name}} <button *ngIf="loggedIn" [id]="'favButton'+catData.id" (click)="AddFavoritePet(catData.id)" class="favButton">
                 <span class="heartEmoji" *ngIf="!catFavorited">💕</span>
 				<span class="heartEmoji" *ngIf="catFavorited"><img class="favButtonGif" src="https://localhost:44451/assets/favorite.gif"></span>
                 <span class="hoverEmoji" *ngIf="!catFavorited">💞</span>
@@ -11,29 +11,34 @@
 			    <img src="{{catData.primary_photo_cropped.medium}}"*ngIf=" null !== catData.primary_photo_cropped" class="specificCatImage catListImg" alt="">
 			    <img *ngIf=" catData.primary_photo_cropped === null" src="assets/catImage.jpg" class="specificCatImage" alt="">
 			</a>
-    		<h2>Inquire about {{catData.name}}!</h2>
+		  
+			<div class="contactInfo">
+				
+    		<h2>😻Inquire about {{catData.name}}!😻</h2>
     		<ul>
 				<li>{{catData.name}} is from {{catData.contact.address.city}}, {{catData.contact.address.state}}</li>
-    		    <li>Email: <a href="mailto:{{catData.contact.email}}" class="href">{{catData.contact.email}}</a></li>
     		    <li>Phone: {{catData.contact.phone}}</li>
-    			<li>Zip Code: {{catData.contact.address.postcode}}
+    			<li>Zip Code: {{catData.contact.address.postcode}}</li>
+				<li class="email">Email: <a href="mailto:{{catData.contact.email}}" class="href">{{catData.contact.email}}</a>
 					<!-- <span *ngIf="loggedIn">, that's around {{catData.distance}} miles away from you</span> 
 					this needs another api endpoint for getSpecificByZip, but even then you'd need to recall the api when a user signs in on cat-info :p -->
 				</li>
     		</ul>
 		</div>
-		<div class="catInfoHalf">
-			<h3>More info about {{catData.name}}</h3>
+		</div>
+		<div class="catInfoHalf basicCatInfo">
+			<h3 class="moreInfo">More info about {{catData.name}}</h3>
 			<hr>
 			<p>{{catData.description}}</p>
 			<hr>
 			<h4 *ngIf="catData.environment.children || catData.environment.dogs || catData.environment.cats">
 				Good With: <span *ngIf="catData.environment.children">Children, </span>
-				<span *ngIf="catData.environment.dogs">dogs, </span>
-				<span *ngIf="catData.environment.cats">other cats</span>
+				<span *ngIf="catData.environment.dogs">Dogs, </span>
+				<span *ngIf="catData.environment.cats">Other cats, </span>
 			</h4>
 			<h5>Age: {{catData.age}} // Size: {{catData.size}} <span *ngIf="!catData.breeds.unknown">// Breed: {{catData.breeds.primary}}</span></h5>
 			<h5>Colors: {{catData.colors.primary}} {{catData.colors.secondary}} {{catData.colors.tertiary}}</h5>
+			<h5>History:</h5>
 			<ul>
     			<li>Fixed: <span *ngIf="catData.attributes.spayed_neutered; else fixedX">✔️</span><ng-template #fixedX>❌</ng-template></li>
     			<li>House Trained: <span *ngIf="catData.attributes.house_trained; else houseTX">✔️</span><ng-template #houseTX>❌</ng-template></li>
@@ -43,10 +48,9 @@
 			</ul>
 			<!--
 			<div class="noteSection" *ngIf="loggedIn && catFavorited">
-				<textarea rows="2" [value]="GetNote(catData.id)" [id]="'note'+catData.id" placeholder="Put your thoughts here!">
+				<textarea class="textArea" rows="3" [value]="GetNote(catData.id)" [id]="'note'+catData.id" placeholder="Put your thoughts here!">
                 </textarea>
-				<br>
-                <span style="display:block ruby"><button (click)="SaveNote('note'+catData.id, catData.id)">save note</button><p [id]="'alert'+catData.id"></p></span>
+                <span><button class="noteButton" (click)="SaveNote('note'+ catData.id, catData.id)">💌</button><p [id]="'alert'+catData.id"></p></span>
 			</div>
 			-->
 		</div>
