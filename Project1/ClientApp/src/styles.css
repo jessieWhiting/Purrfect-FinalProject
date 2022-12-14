@@ -60,7 +60,8 @@ code {
 
 .petName {
   font-size: 30px;
-  color: #ff9c78;
+  color: #ff703c;
+  /* color: #ff9c78; */
 }
 @media(max-width: 500px){
 
@@ -163,7 +164,10 @@ button {
   width: 50px;
   display: block;
 }
-
+.likeButton {
+  border: 0;
+  background: none;
+}
 body{
 background-image: url("assets/Paws6.jpg");
 background-position: right;
