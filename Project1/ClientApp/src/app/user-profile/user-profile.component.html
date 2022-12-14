@@ -1,43 +1,44 @@
 <div class="pushDown">
-<h4 class="userHeader" *ngIf="!loggedIn">⛔ It looks like you aren't logged in ⛔</h4>
-<div *ngIf="loggedIn">
+	<h4 class="userHeader" *ngIf="!loggedIn">⛔ It looks like you aren't logged in ⛔</h4>
+	<div *ngIf="loggedIn">
 
-	
-	<div class="accountHeader">
 		
-	<img src="{{ user.photoUrl }}"><img src="/assets/Cat6.jpg" alt=""  class="welcomePicture">
-	<div>
-		<h4>Welcome {{ currentUser.firstName }} {{ currentUser.lastName }}!</h4>
+		<div class="accountHeader">
+			
+		<img src="{{ user.photoUrl }}"><img src="/assets/Cat6.jpg" alt=""  class="welcomePicture">
+		<div>
+			<h4>Welcome {{ currentUser.firstName }} {{ currentUser.lastName }}!</h4>
+		</div>
+		<div>
+			<h5>User Info:</h5>
+			<p>Phone Number: {{ currentUser.phoneNumber }}</p>
+			<p>Email: {{ currentUser.email }}</p>
+			<p>Zip: {{ currentUser.zipCode }}</p>
+		</div>
+
+		<!-- If the current user's google ID is not registered to the SQL database, a one time register form appears -->
+
+		<div *ngIf="currentUser.googleId !== user.id">
+			<p>Register Here: </p>
+			<p>Email: </p>
+			<input type="text" [(ngModel)]="email" placeholder="Email" required="required">
+			<p>First Name:</p>
+			<input type="text" [(ngModel)]="firstName" placeholder="First Name" required="required">
+			<p>Last Name:</p>
+			<input type="text" [(ngModel)]="lastName" placeholder="Last Name" required="required">
+			<p>Phone Number:</p>
+			<input type="text" [(ngModel)]="phoneNumber" placeholder="Phone Number" required="required" maxlength="10">
+			<p>Zipcode:</p>
+			<input type="text" [(ngModel)]="zipCode" placeholder="Zip Code" required="required" maxlength="5">
+			<br>
+			<br>
+			<button (click)="registerNewUser(email, firstName, lastName, phoneNumber, zipCode)">Register</button>
+		</div>
+		<app-edit-user-profile></app-edit-user-profile>
+		<app-favorites></app-favorites>
+
+
 	</div>
-	<div>
-		<h5>User Info:</h5>
-		<p>Phone Number: {{ currentUser.phoneNumber }}</p>
-		<p>Email: {{ currentUser.email }}</p>
-		<p>Zip: {{ currentUser.zipCode }}</p>
-    </div>
-
-	<!-- If the current user's google ID is not registered to the SQL database, a one time register form appears -->
-
-	<div *ngIf="currentUser.googleId !== user.id">
-		<p>Register Here: </p>
-		<p>Email: </p>
-		<input type="text" [(ngModel)]="email" placeholder="Email" required="required" minlength="1">
-		<p>First Name:</p>
-		<input type="text" [(ngModel)]="firstName" placeholder="First Name" required="required" minlength="1">
-		<p>Last Name:</p>
-		<input type="text" [(ngModel)]="lastName" placeholder="Last Name" required="required" minlength="1">
-		<p>Phone Number:</p>
-		<input type="text" [(ngModel)]="phoneNumber" placeholder="Phone Number" required="required" maxlength="10">
-		<p>Zipcode:</p>
-		<input type="text" [(ngModel)]="zipCode" placeholder="Zip Code" required="required" minlength="1" maxlength="5">
-		<br>
-		<br>
-		<button (click)="registerNewUser(email, firstName, lastName, phoneNumber, zipCode)">Register</button>
-	</div>
-	<app-edit-user-profile></app-edit-user-profile>
-	<app-favorites></app-favorites>
-
-</div>
 </div>
 
 
