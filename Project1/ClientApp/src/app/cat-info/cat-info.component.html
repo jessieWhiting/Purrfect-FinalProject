@@ -40,6 +40,7 @@
 				<span *ngIf="catData.environment.cats">Other cats, </span>
 			</h5>
 			<h5>Age: {{catData.age}} // Size: {{catData.size}} <span *ngIf="!catData.breeds.unknown">// Breed: {{catData.breeds.primary}}</span></h5>
+			<h5>Breed: {{catData.breeds.primary}}</h5>
 			<h5>Colors: {{catData.colors.primary}} {{catData.colors.secondary}} {{catData.colors.tertiary}}</h5>
 			
 			<ul class="medNeeds">
