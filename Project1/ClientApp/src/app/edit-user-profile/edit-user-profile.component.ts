@@ -46,10 +46,10 @@ export class EditUserProfileComponent implements OnInit {
   constructor(private userService: UsersService, private fb: FormBuilder, private authService: SocialAuthService) { }
   
   ngOnInit(): void {
-    this.isEditing = false;
     this.authService.authState.subscribe((user)=>{
       this.user = user;
       this.loggedIn = (user != null);
+      this.isEditing = false;
       
       // after google login, get our data on user
       this.userService.getUserById(this.user.id).subscribe((result : User) => 
@@ -70,6 +70,7 @@ export class EditUserProfileComponent implements OnInit {
   }
   onSubmit(){
     this.updateUserInfo();
+    this.isEditing = !this.isEditing;
   }
 
   updateUserInfo(){
