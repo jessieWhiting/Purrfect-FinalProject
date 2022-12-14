@@ -66,7 +66,9 @@ export class AristocatsComponent implements OnInit {
       this.catPoints.forEach(cat => {
         if(cat.points > 0){
           this.PFservice.getSpecificPet(cat.petId.toString()).subscribe((results:PFSingle) => {
-            this.petsToShow.push(results.animal);
+            if(!results.animal.name.includes("Adopted")){
+              this.petsToShow.push(results.animal);
+            }
           });
         }
         console.log()
