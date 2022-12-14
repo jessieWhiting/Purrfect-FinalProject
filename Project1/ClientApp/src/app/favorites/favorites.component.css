@@ -14,7 +14,7 @@ p{
 }
 .favBackground{
     background-image: url('/assets/Cat1.jpg');
-    
+  
 }
 
 .catListImg {
@@ -52,14 +52,57 @@ p{
 }
 
 .textArea{
-    width: 500px;
+    width: 70%;
    }
    
 .noteButton{
        font-size: 40px;
        float:right;
-       margin-right: 350px;
+      
 }
+
+.petInListContent{
+    width:100%
+
+}
+
+@media(max-width: 500px){
+    .textArea {
+        width: 79%;
+    
+      }
+      .noteButton{
+        font-size: 20px;
+        float:right;
+        margin-right: 40px;    
+      }     
+  }
+  
+  @media(min-width: 768px){
+    .textArea {
+      width: 67%; 
+    }
+    .noteButton{
+        font-size: 41px;
+        float:right;
+        margin-right: 1px; 
+
+    }
+    
+  }
+  @media(min-width: 1366px){
+     .textArea {
+      width: 70%;
+  
+    }
+    .noteButton{
+        font-size: 40px;
+        float:right;
+        margin-right: 184px; 
+        
+    }
+    
+  }
 
 .favHeader{
     border: 3px solid #ff9c78;
