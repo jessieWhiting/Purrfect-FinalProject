@@ -53,12 +53,16 @@ p{
 
 .textArea{
     width: 70%;
-   }
+	opacity: 80%;
+	border: 0;
+	padding: 6px;
+    border-radius: 7px;
+}
    
 .noteButton{
-       font-size: 40px;
-       float:right;
-      
+	font-size: 40px;
+	float:right;
+    border-radius: 5px;  
 }
 
 .petInListContent{

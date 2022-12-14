@@ -27,7 +27,7 @@
 				<button [id]="'like'+p.id" (click)="like(p.id)" class="likeButton"><img class="favButtonGif" src="/assets/pawsup.png"><p class="likeTxt" [id]="'likeTxt'+p.id">like them!</p></button>
 			</span>
 			<p class="basicInfo">Gender: {{p.gender}} // {{p.age}}</p>
-			<p class="basicInfo">{{p.description}}</p>
+			<p class="basicInfo basicInfoDesc">{{p.description}}</p>
 			<h4>Status: {{p.status}}</h4>
     		<a [routerLink]="['../../cat-info', '17', p.id]">
 				<!-- if image is null, use our backup-->
