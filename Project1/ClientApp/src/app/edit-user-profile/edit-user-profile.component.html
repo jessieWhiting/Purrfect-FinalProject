@@ -1,4 +1,5 @@
 
+<div class="updateForm">
 <div *ngIf="isEditing">
     <button (click)="isEditing = !isEditing">Update Information</button>
 </div>
@@ -7,22 +8,23 @@
     <form [formGroup]="form" (ngSubmit)="updateUserInfo()">
 
         <label for="first-name">First Name: </label>
-        <input id="first-name" type="text" formControlName="firstName">
+        <input class="in1" id="first-name" type="text" formControlName="firstName" placeholder="First Name" required >
         <br>
         <label for="last-name">Last Name: </label>
-        <input id="last-name" type="text" formControlName="lastName">
+        <input class="in2" id="last-name" type="text" formControlName="lastName" placeholder="Last Name" required="required">
         <br>
         <label for="email">Email: </label>
-        <input id="email" type="text" formControlName="email">
+        <input class="in3"  id="email" type="text" formControlName="email" placeholder="Email" required="required">
         <br>
         <label for="phoneNumber">Phone Number: </label>
-        <input id="phoneNumber" type="text" formControlName="phoneNumber">
+        <input class="in4"  id="phoneNumber" type="text" formControlName="phoneNumber" placeholder="Phone Number" required="required">
         <br>
         <label for="zipCode">Zipcode: </label>
-        <input id="zipCode" type="text" formControlName="zipCode">
+        <input class="in5"  id="zipCode" type="text" formControlName="zipCode" placeholder="Zip Code" required="required">
 
         <br>
-        <button>Submit</button>
-        
+        <input type="submit" value="Submit">
+
     </form>
+</div>
 </div>
