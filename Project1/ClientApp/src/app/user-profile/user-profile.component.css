@@ -24,4 +24,11 @@
     float:right;
     border: none !important;
   }
+
+  .userHeader{
+    text-align: center;
+    text-decoration: underline;
+    color: red !important;
+    margin-top: 200px;
+  }
  
