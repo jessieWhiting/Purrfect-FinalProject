@@ -1,0 +1,89 @@
+h1{
+    font-family:'Poppins';
+    text-shadow: 2px 2px 5px white;
+}
+h2{
+    font-family: 'Poppins';
+    text-shadow: 2px 2px 5px white;
+}
+
+p{
+    font-family: 'Poppins';
+    font-size:16px;
+    text-shadow: 2px 2px 5px white;
+}
+.favBackground{
+    background-image: url('/assets/Cat1.jpg');
+    
+}
+
+.catListImg {
+    max-width: 300px;
+    max-height: 100%;
+    transition: transform .15s;
+    border: 5px solid #eaeaea;
+    border-radius: 5px;
+  
+}
+  
+.catListImg:hover {
+    transform: scale(0.9);
+    border: 5px solid #ff9c78;
+    border-radius: 5px;
+}
+
+.petName{
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px white;
+}
+
+.petBasicInfo{
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.heartEmoji{
+    font-size: 30px;
+}
+
+.hoverEmoji{
+    font-size: 30px;
+}
+
+.textArea{
+    width: 500px;
+   }
+   
+.noteButton{
+       font-size: 40px;
+       float:right;
+       margin-right: 350px;
+}
+
+.favHeader{
+    border: 3px solid #ff9c78;
+    border-radius: 10px;
+    background-color: rgba(122, 180, 216, 0.628);
+    margin-top: 10px;
+    padding:10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    text-shadow: 2px 2px 5px white;
+}
+
+.favHeader1{
+    text-align: center;
+    text-decoration: underline;
+}
+.favHeader2{
+    text-align: center;
+}
+.favHeader3{
+    text-align: center;
+    text-decoration: underline;
+    color: red !important;
+
+}
+

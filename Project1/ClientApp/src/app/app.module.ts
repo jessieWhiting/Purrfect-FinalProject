@@ -1,7 +1,8 @@
+import { EditUserProfileComponent } from './edit-user-profile/edit-user-profile.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -41,12 +42,14 @@ export function initializeApp(PFServ:PetFinderService) {
     UserProfileComponent,
     CatInfoComponent,
     AristocatsComponent,
+    EditUserProfileComponent,
   ],
   imports: [
     BrowserModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'home/:page', component: HomeComponent, pathMatch: 'prefix' },
@@ -54,6 +57,7 @@ export function initializeApp(PFServ:PetFinderService) {
       { path: 'favorites', component: FavoritesComponent},
       { path: 'cat-info/:shelter/:cat', component: CatInfoComponent},
       { path: 'aristocats', component: AristocatsComponent},
+      { path: 'edit-user-profile', component: EditUserProfileComponent},
     ]),
     AppRoutingModule,
     CommonModule,
