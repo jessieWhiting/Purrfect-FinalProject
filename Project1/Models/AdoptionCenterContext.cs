@@ -23,6 +23,7 @@ public partial class AdoptionCenterContext : DbContext
 
     // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer("ConnectionStrings:ConnectionString");
 
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Cat>(entity =>
