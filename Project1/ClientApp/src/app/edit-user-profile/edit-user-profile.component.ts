@@ -33,7 +33,13 @@ export class EditUserProfileComponent implements OnInit {
 
   isEditing: boolean = false;
 
-  form!: FormGroup;
+  form = this.fb.group({
+    firstName: [''],
+    lastName: [''],
+    email: [''],
+    phoneNumber: [''],
+    zipCode: [''],
+  });
   
   constructor(private userService: UsersService, private fb: FormBuilder, private authService: SocialAuthService) { }
   
@@ -48,18 +54,6 @@ export class EditUserProfileComponent implements OnInit {
         this.currentUser = result;
       });
     });
-    
-    this.form = this.fb.group({
-      userId:[''],
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      admin: [''],
-      email: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required, Validators.max(10)]],
-      zipCode: ['', [Validators.required, Validators.max(5)]],
-      googleId: [''],
-    });
-    
   }
   onSubmit(){
     this.updateUserInfo();
