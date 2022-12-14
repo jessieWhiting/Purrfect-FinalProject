@@ -39,7 +39,26 @@ export class CatService {
 
   AddPoint(cat:BasicCatInfo):Observable<BasicCatInfo>
   {
-    return this.http.put<BasicCatInfo>(this.baseURL+ this.baseControllerRoute +'/'+ cat.petId, cat);
+    //let catWithPointData:BasicCatInfo = {} as BasicCatInfo;
+    let inDB:boolean = false;
+    this.http.get<BasicCatInfo[]>(this.baseURL + this.baseControllerRoute).subscribe((result : BasicCatInfo[]) =>
+    {
+      result.forEach(element => {
+        console.log(element.petId+" "+cat.petId)
+        if(element.petId === cat.petId){
+          //catWithPointData = element;
+          inDB = true;
+        }
+      });
+    });
+    if(inDB)
+      {
+        return this.http.get<BasicCatInfo>(this.baseURL+ this.baseControllerRoute +'/addPoint/'+ cat.petId);
+      }
+      else {
+        console.log("posting")
+        return this.http.post<BasicCatInfo>(this.baseURL + this.baseControllerRoute +'/withPoint', cat);
+      }
   }
 
   GetCatDb():Observable<BasicCatInfo[]>
