@@ -23,6 +23,7 @@ export class HomeComponent {
 
   petsToShow:Animal[] = [];
   favPet: Favorite[] = []; // list of favorite objects
+  isCatFavorited: Map<number, boolean> = new Map();
 
   pageToShow: Pagination[] = [];
   currentPage: string = "-1";
@@ -73,6 +74,9 @@ export class HomeComponent {
     this.favoriteAPI.CurrentUserFavorites().subscribe((results: Favorite[]) =>
     {
       this.favPet = results;
+      results.forEach(fav => {
+        this.isCatFavorited.set(fav.catId, true);
+      });
     });  
 
     // if the user was not logged in, this will make sure we have some pets on the page
@@ -138,7 +142,7 @@ export class HomeComponent {
       console.log(this.favPet);
     } else 
     {
-      let favToRemove:Favorite = this.favPet.find(fav => fav.catId === id)!;
+      let favToRemove:Favorite = this.favPet.find(fav => (fav.catId === id)  && (fav.userId === this.currentUser.userId))!;
       let favToRemIndex:number = this.favPet.indexOf(favToRemove);
       this.favPet.splice(favToRemIndex,1);
     }

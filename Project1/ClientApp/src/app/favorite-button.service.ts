@@ -3,6 +3,7 @@ import { BasicCatInfo } from './basicCatInfo';
 import { CatService } from './cat.service';
 import { Favorite } from './favorite';
 import { FavoritesService } from './favorite.service';
+import { PetFinderService } from './petfinder.service';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,7 @@ export class FavoriteButtonService {
     });
 
     let favResponse:Favorite = {} as Favorite;
+    let output:string = "";
     this.basicCatInfo.AddNewCat(newCat).subscribe(() =>
     {
       if(identifiedPet === true)
@@ -50,10 +52,12 @@ export class FavoriteButtonService {
       }
       
     });
-    let output:string = `${identifiedPet}*${favResponse.favoriteId}`
+    output = `${identifiedPet}*${favResponse.favoriteId}`;
     return output;
-   }
-  
+  }
+  async Toggler(){
+
+  }
    //Delete a favorited pet from user's saved favorites
   RemoveFavoritePet(id: number, favPet: Favorite[], currentUserId:number): void{
     let indexToDelete = -1;

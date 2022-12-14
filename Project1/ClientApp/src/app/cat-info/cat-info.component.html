@@ -4,7 +4,8 @@
             <h2 class="basicCatInfo catName">{{catData.name}} <button *ngIf="loggedIn" [id]="'favButton'+catData.id" (click)="AddFavoritePet(catData.id)" class="favButton">
                 <span class="heartEmoji" *ngIf="!catFavorited">💕</span>
 				<span class="heartEmoji" *ngIf="catFavorited"><img class="favButtonGif" src="https://localhost:44451/assets/favorite.gif"></span>
-                <span class="hoverEmoji">💞</span>
+                <span class="hoverEmoji" *ngIf="!catFavorited">💞</span>
+				<span class="hoverEmoji" *ngIf="catFavorited">💔</span>
         	</button></h2>
 			<a [routerLink]="['/']" >
 			    <img src="{{catData.primary_photo_cropped.medium}}"*ngIf=" null !== catData.primary_photo_cropped" class="specificCatImage catListImg" alt="">
@@ -45,11 +46,13 @@
     			<li>Additional Needs: <span *ngIf="catData.attributes.special_needs; else needsX">✔️</span><ng-template #needsX>❌</ng-template></li>
     			<li>Shots UTD: <span *ngIf="catData.attributes.shots_current; else shotsX">✔️</span><ng-template #shotsX>❌</ng-template></li>
 			</ul>
+			<!--
 			<div class="noteSection" *ngIf="loggedIn && catFavorited">
 				<textarea class="textArea" rows="3" [value]="GetNote(catData.id)" [id]="'note'+catData.id" placeholder="Put your thoughts here!">
                 </textarea>
                 <span><button class="noteButton" (click)="SaveNote('note'+ catData.id, catData.id)">💌</button><p [id]="'alert'+catData.id"></p></span>
 			</div>
+			-->
 		</div>
     </div>
 </div>
