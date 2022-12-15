@@ -65,6 +65,13 @@ p{
     border-radius: 5px;  
 }
 
+.noteButton:hover {
+    transform: scale(0.9);
+    border: 3px solid #ff9c78;
+    border-radius: 5px;
+
+}
+
 .petInListContent{
     width:100%
 
