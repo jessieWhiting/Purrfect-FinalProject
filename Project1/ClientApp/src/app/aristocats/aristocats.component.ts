@@ -60,16 +60,17 @@ export class AristocatsComponent implements OnInit {
         this.isCatFavorited.set(fav.catId, true);
       });
     }); 
-    
+    let limiter:number = 0;
     this.catInfoAPI.GetCatDb().subscribe((results: BasicCatInfo[]) => {
       this.catPoints = results;
       this.catPoints.forEach(cat => {
-        if(cat.points > 0){
+        if(cat.points > 0  && limiter < 30){
           this.PFservice.getSpecificPet(cat.petId.toString()).subscribe((results:PFSingle) => {
             if(!results.animal.name.includes("Adopted")){
               this.petsToShow.push(results.animal);
             }
           });
+          limiter++;
         }
         console.log()
         this.catPoints.sort(function (a,b) {
