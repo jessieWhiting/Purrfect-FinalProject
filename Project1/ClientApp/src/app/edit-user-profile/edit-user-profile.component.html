@@ -4,7 +4,7 @@
 </div>
 
 <div *ngIf="isEditing">
-    <form [formGroup]="form" (ngSubmit)="updateUserInfo()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
         <label for="first-name">First Name: </label>
         <input class="in1" id="first-name" type="text" formControlName="firstName">
