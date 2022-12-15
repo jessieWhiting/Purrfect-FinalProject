@@ -1,7 +1,7 @@
 <div class="updateForm">
 
 <div *ngIf="!isEditing">
-    <button (click)="isEditing = !isEditing">Update Information</button>
+    <button class="submitButton" (click)="isEditing = !isEditing">Update Information</button>
 </div>
 
 <div *ngIf="isEditing">
@@ -23,7 +23,7 @@
         <input class="in5"  id="zipCode" type="text" formControlName="zipCode">
 
         <br>
-        <button type="submit" [disabled]="!form.valid">Submit</button>
+        <button class="submitButton" type="submit" [disabled]="!form.valid">Submit</button>
 
         </form>
     </div>

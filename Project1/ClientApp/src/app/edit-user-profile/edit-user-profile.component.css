@@ -4,6 +4,7 @@
     padding: 30px;
     text-align: left;
     margin-right: 10px;
+    margin-top: 30px;
 }
 .in1{
     margin-left: 53px;
@@ -19,4 +20,11 @@
 }
 .in5{
     margin-left: 77px;
+}
+
+.submitButton:hover {
+    transform: scale(0.9);
+    border: 5px solid #ff9c78;
+    border-radius: 5px;
+    background-color: #eaeaea;
 }
